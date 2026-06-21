@@ -1,4 +1,4 @@
-﻿namespace QueuingSystem.Forms
+﻿namespace Queuing_System_Alipour.Window
 {
     partial class FrmRegister
     {
@@ -33,9 +33,9 @@
             this.txtbox_password = new System.Windows.Forms.TextBox();
             this.txtbox_rpassword = new System.Windows.Forms.TextBox();
             this.btn_register = new System.Windows.Forms.Button();
-            this.lbl_rpassword = new QueuingSystem.Features.SafeUI.SafeLabel();
-            this.lbl_password = new QueuingSystem.Features.SafeUI.SafeLabel();
-            this.lbl_username = new QueuingSystem.Features.SafeUI.SafeLabel();
+            this.lbl_rpassword = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
+            this.lbl_password = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
+            this.lbl_username = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
             this.btn_login = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -155,11 +155,11 @@
 
         #endregion
 
-        private Features.SafeUI.SafeLabel lbl_username;
-        private Features.SafeUI.SafeLabel lbl_password;
+        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel lbl_username;
+        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel lbl_password;
         private System.Windows.Forms.TextBox txtbox_username;
         private System.Windows.Forms.TextBox txtbox_password;
-        private Features.SafeUI.SafeLabel lbl_rpassword;
+        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel lbl_rpassword;
         private System.Windows.Forms.TextBox txtbox_rpassword;
         private System.Windows.Forms.Button btn_register;
         private System.Windows.Forms.Button btn_login;

@@ -1,4 +1,4 @@
-﻿namespace Queuing_System_Alipour.Tool.Models
+﻿namespace Queuing_System_Alipour.Models
 {
     public class PersonnelModel
     {

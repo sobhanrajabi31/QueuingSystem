@@ -1,4 +1,4 @@
-﻿namespace QueuingSystem.Forms
+﻿namespace Queuing_System_Alipour.Window
 {
     partial class FrmMain
     {

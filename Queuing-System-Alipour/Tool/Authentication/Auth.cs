@@ -1,5 +1,5 @@
-﻿using Queuing_System_Alipour.Tool;
-using Queuing_System_Alipour.Tool.Models;
+﻿using Queuing_System_Alipour.Models;
+using Queuing_System_Alipour.Tool;
 
 namespace Queuing_System_Alipour.Tool.Authentication
 {
@@ -40,7 +40,7 @@ namespace Queuing_System_Alipour.Tool.Authentication
 
                 var UserModel = new UsersModel();
                 UserModel.Username = username;
-                UserModel.Password = PasswordHasher.Hash(password);
+                UserModel.Password = PasswordHasher.PasswordHasher.Hash(password);
 
                 Database.UsersModels.Add(UserModel);
                 Database.Save<UsersModel>();

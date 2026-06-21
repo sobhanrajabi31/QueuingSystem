@@ -1,21 +1,15 @@
-﻿using QueuingSystem.Features;
-using QueuingSystem.Features.Authentication;
-using QueuingSystem.Features.ErrorHandler;
-using QueuingSystem.Features.Handler;
-using QueuingSystem.Features.Models;
+﻿using Queuing_System_Alipour.Models;
+using Queuing_System_Alipour.Tool;
+using Queuing_System_Alipour.Tool.Authentication;
+using Queuing_System_Alipour.Tool.Handler;
+using Queuing_System_Alipour.Tool.PasswordHasher;
 using QueuingSystem.Features.Toast;
-using QueuingSystem.Properties;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Media;
 using System.Reflection;
-using System.Windows.Forms;
+using Resource = Queuing_System_Alipour.Resources.Resource;
 
-namespace QueuingSystem.Forms
+namespace Queuing_System_Alipour.Window
 {
     public enum SortType
     {
@@ -64,7 +58,7 @@ namespace QueuingSystem.Forms
                 this.Close();
             }
 
-            player = new SoundPlayer(Resources.Alarm_Sound);
+            player = new SoundPlayer(Resource.alarm);
             player.Load();
 
             Setting.CheckSetting();
@@ -76,13 +70,13 @@ namespace QueuingSystem.Forms
 
             PictureConnection();
 
-            UpcomingPic.Image = Img.ConvertToBmp(Resources.Yellow);
-            TodayPic.Image = Img.ConvertToBmp(Resources.Green);
-            ExpirePic.Image = Img.ConvertToBmp(Resources.Red);
+            UpcomingPic.Image = Img.ConvertToBmp(Resource.Yellow);
+            TodayPic.Image = Img.ConvertToBmp(Resource.Green);
+            ExpirePic.Image = Img.ConvertToBmp(Resource.Red);
 
-            DonePic.Image = Img.ConvertToBmp(Resources.check);
-            CancelPic.Image = Img.ConvertToBmp(Resources.x);
-            UndonePic.Image = Img.ConvertToBmp(Resources.clockwise);
+            DonePic.Image = Img.ConvertToBmp(Resource.check);
+            CancelPic.Image = Img.ConvertToBmp(Resource.x);
+            UndonePic.Image = Img.ConvertToBmp(Resource.clockwise);
 
             TimerClock_Tick(null, null);
             SwitchButton(btnDashboard);
@@ -310,12 +304,13 @@ namespace QueuingSystem.Forms
             {
                 TimeFrameIndex = (TimeFrame)comboboxTimeFrame.SelectedIndex;
 
-                var model = new SettingModel
-                {
-                    TimeFrame = (Features.Models.TimeFrame?)TimeFrameIndex
-                };
+                //TODO: FIX HERE
+                //var model = new SettingModel
+                //{
+                //    TimeFrame = (Models.TimeFrame?)TimeFrameIndex
+                //};
 
-                Setting.Save(model);
+                //Setting.Save(model);
 
                 Database.Refresh<AtelierModel>();
             }
@@ -327,12 +322,13 @@ namespace QueuingSystem.Forms
             {
                 QueueStatusIndex = (QueueStatus)combobox_QueueStatus.SelectedIndex;
 
-                var model = new SettingModel
-                {
-                    QueueStatus = (Features.Models.QueueStatus?)QueueStatusIndex
-                };
+                //TODO: FIX HERE
+                //var model = new SettingModel
+                //{
+                //    QueueStatus = (Features.Models.QueueStatus?)QueueStatusIndex
+                //};
 
-                Setting.Save(model);
+                //Setting.Save(model);
 
                 Database.Refresh<AtelierModel>();
             }
@@ -527,11 +523,11 @@ namespace QueuingSystem.Forms
                 int compare = DateTime.Compare(DateTime.Parse(model.Key), DateTime.Today);
 
                 if (compare == 0)
-                    img = Resources.Green;
+                    img = Resource.Green;
                 else if (compare == 1)
-                    img = Resources.Yellow;
+                    img = Resource.Yellow;
                 else if (compare == -1)
-                    img = Resources.Red;
+                    img = Resource.Red;
 
                 AtelierDatagridview.Invoke(new Action(() =>
                 {
@@ -540,11 +536,11 @@ namespace QueuingSystem.Forms
                         Image img2 = null;
 
                         if (item.Status == null)
-                            img2 = Resources.clockwise;
+                            img2 = Resource.clockwise;
                         else if (item.Status.Value)
-                            img2 = Resources.check;
+                            img2 = Resource.check;
                         else if (!item.Status.Value)
-                            img2 = Resources.x;
+                            img2 = Resource.x;
 
                         var TodayDate = DateTime.Parse(model.Key);
 
@@ -699,7 +695,7 @@ namespace QueuingSystem.Forms
             {
                 int extra = 30 * i + i / 2 * 5;
 
-                var resType = typeof(Resources);
+                var resType = typeof(Resource);
                 var pi = resType.GetProperty($"_{time[i]}", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
                 var img = (Bitmap)pi.GetValue(null, null);
 
@@ -723,8 +719,8 @@ namespace QueuingSystem.Forms
             {
                 this.Invoke(new Action(() =>
                 {
-                    ConnectionPic.Image = Img.ConvertToBmp(Resources.Green_Large);
-                    SmallConnectionPic.Image = Img.ConvertToBmp(Resources.Green_Large);
+                    ConnectionPic.Image = Img.ConvertToBmp(Resource.Green_Large);
+                    SmallConnectionPic.Image = Img.ConvertToBmp(Resource.Green_Large);
                     lbl_ConnectionStatus.Text = "آنلاین";
                     lbl_ConnectionStatus.ForeColor = Color.Green;
                 }));
@@ -733,8 +729,8 @@ namespace QueuingSystem.Forms
             {
                 this.Invoke(new Action(() =>
                 {
-                    ConnectionPic.Image = Img.ConvertToBmp(Resources.Red_Large);
-                    SmallConnectionPic.Image = Img.ConvertToBmp(Resources.Red_Large);
+                    ConnectionPic.Image = Img.ConvertToBmp(Resource.Red_Large);
+                    SmallConnectionPic.Image = Img.ConvertToBmp(Resource.Red_Large);
                     lbl_ConnectionStatus.Text = "آفلاین";
                     lbl_ConnectionStatus.ForeColor = Color.Red;
                 }));
@@ -1012,18 +1008,18 @@ namespace QueuingSystem.Forms
                     int compare = DateTime.Compare(DateTime.Parse(item.Key), DateTime.Today);
 
                     if (compare == 0)
-                        img = Resources.Green;
+                        img = Resource.Green;
                     else if (compare == 1)
-                        img = Resources.Yellow;
+                        img = Resource.Yellow;
                     else
-                        img = Resources.Red;
+                        img = Resource.Red;
 
                     if (item.Value.Status == null)
-                        img2 = Resources.clockwise;
+                        img2 = Resource.clockwise;
                     else if (item.Value.Status.Value)
-                        img2 = Resources.check;
+                        img2 = Resource.check;
                     else
-                        img2 = Resources.x;
+                        img2 = Resource.x;
                     var spentTimeSplited = item.Value.SpentTime.Split(':');
                     var spentTimeText = $"{spentTimeSplited[0]} ساعت و {spentTimeSplited[1]} دقیقه";
                     AtelierDatagridview.Rows.Add(
@@ -1103,18 +1099,18 @@ namespace QueuingSystem.Forms
                     int compare = DateTime.Compare(DateTime.Parse(item.Key), DateTime.Today);
 
                     if (compare == 0)
-                        img = Resources.Green;
+                        img = Resource.Green;
                     else if (compare == 1)
-                        img = Resources.Yellow;
+                        img = Resource.Yellow;
                     else
-                        img = Resources.Red;
+                        img = Resource.Red;
 
                     if (item.Value.Status == null)
-                        img2 = Resources.clockwise;
+                        img2 = Resource.clockwise;
                     else if (item.Value.Status.Value)
-                        img2 = Resources.check;
+                        img2 = Resource.check;
                     else
-                        img2 = Resources.x;
+                        img2 = Resource.x;
                     var spentTimeSplited = item.Value.SpentTime.Split(':');
                     var spentTimeText = $"{spentTimeSplited[0]} ساعت و {spentTimeSplited[1]} دقیقه";
                     AtelierDatagridview.Rows.Add(
@@ -1184,18 +1180,18 @@ namespace QueuingSystem.Forms
                     int compare = DateTime.Compare(DateTime.Parse(item.Key), DateTime.Today);
 
                     if (compare == 0)
-                        img = Resources.Green;
+                        img = Resource.Green;
                     else if (compare == 1)
-                        img = Resources.Yellow;
+                        img = Resource.Yellow;
                     else
-                        img = Resources.Red;
+                        img = Resource.Red;
 
                     if (item.Value.Status == null)
-                        img2 = Resources.clockwise;
+                        img2 = Resource.clockwise;
                     else if (item.Value.Status.Value)
-                        img2 = Resources.check;
+                        img2 = Resource.check;
                     else
-                        img2 = Resources.x;
+                        img2 = Resource.x;
                     var spentTimeSplited = item.Value.SpentTime.Split(':');
                     var spentTimeText = $"{spentTimeSplited[0]} ساعت و {spentTimeSplited[1]} دقیقه";
                     AtelierDatagridview.Rows.Add(

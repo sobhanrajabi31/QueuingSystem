@@ -1,10 +1,10 @@
-﻿using Queuing_System_Alipour.Tool;
+﻿using Queuing_System_Alipour.Models;
+using Queuing_System_Alipour.Tool;
 using Queuing_System_Alipour.Tool.Authentication;
 using Queuing_System_Alipour.Tool.Handler;
-using Queuing_System_Alipour.Tool.Models;
 using Queuing_System_Alipour.Tool.PasswordHasher;
 
-namespace QueuingSystem.Forms
+namespace Queuing_System_Alipour.Window
 {
     public partial class FrmLogin : Form
     {

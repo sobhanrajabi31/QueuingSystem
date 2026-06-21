@@ -1,4 +1,4 @@
-﻿namespace QueuingSystem.Forms
+﻿namespace Queuing_System_Alipour.Window
 {
     partial class FrmLogin
     {
@@ -34,8 +34,8 @@
             this.txtbox_username = new System.Windows.Forms.TextBox();
             this.chckbox_remember = new System.Windows.Forms.CheckBox();
             this.btn_register = new System.Windows.Forms.Button();
-            this.lbl_password = new QueuingSystem.Features.SafeUI.SafeLabel();
-            this.lbl_username = new QueuingSystem.Features.SafeUI.SafeLabel();
+            this.lbl_password = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
+            this.lbl_username = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
             this.SuspendLayout();
             // 
             // btn_login

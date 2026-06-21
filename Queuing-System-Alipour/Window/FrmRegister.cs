@@ -1,11 +1,8 @@
-﻿using QueuingSystem.Features;
-using QueuingSystem.Features.Authentication;
-using QueuingSystem.Features.ErrorHandler;
-using QueuingSystem.Features.Handler;
-using System;
-using System.Windows.Forms;
+﻿using Queuing_System_Alipour.Tool;
+using Queuing_System_Alipour.Tool.Authentication;
+using Queuing_System_Alipour.Tool.Handler;
 
-namespace QueuingSystem.Forms
+namespace Queuing_System_Alipour.Window
 {
     public partial class FrmRegister : Form
     {

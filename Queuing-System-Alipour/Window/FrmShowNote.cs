@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace QueuingSystem.Forms
+﻿namespace Queuing_System_Alipour.Window
 {
     public partial class FrmShowNote : Form
     {

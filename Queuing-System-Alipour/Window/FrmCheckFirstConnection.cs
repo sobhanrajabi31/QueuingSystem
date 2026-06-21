@@ -1,7 +1,7 @@
 ﻿using Queuing_System_Alipour.Tool;
 using Queuing_System_Alipour.Tool.Handler;
 
-namespace QueuingSystem.Forms
+namespace Queuing_System_Alipour.Window
 {
     public partial class FrmCheckFirstConnection : Form
     {

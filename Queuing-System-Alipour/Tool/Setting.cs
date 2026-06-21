@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Queuing_System_Alipour.Tool.Models;
+using Queuing_System_Alipour.Models;
 using System;
 using System.Globalization;
 using System.IO;
@@ -49,12 +49,12 @@ namespace Queuing_System_Alipour.Tool
         public static void Save(SettingModel model)
         {
             if (model.QueueStatus == null)
-                model.QueueStatus = (Models.QueueStatus?)Setting.Default_QueueStatus;
+                model.QueueStatus = (Queuing_System_Alipour.Models.QueueStatus?)Setting.Default_QueueStatus;
             else
                 Setting.QueueStatus = (QueueStatus?)model.QueueStatus;
 
             if (model.TimeFrame == null)
-                model.TimeFrame = (Models.TimeFrame?)Setting.Default_TimeFrame;
+                model.TimeFrame = (Queuing_System_Alipour.Models.TimeFrame?)Setting.Default_TimeFrame;
             else
                 Setting.TimeFrame = (TimeFrame?)model.TimeFrame;
 
@@ -145,8 +145,8 @@ namespace Queuing_System_Alipour.Tool
                 new_model.NetworkPath = string.Empty;
 
             new_model.PhotographMode = Setting.DEFAULT_PhotographMode;
-            new_model.QueueStatus = (Models.QueueStatus)Setting.Default_QueueStatus;
-            new_model.TimeFrame = (Models.TimeFrame)Setting.Default_TimeFrame;
+            new_model.QueueStatus = (Queuing_System_Alipour.Models.QueueStatus)Setting.Default_QueueStatus;
+            new_model.TimeFrame = (Queuing_System_Alipour.Models.TimeFrame)Setting.Default_TimeFrame;
             new_model.PersonnelWaitTime = Setting.DEFAULT_PersonnelWaitTime;
             new_model.RememberMe = Setting.DEFAULT_RememberMe;
             new_model.Username = string.Empty;

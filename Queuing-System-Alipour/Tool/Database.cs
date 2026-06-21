@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Queuing_System_Alipour.Models;
 using Queuing_System_Alipour.Tool.Handler;
-using Queuing_System_Alipour.Tool.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -65,7 +65,7 @@ namespace Queuing_System_Alipour.Tool
             }
             catch (Exception ex)
             {
-                var errorCode = ErrorHandler.ErrorHandler.GetErrorCode(ex);
+                var errorCode = ErrorHandler.GetErrorCode(ex);
                 OnError?.Invoke(errorCode);
 
                 return false;
@@ -117,7 +117,7 @@ namespace Queuing_System_Alipour.Tool
             }
             catch (Exception ex)
             {
-                var errorCode = ErrorHandler.ErrorHandler.GetErrorCode(ex);
+                var errorCode = ErrorHandler.GetErrorCode(ex);
                 OnError?.Invoke(errorCode);
                 return false;
             }
@@ -179,7 +179,7 @@ namespace Queuing_System_Alipour.Tool
                 };
                 DbWatcher.Error += (s, e) =>
                 {
-                    var errorCode = ErrorHandler.ErrorHandler.GetErrorCode(e.GetException());
+                    var errorCode = ErrorHandler.GetErrorCode(e.GetException());
                     OnError?.Invoke(errorCode);
                 };
                 DbWatcher.EnableRaisingEvents = true;
@@ -209,7 +209,7 @@ namespace Queuing_System_Alipour.Tool
                 };
                 UsersWatcher.Error += (s, e) =>
                 {
-                    var errorCode = ErrorHandler.ErrorHandler.GetErrorCode(e.GetException());
+                    var errorCode = ErrorHandler.GetErrorCode(e.GetException());
                     OnError?.Invoke(errorCode);
                 };
                 UsersWatcher.EnableRaisingEvents = true;
@@ -312,7 +312,7 @@ namespace Queuing_System_Alipour.Tool
             }
             catch (Exception ex)
             {
-                return new Tuple<bool?, ErrorCode>(null, ErrorHandler.ErrorHandler.GetErrorCode(ex));
+                return new Tuple<bool?, ErrorCode>(null, ErrorHandler.GetErrorCode(ex));
             }
         }
     }

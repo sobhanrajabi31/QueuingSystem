@@ -1,8 +1,10 @@
-﻿using Queuing_System_Alipour.Tool;
+﻿using Queuing_System_Alipour.Models;
+using Queuing_System_Alipour.Tool;
+using Queuing_System_Alipour.Tool.Handler;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace QueuingSystem.Forms
+namespace Queuing_System_Alipour.Window
 {
     public partial class FrmAddAtelierQueue : Form
     {
