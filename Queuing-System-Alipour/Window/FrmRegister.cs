@@ -1,24 +1,22 @@
-﻿using Queuing_System_Alipour.Tool;
-using Queuing_System_Alipour.Tool.Authentication;
+﻿using Queuing_System_Alipour.DTOs.Employee;
+using Queuing_System_Alipour.Services;
+using Queuing_System_Alipour.Tool;
 using Queuing_System_Alipour.Tool.Handler;
 
 namespace Queuing_System_Alipour.Window
 {
     public partial class FrmRegister : Form
     {
+        private readonly EmployeeService _employeeSrv;
+
         public FrmRegister()
         {
             InitializeComponent();
+            _employeeSrv = new EmployeeService();
         }
 
         private void FrmRegister_Load(object sender, EventArgs e)
         {
-            var results = Setting.CheckSetting();
-            if (!results)
-            {
-                Mbox.Error(ErrorHandler.GetMessage(ErrorCode.InvalidSettingFile), Caption.Error);
-                Application.Exit();
-            }
         }
 
         private void Btn_login_Click(object sender, EventArgs e)
@@ -70,49 +68,29 @@ namespace Queuing_System_Alipour.Window
         {
             btn_register.Enabled = false;
 
-            var results = await Database.InitialConnectionCheck();
+            var registerData = new RegisterDto
+            {
+                Username = txtbox_username.Text,
+                Password = txtbox_password.Text,
+                Role = false
+            };
+
+            var registerResult = _employeeSrv.Register(registerData);
+
+            if (registerResult.IsSuccess)
+            {
+                Mbox.Information(registerResult.Message, Caption.Information);
+
+                var frmLogin = new FrmLogin();
+                Hide();
+                frmLogin.ShowDialog();
+                Application.Exit();
+            }
+
+            else
+                Mbox.Error(registerResult.Message, Caption.Error);
 
             btn_register.Enabled = true;
-
-            if (results.Item1 == null || !results.Item1.Value)
-            {
-                Mbox.Error(ErrorHandler.GetMessage(results.Item2), Caption.Error);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtbox_username.Text) && string.IsNullOrWhiteSpace(txtbox_password.Text) && string.IsNullOrWhiteSpace(txtbox_rpassword.Text))
-            {
-                Mbox.Error(ErrorHandler.GetMessage(ErrorCode.InvalidInputType), Caption.Error);
-                return;
-            }
-
-            if (txtbox_password.Text != txtbox_rpassword.Text)
-            {
-                Mbox.Error(ErrorHandler.GetMessage(ErrorCode.InvalidRepeatPassword), Caption.Error);
-                return;
-            }
-
-            var result = Auth.Register(txtbox_username.Text.ToLower(), txtbox_password.Text);
-
-            if (result == null)
-            {
-                Mbox.Error(ErrorHandler.GetMessage(ErrorCode.Unknown), Caption.Error);
-                return;
-            }
-
-            if (result.Value)
-            {
-                Mbox.Information(MessageHandler.GetMessage(MessageCode.AccountCreated), Caption.Information);
-
-                FrmLogin frm = new FrmLogin();
-                this.Hide();
-                frm.ShowDialog();
-                this.Close();
-                return;
-            }
-
-            Mbox.Error(ErrorHandler.GetMessage(ErrorCode.UsernameExists), Caption.Error);
-            return;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Queuing_System_Alipour.Window
+﻿using Queuing_System_Alipour.Tool;
+
+namespace Queuing_System_Alipour.Window
 {
     partial class FrmAddAtelierQueue
     {
@@ -35,18 +37,18 @@
             this.txtbox_phonenumber = new System.Windows.Forms.TextBox();
             this.cmb_spentHour = new System.Windows.Forms.ComboBox();
             this.txtbox_date = new Atf.UI.DateTimeSelector();
-            this.lbl_spenttime = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
-            this.lbl_date = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
-            this.lbl_phonenumber = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
-            this.lbl_fullname = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
-            this.lbl_time = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
+            this.lbl_spenttime = new Queuing_System_Alipour.Tool.SafeLabel();
+            this.lbl_date = new Queuing_System_Alipour.Tool.SafeLabel();
+            this.lbl_phonenumber = new Queuing_System_Alipour.Tool.SafeLabel();
+            this.lbl_fullname = new Queuing_System_Alipour.Tool.SafeLabel();
+            this.lbl_time = new Queuing_System_Alipour.Tool.SafeLabel();
             this.txtbox_time = new System.Windows.Forms.TextBox();
             this.FreeTimeDatagridView = new System.Windows.Forms.DataGridView();
             this.AtelierHourColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmb_spentMinute = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.safeLabel2 = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
-            this.safeLabel1 = new Queuing_System_Alipour.Tool.SafeLabel.SafeLabel();
+            this.safeLabel2 = new Queuing_System_Alipour.Tool.SafeLabel();
+            this.safeLabel1 = new Queuing_System_Alipour.Tool.SafeLabel();
             this.btn_note = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
@@ -352,22 +354,22 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtbox_fullname;
-        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel lbl_fullname;
+        private SafeLabel lbl_fullname;
         private System.Windows.Forms.TextBox txtbox_phonenumber;
-        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel lbl_phonenumber;
+        private SafeLabel lbl_phonenumber;
         private System.Windows.Forms.ComboBox cmb_spentHour;
-        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel lbl_spenttime;
+        private SafeLabel lbl_spenttime;
         private Atf.UI.DateTimeSelector txtbox_date;
-        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel lbl_date;
-        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel lbl_time;
+        private SafeLabel lbl_date;
+        private SafeLabel lbl_time;
         private System.Windows.Forms.TextBox txtbox_time;
         private System.Windows.Forms.DataGridView FreeTimeDatagridView;
         private System.Windows.Forms.ComboBox cmb_spentMinute;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.DataGridViewTextBoxColumn AtelierHourColumn;
-        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel safeLabel1;
-        private Queuing_System_Alipour.Tool.SafeLabel.SafeLabel safeLabel2;
+        private SafeLabel safeLabel1;
+        private SafeLabel safeLabel2;
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button btn_note;
     }
