@@ -1,4 +1,4 @@
-﻿namespace Queuing_System_Alipour.Tool.SafeLabel
+﻿namespace Queuing_System_Alipour.Tool
 {
     public sealed class SafeLabel : Label
     {

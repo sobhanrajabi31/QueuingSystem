@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace Queuing_System_Alipour.Tool
+﻿namespace Queuing_System_Alipour.Tool
 {
     public enum MButton
     {
@@ -68,12 +66,16 @@ namespace Queuing_System_Alipour.Tool
         {
             if (caption == Caption.Message)
                 return "پیام";
+
             else if (caption == Caption.Error)
                 return "خطا";
+
             else if (caption == Caption.Warning)
                 return "هشدار";
+
             else if (caption == Caption.Question)
                 return "سوال";
+
             else
                 return "پیغام";
         }
