@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Queuing_System_Alipour.Entities;
 using System.Linq.Expressions;
 
 namespace Queuing_System_Alipour.Validator.Atelier.Base
@@ -72,16 +73,16 @@ namespace Queuing_System_Alipour.Validator.Atelier.Base
                 .WithMessage("مدت زمان نوبت نمی تواند خالی باشد");
         }
 
-        protected void QueueStatusRules(Expression<Func<T, int>> expression)
+        protected void QueueStatusRules(Expression<Func<T, QueueStatus>> expression)
         {
             RuleFor(expression)
                 .Cascade(CascadeMode.Stop)
 
-                .NotEmpty()
+                .IsInEnum()
                 .WithMessage("وضعیت نوبت نمی تواند خالی باشد")
 
-                .InclusiveBetween(0, 2)
-                .WithMessage("این وضعیت نوبت تعریف نشده است");
+                .NotEqual(QueueStatus.Pending)
+                .WithMessage("این نوبت از قبل در حالت \"در انتظار\" قرار دارد");
         }
 
         protected void NoteRules(Expression<Func<T, string>> expression)

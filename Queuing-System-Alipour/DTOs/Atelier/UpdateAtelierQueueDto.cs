@@ -1,9 +1,10 @@
 ﻿using Queuing_System_Alipour.DTOs.Atelier.Base;
+using Queuing_System_Alipour.Entities;
 
 namespace Queuing_System_Alipour.DTOs.Atelier
 {
     public sealed class UpdateAtelierQueueDto : AtelierDtoBase
     {
-        public int QueueStatus { get; set; }
+        public QueueStatus QueueStatus { get; set; }
     }
 }
