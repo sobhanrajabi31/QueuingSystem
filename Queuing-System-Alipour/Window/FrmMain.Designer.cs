@@ -28,1616 +28,1666 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.sidebarPanel = new System.Windows.Forms.Panel();
-            this.btnSetting = new System.Windows.Forms.Button();
-            this.btnUsers = new System.Windows.Forms.Button();
-            this.btnPersonnel = new System.Windows.Forms.Button();
-            this.btnAtelier = new System.Windows.Forms.Button();
-            this.btnStatistics = new System.Windows.Forms.Button();
-            this.btnDashboard = new System.Windows.Forms.Button();
-            this.welcomePanel = new System.Windows.Forms.Panel();
-            this.SmallConnectionPic = new System.Windows.Forms.PictureBox();
-            this.picDigitalClock = new System.Windows.Forms.PictureBox();
-            this.DashboardPanel = new System.Windows.Forms.Panel();
-            this.atelierCountPanel = new System.Windows.Forms.Panel();
-            this.picAtelierCountPanel = new System.Windows.Forms.PictureBox();
-            this.ConnectionPanel = new System.Windows.Forms.Panel();
-            this.ConnectionPic = new System.Windows.Forms.PictureBox();
-            this.UsernamePanel = new System.Windows.Forms.Panel();
-            this.picUsernamePanel = new System.Windows.Forms.PictureBox();
-            this.StatisticsPanel = new System.Windows.Forms.Panel();
-            this.PersonnelPanel = new System.Windows.Forms.Panel();
-            this.PersonnelDoneDatagridview = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PersonnelDatagridview = new System.Windows.Forms.DataGridView();
-            this.PersonnelQueueIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PersonnelQueueNumberColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PersonnelQueueNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PersonnelQueueWaitTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action_panel = new System.Windows.Forms.Panel();
-            this.txtbox_fullname = new System.Windows.Forms.TextBox();
-            this.btn_removeQueue = new System.Windows.Forms.Button();
-            this.btn_addQueue = new System.Windows.Forms.Button();
-            this.QueuePanel = new System.Windows.Forms.Panel();
-            this.btn_nextQueue = new System.Windows.Forms.Button();
-            this.AtelierPanel = new System.Windows.Forms.Panel();
-            this.StatusPanel = new System.Windows.Forms.Panel();
-            this.btn_CancelAtelierQueue = new System.Windows.Forms.Button();
-            this.btn_DoneAtelierQueue = new System.Windows.Forms.Button();
-            this.btnClearFilter = new System.Windows.Forms.Button();
-            this.combobox_SortBy = new System.Windows.Forms.ComboBox();
-            this.comboboxTimeFrame = new System.Windows.Forms.ComboBox();
-            this.combobox_QueueStatus = new System.Windows.Forms.ComboBox();
-            this.QueueStatusPanel = new System.Windows.Forms.Panel();
-            this.UndonePic = new System.Windows.Forms.PictureBox();
-            this.CancelPic = new System.Windows.Forms.PictureBox();
-            this.DonePic = new System.Windows.Forms.PictureBox();
-            this.DayStatusPanel = new System.Windows.Forms.Panel();
-            this.ExpirePic = new System.Windows.Forms.PictureBox();
-            this.TodayPic = new System.Windows.Forms.PictureBox();
-            this.UpcomingPic = new System.Windows.Forms.PictureBox();
-            this.AtelierDatagridview = new System.Windows.Forms.DataGridView();
-            this.ActionPanel = new System.Windows.Forms.Panel();
-            this.btn_deleteAtelierQueue = new System.Windows.Forms.Button();
-            this.btn_addAtelierQueue = new System.Windows.Forms.Button();
-            this.UsersPanel = new System.Windows.Forms.Panel();
-            this.UsersDatagrid = new System.Windows.Forms.DataGridView();
-            this.UsernameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StatusColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.SettingPanel = new System.Windows.Forms.Panel();
-            this.groupbox_photographer = new System.Windows.Forms.GroupBox();
-            this.chckbox_accStatus = new System.Windows.Forms.CheckBox();
-            this.groupbox_accManage = new System.Windows.Forms.GroupBox();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.groupbox_ChangePass = new System.Windows.Forms.GroupBox();
-            this.btnChangePass = new System.Windows.Forms.Button();
-            this.txtbox_newPass = new System.Windows.Forms.TextBox();
-            this.txtbox_oldPass = new System.Windows.Forms.TextBox();
-            this.timerClock = new System.Windows.Forms.Timer(this.components);
-            this.lbl_Status = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_Undone = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_Cancel = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_Done = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_Expire = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_Today = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_Upcoming = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_date = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_Action = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_next = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_nextText = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_personnel = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_fullname = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_CurrentQueue = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_currentQueueText = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_newPass = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_oldPass = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_setting = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lblAtelierCount = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lblAtelierCountText = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_ConnectionStatus = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_connection = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lblUsername = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_welcome = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_dashboard = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_users = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.safeLabel1 = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_statistics = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.AtelierStatusDayColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.AtelierStatusColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.AtelierDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AtelierHourColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AtelierSpentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AtelierFullNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AtelierPhoneNumberColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AtelierNoteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.AtelierQueueIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sidebarPanel.SuspendLayout();
-            this.welcomePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SmallConnectionPic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDigitalClock)).BeginInit();
-            this.DashboardPanel.SuspendLayout();
-            this.atelierCountPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picAtelierCountPanel)).BeginInit();
-            this.ConnectionPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ConnectionPic)).BeginInit();
-            this.UsernamePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picUsernamePanel)).BeginInit();
-            this.StatisticsPanel.SuspendLayout();
-            this.PersonnelPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PersonnelDoneDatagridview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PersonnelDatagridview)).BeginInit();
-            this.action_panel.SuspendLayout();
-            this.QueuePanel.SuspendLayout();
-            this.AtelierPanel.SuspendLayout();
-            this.StatusPanel.SuspendLayout();
-            this.QueueStatusPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UndonePic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CancelPic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DonePic)).BeginInit();
-            this.DayStatusPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ExpirePic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TodayPic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UpcomingPic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AtelierDatagridview)).BeginInit();
-            this.ActionPanel.SuspendLayout();
-            this.UsersPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UsersDatagrid)).BeginInit();
-            this.SettingPanel.SuspendLayout();
-            this.groupbox_photographer.SuspendLayout();
-            this.groupbox_accManage.SuspendLayout();
-            this.groupbox_ChangePass.SuspendLayout();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            sidebarPanel = new Panel();
+            btnSetting = new Button();
+            btnUsers = new Button();
+            btnPersonnel = new Button();
+            btnAtelier = new Button();
+            btnStatistics = new Button();
+            btnDashboard = new Button();
+            welcomePanel = new Panel();
+            picDigitalClock = new PictureBox();
+            DashboardPanel = new Panel();
+            RolePanel = new Panel();
+            RolePic = new PictureBox();
+            lblRole = new Queuing_System_Alipour.Tool.SafeLabel();
+            lblRoleText = new Queuing_System_Alipour.Tool.SafeLabel();
+            atelierCountPanel = new Panel();
+            picAtelierCountPanel = new PictureBox();
+            lblAtelierCount = new Queuing_System_Alipour.Tool.SafeLabel();
+            lblAtelierCountText = new Queuing_System_Alipour.Tool.SafeLabel();
+            ConnectionPanel = new Panel();
+            DatePic = new PictureBox();
+            lblDate = new Queuing_System_Alipour.Tool.SafeLabel();
+            lblDateText = new Queuing_System_Alipour.Tool.SafeLabel();
+            UsernamePanel = new Panel();
+            picUsernamePanel = new PictureBox();
+            lblUsername = new Queuing_System_Alipour.Tool.SafeLabel();
+            lblWelcomeText = new Queuing_System_Alipour.Tool.SafeLabel();
+            lbl_dashboard = new Queuing_System_Alipour.Tool.SafeLabel();
+            StatisticsPanel = new Panel();
+            safeLabel1 = new Queuing_System_Alipour.Tool.SafeLabel();
+            lbl_statistics = new Queuing_System_Alipour.Tool.SafeLabel();
+            PersonnelPanel = new Panel();
+            PersonnelDoneDatagridview = new DataGridView();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            PersonnelDatagridview = new DataGridView();
+            PersonnelQueueIDColumn = new DataGridViewTextBoxColumn();
+            PersonnelQueueNumberColumn = new DataGridViewTextBoxColumn();
+            PersonnelQueueNameColumn = new DataGridViewTextBoxColumn();
+            PersonnelQueueWaitTimeColumn = new DataGridViewTextBoxColumn();
+            lbl_next = new Queuing_System_Alipour.Tool.SafeLabel();
+            lbl_nextText = new Queuing_System_Alipour.Tool.SafeLabel();
+            lbl_personnel = new Queuing_System_Alipour.Tool.SafeLabel();
+            action_panel = new Panel();
+            txtbox_fullname = new TextBox();
+            btn_removeQueue = new Button();
+            btn_addQueue = new Button();
+            lbl_fullname = new Queuing_System_Alipour.Tool.SafeLabel();
+            QueuePanel = new Panel();
+            btn_nextQueue = new Button();
+            lbl_CurrentQueue = new Queuing_System_Alipour.Tool.SafeLabel();
+            lbl_currentQueueText = new Queuing_System_Alipour.Tool.SafeLabel();
+            AtelierPanel = new Panel();
+            StatusPanel = new Panel();
+            lbl_Status = new Queuing_System_Alipour.Tool.SafeLabel();
+            btn_CancelAtelierQueue = new Button();
+            btn_DoneAtelierQueue = new Button();
+            QueueStatusPanel = new Panel();
+            lbl_Undone = new Queuing_System_Alipour.Tool.SafeLabel();
+            UndonePic = new PictureBox();
+            lbl_Cancel = new Queuing_System_Alipour.Tool.SafeLabel();
+            CancelPic = new PictureBox();
+            lbl_Done = new Queuing_System_Alipour.Tool.SafeLabel();
+            DonePic = new PictureBox();
+            DayStatusPanel = new Panel();
+            lbl_Expire = new Queuing_System_Alipour.Tool.SafeLabel();
+            ExpirePic = new PictureBox();
+            lbl_Today = new Queuing_System_Alipour.Tool.SafeLabel();
+            TodayPic = new PictureBox();
+            lbl_Upcoming = new Queuing_System_Alipour.Tool.SafeLabel();
+            UpcomingPic = new PictureBox();
+            AtelierDatagridview = new DataGridView();
+            AtelierStatusDayColumn = new DataGridViewImageColumn();
+            AtelierStatusColumn = new DataGridViewImageColumn();
+            AtelierDateColumn = new DataGridViewTextBoxColumn();
+            AtelierHourColumn = new DataGridViewTextBoxColumn();
+            AtelierSpentColumn = new DataGridViewTextBoxColumn();
+            AtelierFullNameColumn = new DataGridViewTextBoxColumn();
+            AtelierPhoneNumberColumn = new DataGridViewTextBoxColumn();
+            AtelierNoteColumn = new DataGridViewButtonColumn();
+            AtelierQueueIDColumn = new DataGridViewTextBoxColumn();
+            ActionPanel = new Panel();
+            lbl_Action = new Queuing_System_Alipour.Tool.SafeLabel();
+            btn_deleteAtelierQueue = new Button();
+            btn_addAtelierQueue = new Button();
+            FilterPanel = new Panel();
+            btnAddFilter = new Button();
+            lbl_FilterByQueueStatus = new Queuing_System_Alipour.Tool.SafeLabel();
+            lbl_FilterByDate = new Queuing_System_Alipour.Tool.SafeLabel();
+            lbl_FilterBySearch = new Queuing_System_Alipour.Tool.SafeLabel();
+            txtbox_SearchBy = new TextBox();
+            combobox_SearchBy = new ComboBox();
+            btnClearFilter = new Button();
+            combobox_TimeFrame = new ComboBox();
+            combobox_QueueStatus = new ComboBox();
+            UsersPanel = new Panel();
+            UsersDatagrid = new DataGridView();
+            UsernameColumn = new DataGridViewTextBoxColumn();
+            StatusColumn = new DataGridViewImageColumn();
+            lbl_users = new Queuing_System_Alipour.Tool.SafeLabel();
+            SettingPanel = new Panel();
+            groupbox_accManage = new GroupBox();
+            btnLogout = new Button();
+            groupbox_ChangePass = new GroupBox();
+            btnResetPass = new Button();
+            lbl_newPass = new Queuing_System_Alipour.Tool.SafeLabel();
+            lbl_oldPass = new Queuing_System_Alipour.Tool.SafeLabel();
+            txtbox_newPass = new TextBox();
+            txtbox_oldPass = new TextBox();
+            lbl_setting = new Queuing_System_Alipour.Tool.SafeLabel();
+            timerClock = new System.Windows.Forms.Timer(components);
+            sidebarPanel.SuspendLayout();
+            welcomePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picDigitalClock).BeginInit();
+            DashboardPanel.SuspendLayout();
+            RolePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)RolePic).BeginInit();
+            atelierCountPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picAtelierCountPanel).BeginInit();
+            ConnectionPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DatePic).BeginInit();
+            UsernamePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picUsernamePanel).BeginInit();
+            StatisticsPanel.SuspendLayout();
+            PersonnelPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PersonnelDoneDatagridview).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PersonnelDatagridview).BeginInit();
+            action_panel.SuspendLayout();
+            QueuePanel.SuspendLayout();
+            AtelierPanel.SuspendLayout();
+            StatusPanel.SuspendLayout();
+            QueueStatusPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)UndonePic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CancelPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DonePic).BeginInit();
+            DayStatusPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ExpirePic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TodayPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)UpcomingPic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)AtelierDatagridview).BeginInit();
+            ActionPanel.SuspendLayout();
+            FilterPanel.SuspendLayout();
+            UsersPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)UsersDatagrid).BeginInit();
+            SettingPanel.SuspendLayout();
+            groupbox_accManage.SuspendLayout();
+            groupbox_ChangePass.SuspendLayout();
+            SuspendLayout();
             // 
             // sidebarPanel
             // 
-            this.sidebarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(42)))), ((int)(((byte)(86)))));
-            this.sidebarPanel.Controls.Add(this.btnSetting);
-            this.sidebarPanel.Controls.Add(this.btnUsers);
-            this.sidebarPanel.Controls.Add(this.btnPersonnel);
-            this.sidebarPanel.Controls.Add(this.btnAtelier);
-            this.sidebarPanel.Controls.Add(this.btnStatistics);
-            this.sidebarPanel.Controls.Add(this.btnDashboard);
-            this.sidebarPanel.Controls.Add(this.welcomePanel);
-            this.sidebarPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.sidebarPanel.Location = new System.Drawing.Point(795, 0);
-            this.sidebarPanel.Name = "sidebarPanel";
-            this.sidebarPanel.Size = new System.Drawing.Size(205, 541);
-            this.sidebarPanel.TabIndex = 0;
+            sidebarPanel.BackColor = Color.FromArgb(25, 42, 86);
+            sidebarPanel.Controls.Add(btnSetting);
+            sidebarPanel.Controls.Add(btnUsers);
+            sidebarPanel.Controls.Add(btnPersonnel);
+            sidebarPanel.Controls.Add(btnAtelier);
+            sidebarPanel.Controls.Add(btnStatistics);
+            sidebarPanel.Controls.Add(btnDashboard);
+            sidebarPanel.Controls.Add(welcomePanel);
+            sidebarPanel.Dock = DockStyle.Right;
+            sidebarPanel.Location = new Point(795, 0);
+            sidebarPanel.Name = "sidebarPanel";
+            sidebarPanel.Size = new Size(205, 541);
+            sidebarPanel.TabIndex = 0;
             // 
             // btnSetting
             // 
-            this.btnSetting.FlatAppearance.BorderSize = 0;
-            this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetting.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btnSetting.Image = global::Queuing_System_Alipour.Resources.Resource.settings;
-            this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSetting.Location = new System.Drawing.Point(6, 455);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(193, 55);
-            this.btnSetting.TabIndex = 8;
-            this.btnSetting.TabStop = false;
-            this.btnSetting.Text = "تنظیمات";
-            this.btnSetting.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnSetting.UseVisualStyleBackColor = true;
-            this.btnSetting.Click += new System.EventHandler(this.BtnSetting_Click);
+            btnSetting.FlatAppearance.BorderSize = 0;
+            btnSetting.FlatStyle = FlatStyle.Flat;
+            btnSetting.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSetting.ForeColor = Color.FromArgb(245, 246, 250);
+            btnSetting.Image = Resources.Resource.settings;
+            btnSetting.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSetting.Location = new Point(6, 455);
+            btnSetting.Name = "btnSetting";
+            btnSetting.Size = new Size(193, 55);
+            btnSetting.TabIndex = 8;
+            btnSetting.TabStop = false;
+            btnSetting.Text = "تنظیمات";
+            btnSetting.TextAlign = ContentAlignment.MiddleRight;
+            btnSetting.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnSetting.UseVisualStyleBackColor = true;
+            btnSetting.Click += BtnSetting_Click;
             // 
             // btnUsers
             // 
-            this.btnUsers.FlatAppearance.BorderSize = 0;
-            this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsers.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btnUsers.Image = global::Queuing_System_Alipour.Resources.Resource.drawio;
-            this.btnUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsers.Location = new System.Drawing.Point(6, 394);
-            this.btnUsers.Name = "btnUsers";
-            this.btnUsers.Size = new System.Drawing.Size(193, 55);
-            this.btnUsers.TabIndex = 7;
-            this.btnUsers.TabStop = false;
-            this.btnUsers.Text = "همکاران";
-            this.btnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnUsers.UseVisualStyleBackColor = true;
-            this.btnUsers.Click += new System.EventHandler(this.BtnUsers_Click);
+            btnUsers.FlatAppearance.BorderSize = 0;
+            btnUsers.FlatStyle = FlatStyle.Flat;
+            btnUsers.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnUsers.ForeColor = Color.FromArgb(245, 246, 250);
+            btnUsers.Image = Resources.Resource.drawio;
+            btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUsers.Location = new Point(6, 394);
+            btnUsers.Name = "btnUsers";
+            btnUsers.Size = new Size(193, 55);
+            btnUsers.TabIndex = 7;
+            btnUsers.TabStop = false;
+            btnUsers.Text = "همکاران";
+            btnUsers.TextAlign = ContentAlignment.MiddleRight;
+            btnUsers.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnUsers.UseVisualStyleBackColor = true;
+            btnUsers.Click += BtnUsers_Click;
             // 
             // btnPersonnel
             // 
-            this.btnPersonnel.FlatAppearance.BorderSize = 0;
-            this.btnPersonnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPersonnel.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPersonnel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btnPersonnel.Image = global::Queuing_System_Alipour.Resources.Resource.authors;
-            this.btnPersonnel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPersonnel.Location = new System.Drawing.Point(6, 272);
-            this.btnPersonnel.Name = "btnPersonnel";
-            this.btnPersonnel.Size = new System.Drawing.Size(193, 55);
-            this.btnPersonnel.TabIndex = 5;
-            this.btnPersonnel.TabStop = false;
-            this.btnPersonnel.Text = "نوبت پرسنلی";
-            this.btnPersonnel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPersonnel.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnPersonnel.UseVisualStyleBackColor = true;
-            this.btnPersonnel.Click += new System.EventHandler(this.BtnPersonnel_Click);
+            btnPersonnel.FlatAppearance.BorderSize = 0;
+            btnPersonnel.FlatStyle = FlatStyle.Flat;
+            btnPersonnel.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPersonnel.ForeColor = Color.FromArgb(245, 246, 250);
+            btnPersonnel.Image = Resources.Resource.authors;
+            btnPersonnel.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPersonnel.Location = new Point(6, 272);
+            btnPersonnel.Name = "btnPersonnel";
+            btnPersonnel.Size = new Size(193, 55);
+            btnPersonnel.TabIndex = 5;
+            btnPersonnel.TabStop = false;
+            btnPersonnel.Text = "نوبت پرسنلی";
+            btnPersonnel.TextAlign = ContentAlignment.MiddleRight;
+            btnPersonnel.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnPersonnel.UseVisualStyleBackColor = true;
+            btnPersonnel.Click += BtnPersonnel_Click;
             // 
             // btnAtelier
             // 
-            this.btnAtelier.FlatAppearance.BorderSize = 0;
-            this.btnAtelier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAtelier.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtelier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btnAtelier.Image = global::Queuing_System_Alipour.Resources.Resource.palette;
-            this.btnAtelier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAtelier.Location = new System.Drawing.Point(6, 333);
-            this.btnAtelier.Name = "btnAtelier";
-            this.btnAtelier.Size = new System.Drawing.Size(193, 55);
-            this.btnAtelier.TabIndex = 6;
-            this.btnAtelier.TabStop = false;
-            this.btnAtelier.Text = "نوبت آتلیه";
-            this.btnAtelier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAtelier.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnAtelier.UseVisualStyleBackColor = true;
-            this.btnAtelier.Click += new System.EventHandler(this.BtnAtelier_Click);
+            btnAtelier.FlatAppearance.BorderSize = 0;
+            btnAtelier.FlatStyle = FlatStyle.Flat;
+            btnAtelier.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAtelier.ForeColor = Color.FromArgb(245, 246, 250);
+            btnAtelier.Image = Resources.Resource.palette;
+            btnAtelier.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAtelier.Location = new Point(6, 333);
+            btnAtelier.Name = "btnAtelier";
+            btnAtelier.Size = new Size(193, 55);
+            btnAtelier.TabIndex = 6;
+            btnAtelier.TabStop = false;
+            btnAtelier.Text = "نوبت آتلیه";
+            btnAtelier.TextAlign = ContentAlignment.MiddleRight;
+            btnAtelier.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnAtelier.UseVisualStyleBackColor = true;
+            btnAtelier.Click += BtnAtelier_Click;
             // 
             // btnStatistics
             // 
-            this.btnStatistics.FlatAppearance.BorderSize = 0;
-            this.btnStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStatistics.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStatistics.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btnStatistics.Image = ((System.Drawing.Image)(resources.GetObject("btnStatistics.Image")));
-            this.btnStatistics.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStatistics.Location = new System.Drawing.Point(6, 211);
-            this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Size = new System.Drawing.Size(193, 55);
-            this.btnStatistics.TabIndex = 4;
-            this.btnStatistics.TabStop = false;
-            this.btnStatistics.Text = "آمار";
-            this.btnStatistics.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnStatistics.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnStatistics.UseVisualStyleBackColor = true;
-            this.btnStatistics.Click += new System.EventHandler(this.BtnStatistics_Click);
+            btnStatistics.FlatAppearance.BorderSize = 0;
+            btnStatistics.FlatStyle = FlatStyle.Flat;
+            btnStatistics.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnStatistics.ForeColor = Color.FromArgb(245, 246, 250);
+            btnStatistics.Image = (Image)resources.GetObject("btnStatistics.Image");
+            btnStatistics.ImageAlign = ContentAlignment.MiddleLeft;
+            btnStatistics.Location = new Point(6, 211);
+            btnStatistics.Name = "btnStatistics";
+            btnStatistics.Size = new Size(193, 55);
+            btnStatistics.TabIndex = 4;
+            btnStatistics.TabStop = false;
+            btnStatistics.Text = "آمار";
+            btnStatistics.TextAlign = ContentAlignment.MiddleRight;
+            btnStatistics.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnStatistics.UseVisualStyleBackColor = true;
+            btnStatistics.Click += BtnStatistics_Click;
             // 
             // btnDashboard
             // 
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btnDashboard.Image = global::Queuing_System_Alipour.Resources.Resource.context;
-            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDashboard.Location = new System.Drawing.Point(6, 150);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(193, 55);
-            this.btnDashboard.TabIndex = 3;
-            this.btnDashboard.TabStop = false;
-            this.btnDashboard.Text = "داشبورد";
-            this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnDashboard.UseVisualStyleBackColor = true;
-            this.btnDashboard.Click += new System.EventHandler(this.BtnDashboard_Click);
+            btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDashboard.ForeColor = Color.FromArgb(245, 246, 250);
+            btnDashboard.Image = Resources.Resource.context;
+            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.Location = new Point(6, 150);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(193, 55);
+            btnDashboard.TabIndex = 3;
+            btnDashboard.TabStop = false;
+            btnDashboard.Text = "داشبورد";
+            btnDashboard.TextAlign = ContentAlignment.MiddleRight;
+            btnDashboard.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnDashboard.UseVisualStyleBackColor = true;
+            btnDashboard.Click += BtnDashboard_Click;
             // 
             // welcomePanel
             // 
-            this.welcomePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(128)))), ((int)(((byte)(147)))));
-            this.welcomePanel.Controls.Add(this.SmallConnectionPic);
-            this.welcomePanel.Controls.Add(this.picDigitalClock);
-            this.welcomePanel.Location = new System.Drawing.Point(0, 0);
-            this.welcomePanel.Name = "welcomePanel";
-            this.welcomePanel.Size = new System.Drawing.Size(205, 118);
-            this.welcomePanel.TabIndex = 0;
-            // 
-            // SmallConnectionPic
-            // 
-            this.SmallConnectionPic.Location = new System.Drawing.Point(189, 0);
-            this.SmallConnectionPic.Name = "SmallConnectionPic";
-            this.SmallConnectionPic.Size = new System.Drawing.Size(16, 16);
-            this.SmallConnectionPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.SmallConnectionPic.TabIndex = 8;
-            this.SmallConnectionPic.TabStop = false;
+            welcomePanel.BackColor = Color.FromArgb(113, 128, 147);
+            welcomePanel.Controls.Add(picDigitalClock);
+            welcomePanel.Location = new Point(0, 0);
+            welcomePanel.Name = "welcomePanel";
+            welcomePanel.Size = new Size(205, 118);
+            welcomePanel.TabIndex = 0;
             // 
             // picDigitalClock
             // 
-            this.picDigitalClock.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.picDigitalClock.Location = new System.Drawing.Point(29, 33);
-            this.picDigitalClock.Name = "picDigitalClock";
-            this.picDigitalClock.Size = new System.Drawing.Size(176, 62);
-            this.picDigitalClock.TabIndex = 0;
-            this.picDigitalClock.TabStop = false;
+            picDigitalClock.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            picDigitalClock.Location = new Point(29, 33);
+            picDigitalClock.Name = "picDigitalClock";
+            picDigitalClock.Size = new Size(176, 62);
+            picDigitalClock.TabIndex = 0;
+            picDigitalClock.TabStop = false;
             // 
             // DashboardPanel
             // 
-            this.DashboardPanel.Controls.Add(this.atelierCountPanel);
-            this.DashboardPanel.Controls.Add(this.ConnectionPanel);
-            this.DashboardPanel.Controls.Add(this.UsernamePanel);
-            this.DashboardPanel.Controls.Add(this.lbl_dashboard);
-            this.DashboardPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DashboardPanel.Location = new System.Drawing.Point(0, 0);
-            this.DashboardPanel.Name = "DashboardPanel";
-            this.DashboardPanel.Size = new System.Drawing.Size(795, 541);
-            this.DashboardPanel.TabIndex = 1;
+            DashboardPanel.Controls.Add(RolePanel);
+            DashboardPanel.Controls.Add(atelierCountPanel);
+            DashboardPanel.Controls.Add(ConnectionPanel);
+            DashboardPanel.Controls.Add(UsernamePanel);
+            DashboardPanel.Controls.Add(lbl_dashboard);
+            DashboardPanel.Dock = DockStyle.Fill;
+            DashboardPanel.Location = new Point(0, 0);
+            DashboardPanel.Name = "DashboardPanel";
+            DashboardPanel.Size = new Size(1000, 541);
+            DashboardPanel.TabIndex = 1;
+            // 
+            // RolePanel
+            // 
+            RolePanel.BackColor = Color.FromArgb(113, 128, 147);
+            RolePanel.Controls.Add(RolePic);
+            RolePanel.Controls.Add(lblRole);
+            RolePanel.Controls.Add(lblRoleText);
+            RolePanel.Location = new Point(427, 279);
+            RolePanel.Name = "RolePanel";
+            RolePanel.Size = new Size(192, 132);
+            RolePanel.TabIndex = 8;
+            // 
+            // RolePic
+            // 
+            RolePic.Image = Resources.Resource.drawio;
+            RolePic.Location = new Point(11, 34);
+            RolePic.Name = "RolePic";
+            RolePic.Size = new Size(64, 64);
+            RolePic.SizeMode = PictureBoxSizeMode.StretchImage;
+            RolePic.TabIndex = 4;
+            RolePic.TabStop = false;
+            // 
+            // lblRole
+            // 
+            lblRole.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblRole.ForeColor = Color.FromArgb(245, 246, 250);
+            lblRole.Location = new Point(35, 63);
+            lblRole.Name = "lblRole";
+            lblRole.Size = new Size(154, 45);
+            lblRole.TabIndex = 3;
+            lblRole.Text = "{role}";
+            lblRole.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblRoleText
+            // 
+            lblRoleText.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblRoleText.ForeColor = Color.FromArgb(245, 246, 250);
+            lblRoleText.Location = new Point(36, 24);
+            lblRoleText.Name = "lblRoleText";
+            lblRoleText.Size = new Size(154, 39);
+            lblRoleText.TabIndex = 2;
+            lblRoleText.Text = "نقش";
+            lblRoleText.TextAlign = ContentAlignment.MiddleRight;
             // 
             // atelierCountPanel
             // 
-            this.atelierCountPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(128)))), ((int)(((byte)(147)))));
-            this.atelierCountPanel.Controls.Add(this.picAtelierCountPanel);
-            this.atelierCountPanel.Controls.Add(this.lblAtelierCount);
-            this.atelierCountPanel.Controls.Add(this.lblAtelierCountText);
-            this.atelierCountPanel.Location = new System.Drawing.Point(178, 244);
-            this.atelierCountPanel.Name = "atelierCountPanel";
-            this.atelierCountPanel.Size = new System.Drawing.Size(247, 132);
-            this.atelierCountPanel.TabIndex = 6;
+            atelierCountPanel.BackColor = Color.FromArgb(113, 128, 147);
+            atelierCountPanel.Controls.Add(picAtelierCountPanel);
+            atelierCountPanel.Controls.Add(lblAtelierCount);
+            atelierCountPanel.Controls.Add(lblAtelierCountText);
+            atelierCountPanel.Location = new Point(174, 279);
+            atelierCountPanel.Name = "atelierCountPanel";
+            atelierCountPanel.Size = new Size(247, 132);
+            atelierCountPanel.TabIndex = 6;
             // 
             // picAtelierCountPanel
             // 
-            this.picAtelierCountPanel.Image = global::Queuing_System_Alipour.Resources.Resource.palette_large;
-            this.picAtelierCountPanel.Location = new System.Drawing.Point(11, 34);
-            this.picAtelierCountPanel.Name = "picAtelierCountPanel";
-            this.picAtelierCountPanel.Size = new System.Drawing.Size(64, 64);
-            this.picAtelierCountPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picAtelierCountPanel.TabIndex = 4;
-            this.picAtelierCountPanel.TabStop = false;
-            // 
-            // ConnectionPanel
-            // 
-            this.ConnectionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(128)))), ((int)(((byte)(147)))));
-            this.ConnectionPanel.Controls.Add(this.ConnectionPic);
-            this.ConnectionPanel.Controls.Add(this.lbl_ConnectionStatus);
-            this.ConnectionPanel.Controls.Add(this.lbl_connection);
-            this.ConnectionPanel.Location = new System.Drawing.Point(178, 106);
-            this.ConnectionPanel.Name = "ConnectionPanel";
-            this.ConnectionPanel.Size = new System.Drawing.Size(247, 132);
-            this.ConnectionPanel.TabIndex = 7;
-            // 
-            // ConnectionPic
-            // 
-            this.ConnectionPic.Location = new System.Drawing.Point(11, 34);
-            this.ConnectionPic.Name = "ConnectionPic";
-            this.ConnectionPic.Size = new System.Drawing.Size(64, 64);
-            this.ConnectionPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ConnectionPic.TabIndex = 4;
-            this.ConnectionPic.TabStop = false;
-            // 
-            // UsernamePanel
-            // 
-            this.UsernamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(128)))), ((int)(((byte)(147)))));
-            this.UsernamePanel.Controls.Add(this.picUsernamePanel);
-            this.UsernamePanel.Controls.Add(this.lblUsername);
-            this.UsernamePanel.Controls.Add(this.lbl_welcome);
-            this.UsernamePanel.Location = new System.Drawing.Point(431, 106);
-            this.UsernamePanel.Name = "UsernamePanel";
-            this.UsernamePanel.Size = new System.Drawing.Size(192, 132);
-            this.UsernamePanel.TabIndex = 5;
-            // 
-            // picUsernamePanel
-            // 
-            this.picUsernamePanel.Image = ((System.Drawing.Image)(resources.GetObject("picUsernamePanel.Image")));
-            this.picUsernamePanel.Location = new System.Drawing.Point(11, 34);
-            this.picUsernamePanel.Name = "picUsernamePanel";
-            this.picUsernamePanel.Size = new System.Drawing.Size(64, 64);
-            this.picUsernamePanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picUsernamePanel.TabIndex = 4;
-            this.picUsernamePanel.TabStop = false;
-            // 
-            // StatisticsPanel
-            // 
-            this.StatisticsPanel.Controls.Add(this.safeLabel1);
-            this.StatisticsPanel.Controls.Add(this.lbl_statistics);
-            this.StatisticsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StatisticsPanel.Location = new System.Drawing.Point(0, 0);
-            this.StatisticsPanel.Name = "StatisticsPanel";
-            this.StatisticsPanel.Size = new System.Drawing.Size(795, 541);
-            this.StatisticsPanel.TabIndex = 2;
-            // 
-            // PersonnelPanel
-            // 
-            this.PersonnelPanel.Controls.Add(this.PersonnelDoneDatagridview);
-            this.PersonnelPanel.Controls.Add(this.PersonnelDatagridview);
-            this.PersonnelPanel.Controls.Add(this.lbl_next);
-            this.PersonnelPanel.Controls.Add(this.lbl_nextText);
-            this.PersonnelPanel.Controls.Add(this.lbl_personnel);
-            this.PersonnelPanel.Controls.Add(this.action_panel);
-            this.PersonnelPanel.Controls.Add(this.QueuePanel);
-            this.PersonnelPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PersonnelPanel.Location = new System.Drawing.Point(0, 0);
-            this.PersonnelPanel.Name = "PersonnelPanel";
-            this.PersonnelPanel.Size = new System.Drawing.Size(795, 541);
-            this.PersonnelPanel.TabIndex = 10;
-            // 
-            // PersonnelDoneDatagridview
-            // 
-            this.PersonnelDoneDatagridview.AllowUserToAddRows = false;
-            this.PersonnelDoneDatagridview.AllowUserToDeleteRows = false;
-            this.PersonnelDoneDatagridview.AllowUserToResizeColumns = false;
-            this.PersonnelDoneDatagridview.AllowUserToResizeRows = false;
-            this.PersonnelDoneDatagridview.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(143)))), ((int)(((byte)(166)))));
-            this.PersonnelDoneDatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PersonnelDoneDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.PersonnelDoneDatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PersonnelDoneDatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.PersonnelDoneDatagridview.DefaultCellStyle = dataGridViewCellStyle2;
-            this.PersonnelDoneDatagridview.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.PersonnelDoneDatagridview.Location = new System.Drawing.Point(492, 73);
-            this.PersonnelDoneDatagridview.MultiSelect = false;
-            this.PersonnelDoneDatagridview.Name = "PersonnelDoneDatagridview";
-            this.PersonnelDoneDatagridview.ReadOnly = true;
-            this.PersonnelDoneDatagridview.RowHeadersVisible = false;
-            this.PersonnelDoneDatagridview.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PersonnelDoneDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.PersonnelDoneDatagridview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.PersonnelDoneDatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.PersonnelDoneDatagridview.ShowCellErrors = false;
-            this.PersonnelDoneDatagridview.ShowCellToolTips = false;
-            this.PersonnelDoneDatagridview.ShowEditingIcon = false;
-            this.PersonnelDoneDatagridview.ShowRowErrors = false;
-            this.PersonnelDoneDatagridview.Size = new System.Drawing.Size(189, 287);
-            this.PersonnelDoneDatagridview.TabIndex = 12;
-            this.PersonnelDoneDatagridview.TabStop = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.FillWeight = 100.2909F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "نوبت های انجام شده امروز";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PersonnelDatagridview
-            // 
-            this.PersonnelDatagridview.AllowUserToAddRows = false;
-            this.PersonnelDatagridview.AllowUserToDeleteRows = false;
-            this.PersonnelDatagridview.AllowUserToResizeColumns = false;
-            this.PersonnelDatagridview.AllowUserToResizeRows = false;
-            this.PersonnelDatagridview.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(143)))), ((int)(((byte)(166)))));
-            this.PersonnelDatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PersonnelDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.PersonnelDatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PersonnelDatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PersonnelQueueIDColumn,
-            this.PersonnelQueueNumberColumn,
-            this.PersonnelQueueNameColumn,
-            this.PersonnelQueueWaitTimeColumn});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.PersonnelDatagridview.DefaultCellStyle = dataGridViewCellStyle5;
-            this.PersonnelDatagridview.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.PersonnelDatagridview.Location = new System.Drawing.Point(113, 73);
-            this.PersonnelDatagridview.MultiSelect = false;
-            this.PersonnelDatagridview.Name = "PersonnelDatagridview";
-            this.PersonnelDatagridview.ReadOnly = true;
-            this.PersonnelDatagridview.RowHeadersVisible = false;
-            this.PersonnelDatagridview.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PersonnelDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.PersonnelDatagridview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.PersonnelDatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.PersonnelDatagridview.ShowCellErrors = false;
-            this.PersonnelDatagridview.ShowCellToolTips = false;
-            this.PersonnelDatagridview.ShowEditingIcon = false;
-            this.PersonnelDatagridview.ShowRowErrors = false;
-            this.PersonnelDatagridview.Size = new System.Drawing.Size(374, 287);
-            this.PersonnelDatagridview.TabIndex = 13;
-            this.PersonnelDatagridview.TabStop = false;
-            // 
-            // PersonnelQueueIDColumn
-            // 
-            this.PersonnelQueueIDColumn.HeaderText = "آیدی";
-            this.PersonnelQueueIDColumn.Name = "PersonnelQueueIDColumn";
-            this.PersonnelQueueIDColumn.ReadOnly = true;
-            this.PersonnelQueueIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.PersonnelQueueIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PersonnelQueueIDColumn.Visible = false;
-            // 
-            // PersonnelQueueNumberColumn
-            // 
-            this.PersonnelQueueNumberColumn.FillWeight = 91.37056F;
-            this.PersonnelQueueNumberColumn.HeaderText = "شماره نوبت";
-            this.PersonnelQueueNumberColumn.MinimumWidth = 6;
-            this.PersonnelQueueNumberColumn.Name = "PersonnelQueueNumberColumn";
-            this.PersonnelQueueNumberColumn.ReadOnly = true;
-            this.PersonnelQueueNumberColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.PersonnelQueueNumberColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PersonnelQueueNameColumn
-            // 
-            this.PersonnelQueueNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PersonnelQueueNameColumn.FillWeight = 100.2909F;
-            this.PersonnelQueueNameColumn.HeaderText = "فامیلی";
-            this.PersonnelQueueNameColumn.MinimumWidth = 6;
-            this.PersonnelQueueNameColumn.Name = "PersonnelQueueNameColumn";
-            this.PersonnelQueueNameColumn.ReadOnly = true;
-            this.PersonnelQueueNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.PersonnelQueueNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PersonnelQueueWaitTimeColumn
-            // 
-            this.PersonnelQueueWaitTimeColumn.HeaderText = "مدت زمان انتظار (دقیقه)";
-            this.PersonnelQueueWaitTimeColumn.Name = "PersonnelQueueWaitTimeColumn";
-            this.PersonnelQueueWaitTimeColumn.ReadOnly = true;
-            this.PersonnelQueueWaitTimeColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.PersonnelQueueWaitTimeColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PersonnelQueueWaitTimeColumn.Width = 130;
-            // 
-            // action_panel
-            // 
-            this.action_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(128)))), ((int)(((byte)(147)))));
-            this.action_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.action_panel.Controls.Add(this.txtbox_fullname);
-            this.action_panel.Controls.Add(this.btn_removeQueue);
-            this.action_panel.Controls.Add(this.btn_addQueue);
-            this.action_panel.Controls.Add(this.lbl_fullname);
-            this.action_panel.Location = new System.Drawing.Point(113, 364);
-            this.action_panel.Name = "action_panel";
-            this.action_panel.Size = new System.Drawing.Size(568, 162);
-            this.action_panel.TabIndex = 15;
-            // 
-            // txtbox_fullname
-            // 
-            this.txtbox_fullname.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbox_fullname.Location = new System.Drawing.Point(173, 56);
-            this.txtbox_fullname.Name = "txtbox_fullname";
-            this.txtbox_fullname.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtbox_fullname.Size = new System.Drawing.Size(221, 37);
-            this.txtbox_fullname.TabIndex = 0;
-            this.txtbox_fullname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtbox_fullname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_fullname_KeyDown);
-            // 
-            // btn_removeQueue
-            // 
-            this.btn_removeQueue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(54)))), ((int)(((byte)(22)))));
-            this.btn_removeQueue.FlatAppearance.BorderSize = 0;
-            this.btn_removeQueue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_removeQueue.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_removeQueue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btn_removeQueue.Location = new System.Drawing.Point(303, 99);
-            this.btn_removeQueue.Name = "btn_removeQueue";
-            this.btn_removeQueue.Size = new System.Drawing.Size(90, 41);
-            this.btn_removeQueue.TabIndex = 2;
-            this.btn_removeQueue.Text = "حذف نوبت";
-            this.btn_removeQueue.UseVisualStyleBackColor = false;
-            this.btn_removeQueue.Click += new System.EventHandler(this.btn_removeQueue_Click);
-            // 
-            // btn_addQueue
-            // 
-            this.btn_addQueue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(189)))), ((int)(((byte)(50)))));
-            this.btn_addQueue.FlatAppearance.BorderSize = 0;
-            this.btn_addQueue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_addQueue.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_addQueue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btn_addQueue.Location = new System.Drawing.Point(173, 99);
-            this.btn_addQueue.Name = "btn_addQueue";
-            this.btn_addQueue.Size = new System.Drawing.Size(124, 41);
-            this.btn_addQueue.TabIndex = 1;
-            this.btn_addQueue.Text = "افزودن نوبت جدید";
-            this.btn_addQueue.UseVisualStyleBackColor = false;
-            this.btn_addQueue.Click += new System.EventHandler(this.btn_addQueue_Click);
-            // 
-            // QueuePanel
-            // 
-            this.QueuePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(128)))), ((int)(((byte)(147)))));
-            this.QueuePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.QueuePanel.Controls.Add(this.btn_nextQueue);
-            this.QueuePanel.Controls.Add(this.lbl_CurrentQueue);
-            this.QueuePanel.Controls.Add(this.lbl_currentQueueText);
-            this.QueuePanel.Location = new System.Drawing.Point(113, 364);
-            this.QueuePanel.Name = "QueuePanel";
-            this.QueuePanel.Size = new System.Drawing.Size(568, 162);
-            this.QueuePanel.TabIndex = 14;
-            // 
-            // btn_nextQueue
-            // 
-            this.btn_nextQueue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(60)))), ((int)(((byte)(117)))));
-            this.btn_nextQueue.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btn_nextQueue.FlatAppearance.BorderSize = 0;
-            this.btn_nextQueue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_nextQueue.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_nextQueue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btn_nextQueue.Location = new System.Drawing.Point(0, 111);
-            this.btn_nextQueue.Name = "btn_nextQueue";
-            this.btn_nextQueue.Size = new System.Drawing.Size(566, 49);
-            this.btn_nextQueue.TabIndex = 9;
-            this.btn_nextQueue.Text = "اتمام نوبت فعلی و اعلام نوبت بعدی";
-            this.btn_nextQueue.UseVisualStyleBackColor = false;
-            this.btn_nextQueue.Click += new System.EventHandler(this.btn_nextQueue_Click);
-            // 
-            // AtelierPanel
-            // 
-            this.AtelierPanel.Controls.Add(this.StatusPanel);
-            this.AtelierPanel.Controls.Add(this.btnClearFilter);
-            this.AtelierPanel.Controls.Add(this.combobox_SortBy);
-            this.AtelierPanel.Controls.Add(this.comboboxTimeFrame);
-            this.AtelierPanel.Controls.Add(this.combobox_QueueStatus);
-            this.AtelierPanel.Controls.Add(this.QueueStatusPanel);
-            this.AtelierPanel.Controls.Add(this.DayStatusPanel);
-            this.AtelierPanel.Controls.Add(this.AtelierDatagridview);
-            this.AtelierPanel.Controls.Add(this.lbl_date);
-            this.AtelierPanel.Controls.Add(this.ActionPanel);
-            this.AtelierPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AtelierPanel.Location = new System.Drawing.Point(0, 0);
-            this.AtelierPanel.Name = "AtelierPanel";
-            this.AtelierPanel.Size = new System.Drawing.Size(795, 541);
-            this.AtelierPanel.TabIndex = 12;
-            // 
-            // StatusPanel
-            // 
-            this.StatusPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.StatusPanel.Controls.Add(this.lbl_Status);
-            this.StatusPanel.Controls.Add(this.btn_CancelAtelierQueue);
-            this.StatusPanel.Controls.Add(this.btn_DoneAtelierQueue);
-            this.StatusPanel.Location = new System.Drawing.Point(545, 441);
-            this.StatusPanel.Name = "StatusPanel";
-            this.StatusPanel.Size = new System.Drawing.Size(236, 88);
-            this.StatusPanel.TabIndex = 28;
-            // 
-            // btn_CancelAtelierQueue
-            // 
-            this.btn_CancelAtelierQueue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(54)))), ((int)(((byte)(22)))));
-            this.btn_CancelAtelierQueue.FlatAppearance.BorderSize = 0;
-            this.btn_CancelAtelierQueue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CancelAtelierQueue.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CancelAtelierQueue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btn_CancelAtelierQueue.Location = new System.Drawing.Point(120, 40);
-            this.btn_CancelAtelierQueue.Name = "btn_CancelAtelierQueue";
-            this.btn_CancelAtelierQueue.Size = new System.Drawing.Size(104, 41);
-            this.btn_CancelAtelierQueue.TabIndex = 22;
-            this.btn_CancelAtelierQueue.Text = "کنسل شود";
-            this.btn_CancelAtelierQueue.UseVisualStyleBackColor = false;
-            this.btn_CancelAtelierQueue.Click += new System.EventHandler(this.btn_CancelAtelierQueue_Click);
-            // 
-            // btn_DoneAtelierQueue
-            // 
-            this.btn_DoneAtelierQueue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(189)))), ((int)(((byte)(50)))));
-            this.btn_DoneAtelierQueue.FlatAppearance.BorderSize = 0;
-            this.btn_DoneAtelierQueue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_DoneAtelierQueue.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_DoneAtelierQueue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btn_DoneAtelierQueue.Location = new System.Drawing.Point(10, 40);
-            this.btn_DoneAtelierQueue.Name = "btn_DoneAtelierQueue";
-            this.btn_DoneAtelierQueue.Size = new System.Drawing.Size(104, 41);
-            this.btn_DoneAtelierQueue.TabIndex = 21;
-            this.btn_DoneAtelierQueue.Text = "انجام شود";
-            this.btn_DoneAtelierQueue.UseVisualStyleBackColor = false;
-            this.btn_DoneAtelierQueue.Click += new System.EventHandler(this.btn_DoneAtelierQueue_Click);
-            // 
-            // btnClearFilter
-            // 
-            this.btnClearFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(177)))), ((int)(((byte)(44)))));
-            this.btnClearFilter.FlatAppearance.BorderSize = 0;
-            this.btnClearFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearFilter.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btnClearFilter.Location = new System.Drawing.Point(14, 70);
-            this.btnClearFilter.Name = "btnClearFilter";
-            this.btnClearFilter.Size = new System.Drawing.Size(98, 30);
-            this.btnClearFilter.TabIndex = 24;
-            this.btnClearFilter.Text = "حذف فیلتر";
-            this.btnClearFilter.UseVisualStyleBackColor = false;
-            this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
-            // 
-            // combobox_SortBy
-            // 
-            this.combobox_SortBy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.combobox_SortBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.combobox_SortBy.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combobox_SortBy.FormattingEnabled = true;
-            this.combobox_SortBy.Items.AddRange(new object[] {
-            "مرتب سازی بر اساس",
-            "وضعیت نوبت",
-            "تاریخ",
-            "ساعت",
-            "مدت زمان",
-            "نام و نام خانوادگی",
-            "شماره تماس"});
-            this.combobox_SortBy.Location = new System.Drawing.Point(564, 70);
-            this.combobox_SortBy.Name = "combobox_SortBy";
-            this.combobox_SortBy.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.combobox_SortBy.Size = new System.Drawing.Size(217, 30);
-            this.combobox_SortBy.TabIndex = 23;
-            this.combobox_SortBy.SelectedIndexChanged += new System.EventHandler(this.combobox_SortBy_SelectedIndexChanged);
-            // 
-            // comboboxTimeFrame
-            // 
-            this.comboboxTimeFrame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.comboboxTimeFrame.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboboxTimeFrame.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboboxTimeFrame.FormattingEnabled = true;
-            this.comboboxTimeFrame.Items.AddRange(new object[] {
-            "فیلتر بر اساس بازه زمانی",
-            "قبل از روز نوبت",
-            "روز نوبت",
-            "نوبت منقضی شده"});
-            this.comboboxTimeFrame.Location = new System.Drawing.Point(341, 70);
-            this.comboboxTimeFrame.Name = "comboboxTimeFrame";
-            this.comboboxTimeFrame.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comboboxTimeFrame.Size = new System.Drawing.Size(217, 30);
-            this.comboboxTimeFrame.TabIndex = 23;
-            this.comboboxTimeFrame.SelectedIndexChanged += new System.EventHandler(this.comboboxTimeFrame_SelectedIndexChanged);
-            // 
-            // combobox_QueueStatus
-            // 
-            this.combobox_QueueStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.combobox_QueueStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.combobox_QueueStatus.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combobox_QueueStatus.FormattingEnabled = true;
-            this.combobox_QueueStatus.Items.AddRange(new object[] {
-            "فیلتر بر اساس وضعیت نوبت",
-            "انجام شده",
-            "کنسل شده",
-            "انجام نشده"});
-            this.combobox_QueueStatus.Location = new System.Drawing.Point(118, 70);
-            this.combobox_QueueStatus.Name = "combobox_QueueStatus";
-            this.combobox_QueueStatus.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.combobox_QueueStatus.Size = new System.Drawing.Size(217, 30);
-            this.combobox_QueueStatus.TabIndex = 23;
-            this.combobox_QueueStatus.SelectedIndexChanged += new System.EventHandler(this.combobox_QueueStatus_SelectedIndexChanged);
-            // 
-            // QueueStatusPanel
-            // 
-            this.QueueStatusPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.QueueStatusPanel.Controls.Add(this.lbl_Undone);
-            this.QueueStatusPanel.Controls.Add(this.UndonePic);
-            this.QueueStatusPanel.Controls.Add(this.lbl_Cancel);
-            this.QueueStatusPanel.Controls.Add(this.CancelPic);
-            this.QueueStatusPanel.Controls.Add(this.lbl_Done);
-            this.QueueStatusPanel.Controls.Add(this.DonePic);
-            this.QueueStatusPanel.Location = new System.Drawing.Point(14, 441);
-            this.QueueStatusPanel.Name = "QueueStatusPanel";
-            this.QueueStatusPanel.Size = new System.Drawing.Size(291, 41);
-            this.QueueStatusPanel.TabIndex = 22;
-            // 
-            // UndonePic
-            // 
-            this.UndonePic.Location = new System.Drawing.Point(78, 10);
-            this.UndonePic.Name = "UndonePic";
-            this.UndonePic.Size = new System.Drawing.Size(16, 16);
-            this.UndonePic.TabIndex = 24;
-            this.UndonePic.TabStop = false;
-            // 
-            // CancelPic
-            // 
-            this.CancelPic.Location = new System.Drawing.Point(168, 10);
-            this.CancelPic.Name = "CancelPic";
-            this.CancelPic.Size = new System.Drawing.Size(16, 16);
-            this.CancelPic.TabIndex = 26;
-            this.CancelPic.TabStop = false;
-            // 
-            // DonePic
-            // 
-            this.DonePic.Location = new System.Drawing.Point(254, 10);
-            this.DonePic.Name = "DonePic";
-            this.DonePic.Size = new System.Drawing.Size(16, 16);
-            this.DonePic.TabIndex = 28;
-            this.DonePic.TabStop = false;
-            // 
-            // DayStatusPanel
-            // 
-            this.DayStatusPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DayStatusPanel.Controls.Add(this.lbl_Expire);
-            this.DayStatusPanel.Controls.Add(this.ExpirePic);
-            this.DayStatusPanel.Controls.Add(this.lbl_Today);
-            this.DayStatusPanel.Controls.Add(this.TodayPic);
-            this.DayStatusPanel.Controls.Add(this.lbl_Upcoming);
-            this.DayStatusPanel.Controls.Add(this.UpcomingPic);
-            this.DayStatusPanel.Location = new System.Drawing.Point(14, 488);
-            this.DayStatusPanel.Name = "DayStatusPanel";
-            this.DayStatusPanel.Size = new System.Drawing.Size(291, 41);
-            this.DayStatusPanel.TabIndex = 22;
-            // 
-            // ExpirePic
-            // 
-            this.ExpirePic.Location = new System.Drawing.Point(92, 10);
-            this.ExpirePic.Name = "ExpirePic";
-            this.ExpirePic.Size = new System.Drawing.Size(16, 16);
-            this.ExpirePic.TabIndex = 24;
-            this.ExpirePic.TabStop = false;
-            // 
-            // TodayPic
-            // 
-            this.TodayPic.Location = new System.Drawing.Point(166, 10);
-            this.TodayPic.Name = "TodayPic";
-            this.TodayPic.Size = new System.Drawing.Size(16, 16);
-            this.TodayPic.TabIndex = 26;
-            this.TodayPic.TabStop = false;
-            // 
-            // UpcomingPic
-            // 
-            this.UpcomingPic.Location = new System.Drawing.Point(268, 10);
-            this.UpcomingPic.Name = "UpcomingPic";
-            this.UpcomingPic.Size = new System.Drawing.Size(16, 16);
-            this.UpcomingPic.TabIndex = 28;
-            this.UpcomingPic.TabStop = false;
-            // 
-            // AtelierDatagridview
-            // 
-            this.AtelierDatagridview.AllowUserToAddRows = false;
-            this.AtelierDatagridview.AllowUserToDeleteRows = false;
-            this.AtelierDatagridview.AllowUserToResizeColumns = false;
-            this.AtelierDatagridview.AllowUserToResizeRows = false;
-            this.AtelierDatagridview.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(143)))), ((int)(((byte)(166)))));
-            this.AtelierDatagridview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.AtelierDatagridview.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.AtelierDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.AtelierDatagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AtelierDatagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.AtelierStatusDayColumn,
-            this.AtelierStatusColumn,
-            this.AtelierDateColumn,
-            this.AtelierHourColumn,
-            this.AtelierSpentColumn,
-            this.AtelierFullNameColumn,
-            this.AtelierPhoneNumberColumn,
-            this.AtelierNoteColumn,
-            this.AtelierQueueIDColumn});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.AtelierDatagridview.DefaultCellStyle = dataGridViewCellStyle8;
-            this.AtelierDatagridview.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.AtelierDatagridview.Location = new System.Drawing.Point(14, 106);
-            this.AtelierDatagridview.MultiSelect = false;
-            this.AtelierDatagridview.Name = "AtelierDatagridview";
-            this.AtelierDatagridview.ReadOnly = true;
-            this.AtelierDatagridview.RowHeadersVisible = false;
-            this.AtelierDatagridview.RowHeadersWidth = 51;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AtelierDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.AtelierDatagridview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.AtelierDatagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.AtelierDatagridview.ShowCellErrors = false;
-            this.AtelierDatagridview.ShowCellToolTips = false;
-            this.AtelierDatagridview.ShowEditingIcon = false;
-            this.AtelierDatagridview.ShowRowErrors = false;
-            this.AtelierDatagridview.Size = new System.Drawing.Size(767, 329);
-            this.AtelierDatagridview.TabIndex = 3;
-            this.AtelierDatagridview.TabStop = false;
-            this.AtelierDatagridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AtelierDatagridview_CellContentClick);
-            this.AtelierDatagridview.SelectionChanged += new System.EventHandler(this.AtelierDatagridview_SelectionChanged);
-            // 
-            // ActionPanel
-            // 
-            this.ActionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ActionPanel.Controls.Add(this.lbl_Action);
-            this.ActionPanel.Controls.Add(this.btn_deleteAtelierQueue);
-            this.ActionPanel.Controls.Add(this.btn_addAtelierQueue);
-            this.ActionPanel.Location = new System.Drawing.Point(311, 441);
-            this.ActionPanel.Name = "ActionPanel";
-            this.ActionPanel.Size = new System.Drawing.Size(228, 88);
-            this.ActionPanel.TabIndex = 27;
-            // 
-            // btn_deleteAtelierQueue
-            // 
-            this.btn_deleteAtelierQueue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(54)))), ((int)(((byte)(22)))));
-            this.btn_deleteAtelierQueue.Enabled = false;
-            this.btn_deleteAtelierQueue.FlatAppearance.BorderSize = 0;
-            this.btn_deleteAtelierQueue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_deleteAtelierQueue.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_deleteAtelierQueue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btn_deleteAtelierQueue.Location = new System.Drawing.Point(116, 40);
-            this.btn_deleteAtelierQueue.Name = "btn_deleteAtelierQueue";
-            this.btn_deleteAtelierQueue.Size = new System.Drawing.Size(104, 41);
-            this.btn_deleteAtelierQueue.TabIndex = 18;
-            this.btn_deleteAtelierQueue.Text = "حذف";
-            this.btn_deleteAtelierQueue.UseVisualStyleBackColor = false;
-            this.btn_deleteAtelierQueue.Click += new System.EventHandler(this.Btn_deleteAtelierQueue_Click);
-            // 
-            // btn_addAtelierQueue
-            // 
-            this.btn_addAtelierQueue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(189)))), ((int)(((byte)(50)))));
-            this.btn_addAtelierQueue.FlatAppearance.BorderSize = 0;
-            this.btn_addAtelierQueue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_addAtelierQueue.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_addAtelierQueue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btn_addAtelierQueue.Location = new System.Drawing.Point(6, 40);
-            this.btn_addAtelierQueue.Name = "btn_addAtelierQueue";
-            this.btn_addAtelierQueue.Size = new System.Drawing.Size(104, 41);
-            this.btn_addAtelierQueue.TabIndex = 17;
-            this.btn_addAtelierQueue.Text = "افزودن";
-            this.btn_addAtelierQueue.UseVisualStyleBackColor = false;
-            this.btn_addAtelierQueue.Click += new System.EventHandler(this.Btn_addAtelierQueue_Click);
-            // 
-            // UsersPanel
-            // 
-            this.UsersPanel.Controls.Add(this.UsersDatagrid);
-            this.UsersPanel.Controls.Add(this.lbl_users);
-            this.UsersPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UsersPanel.Location = new System.Drawing.Point(0, 0);
-            this.UsersPanel.Name = "UsersPanel";
-            this.UsersPanel.Size = new System.Drawing.Size(795, 541);
-            this.UsersPanel.TabIndex = 14;
-            // 
-            // UsersDatagrid
-            // 
-            this.UsersDatagrid.AllowUserToAddRows = false;
-            this.UsersDatagrid.AllowUserToDeleteRows = false;
-            this.UsersDatagrid.AllowUserToResizeColumns = false;
-            this.UsersDatagrid.AllowUserToResizeRows = false;
-            this.UsersDatagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.UsersDatagrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(143)))), ((int)(((byte)(166)))));
-            this.UsersDatagrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.UsersDatagrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.UsersDatagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.UsersDatagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.UsersDatagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.UsernameColumn,
-            this.StatusColumn});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.UsersDatagrid.DefaultCellStyle = dataGridViewCellStyle11;
-            this.UsersDatagrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.UsersDatagrid.Location = new System.Drawing.Point(14, 75);
-            this.UsersDatagrid.MultiSelect = false;
-            this.UsersDatagrid.Name = "UsersDatagrid";
-            this.UsersDatagrid.ReadOnly = true;
-            this.UsersDatagrid.RowHeadersVisible = false;
-            this.UsersDatagrid.RowHeadersWidth = 51;
-            this.UsersDatagrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.UsersDatagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.UsersDatagrid.ShowCellErrors = false;
-            this.UsersDatagrid.ShowCellToolTips = false;
-            this.UsersDatagrid.ShowEditingIcon = false;
-            this.UsersDatagrid.ShowRowErrors = false;
-            this.UsersDatagrid.Size = new System.Drawing.Size(767, 311);
-            this.UsersDatagrid.TabIndex = 2;
-            this.UsersDatagrid.TabStop = false;
-            this.UsersDatagrid.SelectionChanged += new System.EventHandler(this.UsersDatagrid_SelectionChanged);
-            // 
-            // UsernameColumn
-            // 
-            this.UsernameColumn.HeaderText = "نام کاربری";
-            this.UsernameColumn.MinimumWidth = 6;
-            this.UsernameColumn.Name = "UsernameColumn";
-            this.UsernameColumn.ReadOnly = true;
-            this.UsernameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.UsernameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // StatusColumn
-            // 
-            this.StatusColumn.HeaderText = "وضعیت";
-            this.StatusColumn.MinimumWidth = 6;
-            this.StatusColumn.Name = "StatusColumn";
-            this.StatusColumn.ReadOnly = true;
-            this.StatusColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // SettingPanel
-            // 
-            this.SettingPanel.Controls.Add(this.groupbox_photographer);
-            this.SettingPanel.Controls.Add(this.groupbox_accManage);
-            this.SettingPanel.Controls.Add(this.groupbox_ChangePass);
-            this.SettingPanel.Controls.Add(this.lbl_setting);
-            this.SettingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SettingPanel.Location = new System.Drawing.Point(0, 0);
-            this.SettingPanel.Name = "SettingPanel";
-            this.SettingPanel.Size = new System.Drawing.Size(795, 541);
-            this.SettingPanel.TabIndex = 15;
-            // 
-            // groupbox_photographer
-            // 
-            this.groupbox_photographer.Controls.Add(this.chckbox_accStatus);
-            this.groupbox_photographer.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupbox_photographer.Location = new System.Drawing.Point(400, 289);
-            this.groupbox_photographer.Name = "groupbox_photographer";
-            this.groupbox_photographer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupbox_photographer.Size = new System.Drawing.Size(269, 113);
-            this.groupbox_photographer.TabIndex = 3;
-            this.groupbox_photographer.TabStop = false;
-            this.groupbox_photographer.Text = "وضعیت حساب";
-            // 
-            // chckbox_accStatus
-            // 
-            this.chckbox_accStatus.AutoSize = true;
-            this.chckbox_accStatus.Location = new System.Drawing.Point(79, 44);
-            this.chckbox_accStatus.Name = "chckbox_accStatus";
-            this.chckbox_accStatus.Size = new System.Drawing.Size(110, 31);
-            this.chckbox_accStatus.TabIndex = 0;
-            this.chckbox_accStatus.Text = "حالت عکاس";
-            this.chckbox_accStatus.UseVisualStyleBackColor = true;
-            // 
-            // groupbox_accManage
-            // 
-            this.groupbox_accManage.Controls.Add(this.btnLogout);
-            this.groupbox_accManage.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupbox_accManage.Location = new System.Drawing.Point(400, 138);
-            this.groupbox_accManage.Name = "groupbox_accManage";
-            this.groupbox_accManage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupbox_accManage.Size = new System.Drawing.Size(269, 145);
-            this.groupbox_accManage.TabIndex = 4;
-            this.groupbox_accManage.TabStop = false;
-            this.groupbox_accManage.Text = "مدیریت حساب";
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(60)))), ((int)(((byte)(117)))));
-            this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btnLogout.Location = new System.Drawing.Point(62, 58);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(144, 39);
-            this.btnLogout.TabIndex = 4;
-            this.btnLogout.Text = "خروج از حساب کاربری";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            // 
-            // groupbox_ChangePass
-            // 
-            this.groupbox_ChangePass.Controls.Add(this.btnChangePass);
-            this.groupbox_ChangePass.Controls.Add(this.lbl_newPass);
-            this.groupbox_ChangePass.Controls.Add(this.lbl_oldPass);
-            this.groupbox_ChangePass.Controls.Add(this.txtbox_newPass);
-            this.groupbox_ChangePass.Controls.Add(this.txtbox_oldPass);
-            this.groupbox_ChangePass.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupbox_ChangePass.Location = new System.Drawing.Point(125, 138);
-            this.groupbox_ChangePass.Name = "groupbox_ChangePass";
-            this.groupbox_ChangePass.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupbox_ChangePass.Size = new System.Drawing.Size(269, 264);
-            this.groupbox_ChangePass.TabIndex = 2;
-            this.groupbox_ChangePass.TabStop = false;
-            this.groupbox_ChangePass.Text = "تغییر رمز عبور";
-            // 
-            // btnChangePass
-            // 
-            this.btnChangePass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(60)))), ((int)(((byte)(117)))));
-            this.btnChangePass.FlatAppearance.BorderSize = 0;
-            this.btnChangePass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangePass.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangePass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.btnChangePass.Location = new System.Drawing.Point(41, 189);
-            this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(186, 41);
-            this.btnChangePass.TabIndex = 6;
-            this.btnChangePass.Text = "تغییر رمز عبور";
-            this.btnChangePass.UseVisualStyleBackColor = false;
-            this.btnChangePass.Click += new System.EventHandler(this.BtnChangePass_Click);
-            // 
-            // txtbox_newPass
-            // 
-            this.txtbox_newPass.Location = new System.Drawing.Point(41, 151);
-            this.txtbox_newPass.Name = "txtbox_newPass";
-            this.txtbox_newPass.PasswordChar = '*';
-            this.txtbox_newPass.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtbox_newPass.Size = new System.Drawing.Size(186, 32);
-            this.txtbox_newPass.TabIndex = 1;
-            this.txtbox_newPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtbox_oldPass
-            // 
-            this.txtbox_oldPass.Location = new System.Drawing.Point(41, 67);
-            this.txtbox_oldPass.Name = "txtbox_oldPass";
-            this.txtbox_oldPass.PasswordChar = '*';
-            this.txtbox_oldPass.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtbox_oldPass.Size = new System.Drawing.Size(186, 32);
-            this.txtbox_oldPass.TabIndex = 1;
-            this.txtbox_oldPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // timerClock
-            // 
-            this.timerClock.Enabled = true;
-            this.timerClock.Interval = 60000;
-            this.timerClock.Tick += new System.EventHandler(this.TimerClock_Tick);
-            // 
-            // lbl_Status
-            // 
-            this.lbl_Status.AutoSize = true;
-            this.lbl_Status.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_Status.Location = new System.Drawing.Point(90, 2);
-            this.lbl_Status.Name = "lbl_Status";
-            this.lbl_Status.Size = new System.Drawing.Size(55, 34);
-            this.lbl_Status.TabIndex = 23;
-            this.lbl_Status.Text = "نوبت";
-            // 
-            // lbl_Undone
-            // 
-            this.lbl_Undone.AutoSize = true;
-            this.lbl_Undone.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Undone.Location = new System.Drawing.Point(18, 9);
-            this.lbl_Undone.Name = "lbl_Undone";
-            this.lbl_Undone.Size = new System.Drawing.Size(58, 19);
-            this.lbl_Undone.TabIndex = 23;
-            this.lbl_Undone.Text = "انجام نشده";
-            this.lbl_Undone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_Cancel
-            // 
-            this.lbl_Cancel.AutoSize = true;
-            this.lbl_Cancel.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Cancel.Location = new System.Drawing.Point(109, 9);
-            this.lbl_Cancel.Name = "lbl_Cancel";
-            this.lbl_Cancel.Size = new System.Drawing.Size(58, 19);
-            this.lbl_Cancel.TabIndex = 25;
-            this.lbl_Cancel.Text = "کنسل شده";
-            this.lbl_Cancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_Done
-            // 
-            this.lbl_Done.AutoSize = true;
-            this.lbl_Done.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Done.Location = new System.Drawing.Point(196, 9);
-            this.lbl_Done.Name = "lbl_Done";
-            this.lbl_Done.Size = new System.Drawing.Size(55, 19);
-            this.lbl_Done.TabIndex = 27;
-            this.lbl_Done.Text = "انجام شده";
-            this.lbl_Done.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_Expire
-            // 
-            this.lbl_Expire.AutoSize = true;
-            this.lbl_Expire.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Expire.Location = new System.Drawing.Point(5, 9);
-            this.lbl_Expire.Name = "lbl_Expire";
-            this.lbl_Expire.Size = new System.Drawing.Size(87, 19);
-            this.lbl_Expire.TabIndex = 23;
-            this.lbl_Expire.Text = "نوبت منقضی شده";
-            this.lbl_Expire.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_Today
-            // 
-            this.lbl_Today.AutoSize = true;
-            this.lbl_Today.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Today.Location = new System.Drawing.Point(120, 9);
-            this.lbl_Today.Name = "lbl_Today";
-            this.lbl_Today.Size = new System.Drawing.Size(46, 19);
-            this.lbl_Today.TabIndex = 25;
-            this.lbl_Today.Text = "روز نوبت";
-            this.lbl_Today.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_Upcoming
-            // 
-            this.lbl_Upcoming.AutoSize = true;
-            this.lbl_Upcoming.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Upcoming.Location = new System.Drawing.Point(192, 9);
-            this.lbl_Upcoming.Name = "lbl_Upcoming";
-            this.lbl_Upcoming.Size = new System.Drawing.Size(76, 19);
-            this.lbl_Upcoming.TabIndex = 27;
-            this.lbl_Upcoming.Text = "قبل از روز نوبت";
-            this.lbl_Upcoming.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_date
-            // 
-            this.lbl_date.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_date.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_date.Location = new System.Drawing.Point(275, 3);
-            this.lbl_date.Name = "lbl_date";
-            this.lbl_date.Size = new System.Drawing.Size(244, 59);
-            this.lbl_date.TabIndex = 1;
-            this.lbl_date.Text = "{date}";
-            this.lbl_date.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lbl_Action
-            // 
-            this.lbl_Action.AutoSize = true;
-            this.lbl_Action.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Action.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_Action.Location = new System.Drawing.Point(86, 2);
-            this.lbl_Action.Name = "lbl_Action";
-            this.lbl_Action.Size = new System.Drawing.Size(55, 34);
-            this.lbl_Action.TabIndex = 23;
-            this.lbl_Action.Text = "نوبت";
-            // 
-            // lbl_next
-            // 
-            this.lbl_next.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_next.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_next.Location = new System.Drawing.Point(213, 7);
-            this.lbl_next.Name = "lbl_next";
-            this.lbl_next.Size = new System.Drawing.Size(188, 59);
-            this.lbl_next.TabIndex = 1;
-            this.lbl_next.Text = "?";
-            this.lbl_next.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_nextText
-            // 
-            this.lbl_nextText.AutoSize = true;
-            this.lbl_nextText.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_nextText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_nextText.Location = new System.Drawing.Point(398, 7);
-            this.lbl_nextText.Name = "lbl_nextText";
-            this.lbl_nextText.Size = new System.Drawing.Size(183, 59);
-            this.lbl_nextText.TabIndex = 1;
-            this.lbl_nextText.Text = ":نوبت بعدی";
-            // 
-            // lbl_personnel
-            // 
-            this.lbl_personnel.AutoSize = true;
-            this.lbl_personnel.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_personnel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_personnel.Location = new System.Drawing.Point(295, 9);
-            this.lbl_personnel.Name = "lbl_personnel";
-            this.lbl_personnel.Size = new System.Drawing.Size(204, 59);
-            this.lbl_personnel.TabIndex = 1;
-            this.lbl_personnel.Text = "عکس پرسنلی";
-            // 
-            // lbl_fullname
-            // 
-            this.lbl_fullname.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fullname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_fullname.Location = new System.Drawing.Point(189, 20);
-            this.lbl_fullname.Name = "lbl_fullname";
-            this.lbl_fullname.Size = new System.Drawing.Size(188, 35);
-            this.lbl_fullname.TabIndex = 1;
-            this.lbl_fullname.Text = "نام خانوادگی";
-            this.lbl_fullname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_CurrentQueue
-            // 
-            this.lbl_CurrentQueue.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbl_CurrentQueue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbl_CurrentQueue.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_CurrentQueue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_CurrentQueue.Location = new System.Drawing.Point(0, 48);
-            this.lbl_CurrentQueue.Name = "lbl_CurrentQueue";
-            this.lbl_CurrentQueue.Size = new System.Drawing.Size(566, 61);
-            this.lbl_CurrentQueue.TabIndex = 0;
-            this.lbl_CurrentQueue.Text = "?";
-            this.lbl_CurrentQueue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_currentQueueText
-            // 
-            this.lbl_currentQueueText.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbl_currentQueueText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbl_currentQueueText.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_currentQueueText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(197)))), ((int)(((byte)(49)))));
-            this.lbl_currentQueueText.Location = new System.Drawing.Point(0, 0);
-            this.lbl_currentQueueText.Name = "lbl_currentQueueText";
-            this.lbl_currentQueueText.Size = new System.Drawing.Size(566, 48);
-            this.lbl_currentQueueText.TabIndex = 1;
-            this.lbl_currentQueueText.Text = "( نوبت فعلی )";
-            this.lbl_currentQueueText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_newPass
-            // 
-            this.lbl_newPass.AutoSize = true;
-            this.lbl_newPass.Location = new System.Drawing.Point(84, 118);
-            this.lbl_newPass.Name = "lbl_newPass";
-            this.lbl_newPass.Size = new System.Drawing.Size(102, 27);
-            this.lbl_newPass.TabIndex = 2;
-            this.lbl_newPass.Text = "رمز عبور جدید";
-            // 
-            // lbl_oldPass
-            // 
-            this.lbl_oldPass.AutoSize = true;
-            this.lbl_oldPass.Location = new System.Drawing.Point(84, 38);
-            this.lbl_oldPass.Name = "lbl_oldPass";
-            this.lbl_oldPass.Size = new System.Drawing.Size(101, 27);
-            this.lbl_oldPass.TabIndex = 2;
-            this.lbl_oldPass.Text = "رمز عبور فعلی";
-            // 
-            // lbl_setting
-            // 
-            this.lbl_setting.AutoSize = true;
-            this.lbl_setting.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_setting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_setting.Location = new System.Drawing.Point(326, 9);
-            this.lbl_setting.Name = "lbl_setting";
-            this.lbl_setting.Size = new System.Drawing.Size(142, 59);
-            this.lbl_setting.TabIndex = 1;
-            this.lbl_setting.Text = "تنظیمات";
+            picAtelierCountPanel.Image = Resources.Resource.palette_large;
+            picAtelierCountPanel.Location = new Point(11, 34);
+            picAtelierCountPanel.Name = "picAtelierCountPanel";
+            picAtelierCountPanel.Size = new Size(64, 64);
+            picAtelierCountPanel.SizeMode = PictureBoxSizeMode.StretchImage;
+            picAtelierCountPanel.TabIndex = 4;
+            picAtelierCountPanel.TabStop = false;
             // 
             // lblAtelierCount
             // 
-            this.lblAtelierCount.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAtelierCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lblAtelierCount.Location = new System.Drawing.Point(85, 63);
-            this.lblAtelierCount.Name = "lblAtelierCount";
-            this.lblAtelierCount.Size = new System.Drawing.Size(154, 45);
-            this.lblAtelierCount.TabIndex = 3;
-            this.lblAtelierCount.Text = "{count}";
-            this.lblAtelierCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblAtelierCount.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAtelierCount.ForeColor = Color.FromArgb(245, 246, 250);
+            lblAtelierCount.Location = new Point(85, 63);
+            lblAtelierCount.Name = "lblAtelierCount";
+            lblAtelierCount.Size = new Size(154, 45);
+            lblAtelierCount.TabIndex = 3;
+            lblAtelierCount.Text = "{count}";
+            lblAtelierCount.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblAtelierCountText
             // 
-            this.lblAtelierCountText.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAtelierCountText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lblAtelierCountText.Location = new System.Drawing.Point(86, 24);
-            this.lblAtelierCountText.Name = "lblAtelierCountText";
-            this.lblAtelierCountText.Size = new System.Drawing.Size(154, 39);
-            this.lblAtelierCountText.TabIndex = 2;
-            this.lblAtelierCountText.Text = "نوبت‌های آتلیه امروز";
-            this.lblAtelierCountText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblAtelierCountText.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAtelierCountText.ForeColor = Color.FromArgb(245, 246, 250);
+            lblAtelierCountText.Location = new Point(86, 24);
+            lblAtelierCountText.Name = "lblAtelierCountText";
+            lblAtelierCountText.Size = new Size(154, 39);
+            lblAtelierCountText.TabIndex = 2;
+            lblAtelierCountText.Text = "نوبت‌های آتلیه امروز";
+            lblAtelierCountText.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // lbl_ConnectionStatus
+            // ConnectionPanel
             // 
-            this.lbl_ConnectionStatus.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ConnectionStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_ConnectionStatus.Location = new System.Drawing.Point(85, 63);
-            this.lbl_ConnectionStatus.Name = "lbl_ConnectionStatus";
-            this.lbl_ConnectionStatus.Size = new System.Drawing.Size(154, 45);
-            this.lbl_ConnectionStatus.TabIndex = 3;
-            this.lbl_ConnectionStatus.Text = "{status}";
-            this.lbl_ConnectionStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            ConnectionPanel.BackColor = Color.FromArgb(113, 128, 147);
+            ConnectionPanel.Controls.Add(DatePic);
+            ConnectionPanel.Controls.Add(lblDate);
+            ConnectionPanel.Controls.Add(lblDateText);
+            ConnectionPanel.Location = new Point(174, 141);
+            ConnectionPanel.Name = "ConnectionPanel";
+            ConnectionPanel.Size = new Size(247, 132);
+            ConnectionPanel.TabIndex = 7;
             // 
-            // lbl_connection
+            // DatePic
             // 
-            this.lbl_connection.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_connection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_connection.Location = new System.Drawing.Point(86, 24);
-            this.lbl_connection.Name = "lbl_connection";
-            this.lbl_connection.Size = new System.Drawing.Size(154, 39);
-            this.lbl_connection.TabIndex = 2;
-            this.lbl_connection.Text = "وضعیت اتصال شما";
-            this.lbl_connection.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            DatePic.Image = Resources.Resource.serverless;
+            DatePic.Location = new Point(11, 34);
+            DatePic.Name = "DatePic";
+            DatePic.Size = new Size(64, 64);
+            DatePic.SizeMode = PictureBoxSizeMode.StretchImage;
+            DatePic.TabIndex = 4;
+            DatePic.TabStop = false;
+            // 
+            // lblDate
+            // 
+            lblDate.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDate.ForeColor = Color.FromArgb(245, 246, 250);
+            lblDate.Location = new Point(85, 63);
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(154, 45);
+            lblDate.TabIndex = 3;
+            lblDate.Text = "{date}";
+            lblDate.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblDateText
+            // 
+            lblDateText.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDateText.ForeColor = Color.FromArgb(245, 246, 250);
+            lblDateText.Location = new Point(86, 24);
+            lblDateText.Name = "lblDateText";
+            lblDateText.Size = new Size(154, 39);
+            lblDateText.TabIndex = 2;
+            lblDateText.Text = "امروز";
+            lblDateText.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // UsernamePanel
+            // 
+            UsernamePanel.BackColor = Color.FromArgb(113, 128, 147);
+            UsernamePanel.Controls.Add(picUsernamePanel);
+            UsernamePanel.Controls.Add(lblUsername);
+            UsernamePanel.Controls.Add(lblWelcomeText);
+            UsernamePanel.Location = new Point(427, 141);
+            UsernamePanel.Name = "UsernamePanel";
+            UsernamePanel.Size = new Size(192, 132);
+            UsernamePanel.TabIndex = 5;
+            // 
+            // picUsernamePanel
+            // 
+            picUsernamePanel.Image = (Image)resources.GetObject("picUsernamePanel.Image");
+            picUsernamePanel.Location = new Point(11, 34);
+            picUsernamePanel.Name = "picUsernamePanel";
+            picUsernamePanel.Size = new Size(64, 64);
+            picUsernamePanel.SizeMode = PictureBoxSizeMode.StretchImage;
+            picUsernamePanel.TabIndex = 4;
+            picUsernamePanel.TabStop = false;
             // 
             // lblUsername
             // 
-            this.lblUsername.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lblUsername.Location = new System.Drawing.Point(35, 63);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(154, 45);
-            this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "{username}";
-            this.lblUsername.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblUsername.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUsername.ForeColor = Color.FromArgb(245, 246, 250);
+            lblUsername.Location = new Point(35, 63);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(154, 45);
+            lblUsername.TabIndex = 3;
+            lblUsername.Text = "{username}";
+            lblUsername.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // lbl_welcome
+            // lblWelcomeText
             // 
-            this.lbl_welcome.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_welcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_welcome.Location = new System.Drawing.Point(36, 24);
-            this.lbl_welcome.Name = "lbl_welcome";
-            this.lbl_welcome.Size = new System.Drawing.Size(154, 39);
-            this.lbl_welcome.TabIndex = 2;
-            this.lbl_welcome.Text = "نام کاربری";
-            this.lbl_welcome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblWelcomeText.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblWelcomeText.ForeColor = Color.FromArgb(245, 246, 250);
+            lblWelcomeText.Location = new Point(36, 24);
+            lblWelcomeText.Name = "lblWelcomeText";
+            lblWelcomeText.Size = new Size(154, 39);
+            lblWelcomeText.TabIndex = 2;
+            lblWelcomeText.Text = "نام کاربری";
+            lblWelcomeText.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lbl_dashboard
             // 
-            this.lbl_dashboard.AutoSize = true;
-            this.lbl_dashboard.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_dashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_dashboard.Location = new System.Drawing.Point(332, 7);
-            this.lbl_dashboard.Name = "lbl_dashboard";
-            this.lbl_dashboard.Size = new System.Drawing.Size(131, 59);
-            this.lbl_dashboard.TabIndex = 0;
-            this.lbl_dashboard.Text = "داشبورد";
+            lbl_dashboard.AutoSize = true;
+            lbl_dashboard.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_dashboard.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_dashboard.Location = new Point(332, 12);
+            lbl_dashboard.Name = "lbl_dashboard";
+            lbl_dashboard.Size = new Size(131, 59);
+            lbl_dashboard.TabIndex = 0;
+            lbl_dashboard.Text = "داشبورد";
             // 
-            // lbl_users
+            // StatisticsPanel
             // 
-            this.lbl_users.AutoSize = true;
-            this.lbl_users.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_users.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_users.Location = new System.Drawing.Point(329, 9);
-            this.lbl_users.Name = "lbl_users";
-            this.lbl_users.Size = new System.Drawing.Size(137, 59);
-            this.lbl_users.TabIndex = 1;
-            this.lbl_users.Text = "همکاران";
+            StatisticsPanel.Controls.Add(safeLabel1);
+            StatisticsPanel.Controls.Add(lbl_statistics);
+            StatisticsPanel.Dock = DockStyle.Fill;
+            StatisticsPanel.Location = new Point(0, 0);
+            StatisticsPanel.Name = "StatisticsPanel";
+            StatisticsPanel.Size = new Size(1000, 541);
+            StatisticsPanel.TabIndex = 2;
             // 
             // safeLabel1
             // 
-            this.safeLabel1.AutoSize = true;
-            this.safeLabel1.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.safeLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.safeLabel1.Location = new System.Drawing.Point(317, 241);
-            this.safeLabel1.Name = "safeLabel1";
-            this.safeLabel1.Size = new System.Drawing.Size(161, 59);
-            this.safeLabel1.TabIndex = 0;
-            this.safeLabel1.Text = "...به زودی";
+            safeLabel1.AutoSize = true;
+            safeLabel1.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            safeLabel1.ForeColor = Color.FromArgb(245, 246, 250);
+            safeLabel1.Location = new Point(317, 241);
+            safeLabel1.Name = "safeLabel1";
+            safeLabel1.Size = new Size(161, 59);
+            safeLabel1.TabIndex = 0;
+            safeLabel1.Text = "...به زودی";
             // 
             // lbl_statistics
             // 
-            this.lbl_statistics.AutoSize = true;
-            this.lbl_statistics.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_statistics.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-            this.lbl_statistics.Location = new System.Drawing.Point(360, 9);
-            this.lbl_statistics.Name = "lbl_statistics";
-            this.lbl_statistics.Size = new System.Drawing.Size(74, 59);
-            this.lbl_statistics.TabIndex = 0;
-            this.lbl_statistics.Text = "آمار";
+            lbl_statistics.AutoSize = true;
+            lbl_statistics.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_statistics.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_statistics.Location = new Point(360, 9);
+            lbl_statistics.Name = "lbl_statistics";
+            lbl_statistics.Size = new Size(74, 59);
+            lbl_statistics.TabIndex = 0;
+            lbl_statistics.Text = "آمار";
+            // 
+            // PersonnelPanel
+            // 
+            PersonnelPanel.Controls.Add(PersonnelDoneDatagridview);
+            PersonnelPanel.Controls.Add(PersonnelDatagridview);
+            PersonnelPanel.Controls.Add(lbl_next);
+            PersonnelPanel.Controls.Add(lbl_nextText);
+            PersonnelPanel.Controls.Add(lbl_personnel);
+            PersonnelPanel.Controls.Add(action_panel);
+            PersonnelPanel.Controls.Add(QueuePanel);
+            PersonnelPanel.Dock = DockStyle.Fill;
+            PersonnelPanel.Location = new Point(0, 0);
+            PersonnelPanel.Name = "PersonnelPanel";
+            PersonnelPanel.Size = new Size(1000, 541);
+            PersonnelPanel.TabIndex = 10;
+            // 
+            // PersonnelDoneDatagridview
+            // 
+            PersonnelDoneDatagridview.AllowUserToAddRows = false;
+            PersonnelDoneDatagridview.AllowUserToDeleteRows = false;
+            PersonnelDoneDatagridview.AllowUserToResizeColumns = false;
+            PersonnelDoneDatagridview.AllowUserToResizeRows = false;
+            PersonnelDoneDatagridview.BackgroundColor = Color.FromArgb(127, 143, 166);
+            PersonnelDoneDatagridview.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            PersonnelDoneDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            PersonnelDoneDatagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            PersonnelDoneDatagridview.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn2 });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            PersonnelDoneDatagridview.DefaultCellStyle = dataGridViewCellStyle2;
+            PersonnelDoneDatagridview.EditMode = DataGridViewEditMode.EditProgrammatically;
+            PersonnelDoneDatagridview.Location = new Point(492, 73);
+            PersonnelDoneDatagridview.MultiSelect = false;
+            PersonnelDoneDatagridview.Name = "PersonnelDoneDatagridview";
+            PersonnelDoneDatagridview.ReadOnly = true;
+            PersonnelDoneDatagridview.RowHeadersVisible = false;
+            PersonnelDoneDatagridview.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PersonnelDoneDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            PersonnelDoneDatagridview.ScrollBars = ScrollBars.Vertical;
+            PersonnelDoneDatagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            PersonnelDoneDatagridview.ShowCellErrors = false;
+            PersonnelDoneDatagridview.ShowCellToolTips = false;
+            PersonnelDoneDatagridview.ShowEditingIcon = false;
+            PersonnelDoneDatagridview.ShowRowErrors = false;
+            PersonnelDoneDatagridview.Size = new Size(189, 287);
+            PersonnelDoneDatagridview.TabIndex = 12;
+            PersonnelDoneDatagridview.TabStop = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn2.FillWeight = 100.2909F;
+            dataGridViewTextBoxColumn2.HeaderText = "نوبت های انجام شده امروز";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.Resizable = DataGridViewTriState.False;
+            dataGridViewTextBoxColumn2.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PersonnelDatagridview
+            // 
+            PersonnelDatagridview.AllowUserToAddRows = false;
+            PersonnelDatagridview.AllowUserToDeleteRows = false;
+            PersonnelDatagridview.AllowUserToResizeColumns = false;
+            PersonnelDatagridview.AllowUserToResizeRows = false;
+            PersonnelDatagridview.BackgroundColor = Color.FromArgb(127, 143, 166);
+            PersonnelDatagridview.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            PersonnelDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            PersonnelDatagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            PersonnelDatagridview.Columns.AddRange(new DataGridViewColumn[] { PersonnelQueueIDColumn, PersonnelQueueNumberColumn, PersonnelQueueNameColumn, PersonnelQueueWaitTimeColumn });
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            PersonnelDatagridview.DefaultCellStyle = dataGridViewCellStyle5;
+            PersonnelDatagridview.EditMode = DataGridViewEditMode.EditProgrammatically;
+            PersonnelDatagridview.Location = new Point(113, 73);
+            PersonnelDatagridview.MultiSelect = false;
+            PersonnelDatagridview.Name = "PersonnelDatagridview";
+            PersonnelDatagridview.ReadOnly = true;
+            PersonnelDatagridview.RowHeadersVisible = false;
+            PersonnelDatagridview.RowHeadersWidth = 51;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PersonnelDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            PersonnelDatagridview.ScrollBars = ScrollBars.Vertical;
+            PersonnelDatagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            PersonnelDatagridview.ShowCellErrors = false;
+            PersonnelDatagridview.ShowCellToolTips = false;
+            PersonnelDatagridview.ShowEditingIcon = false;
+            PersonnelDatagridview.ShowRowErrors = false;
+            PersonnelDatagridview.Size = new Size(374, 287);
+            PersonnelDatagridview.TabIndex = 13;
+            PersonnelDatagridview.TabStop = false;
+            // 
+            // PersonnelQueueIDColumn
+            // 
+            PersonnelQueueIDColumn.HeaderText = "آیدی";
+            PersonnelQueueIDColumn.Name = "PersonnelQueueIDColumn";
+            PersonnelQueueIDColumn.ReadOnly = true;
+            PersonnelQueueIDColumn.Resizable = DataGridViewTriState.False;
+            PersonnelQueueIDColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            PersonnelQueueIDColumn.Visible = false;
+            // 
+            // PersonnelQueueNumberColumn
+            // 
+            PersonnelQueueNumberColumn.FillWeight = 91.37056F;
+            PersonnelQueueNumberColumn.HeaderText = "شماره نوبت";
+            PersonnelQueueNumberColumn.MinimumWidth = 6;
+            PersonnelQueueNumberColumn.Name = "PersonnelQueueNumberColumn";
+            PersonnelQueueNumberColumn.ReadOnly = true;
+            PersonnelQueueNumberColumn.Resizable = DataGridViewTriState.False;
+            PersonnelQueueNumberColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PersonnelQueueNameColumn
+            // 
+            PersonnelQueueNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            PersonnelQueueNameColumn.FillWeight = 100.2909F;
+            PersonnelQueueNameColumn.HeaderText = "فامیلی";
+            PersonnelQueueNameColumn.MinimumWidth = 6;
+            PersonnelQueueNameColumn.Name = "PersonnelQueueNameColumn";
+            PersonnelQueueNameColumn.ReadOnly = true;
+            PersonnelQueueNameColumn.Resizable = DataGridViewTriState.False;
+            PersonnelQueueNameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PersonnelQueueWaitTimeColumn
+            // 
+            PersonnelQueueWaitTimeColumn.HeaderText = "مدت زمان انتظار (دقیقه)";
+            PersonnelQueueWaitTimeColumn.Name = "PersonnelQueueWaitTimeColumn";
+            PersonnelQueueWaitTimeColumn.ReadOnly = true;
+            PersonnelQueueWaitTimeColumn.Resizable = DataGridViewTriState.False;
+            PersonnelQueueWaitTimeColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            PersonnelQueueWaitTimeColumn.Width = 130;
+            // 
+            // lbl_next
+            // 
+            lbl_next.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_next.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_next.Location = new Point(213, 7);
+            lbl_next.Name = "lbl_next";
+            lbl_next.Size = new Size(188, 59);
+            lbl_next.TabIndex = 1;
+            lbl_next.Text = "?";
+            lbl_next.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lbl_nextText
+            // 
+            lbl_nextText.AutoSize = true;
+            lbl_nextText.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_nextText.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_nextText.Location = new Point(398, 7);
+            lbl_nextText.Name = "lbl_nextText";
+            lbl_nextText.Size = new Size(183, 59);
+            lbl_nextText.TabIndex = 1;
+            lbl_nextText.Text = ":نوبت بعدی";
+            // 
+            // lbl_personnel
+            // 
+            lbl_personnel.AutoSize = true;
+            lbl_personnel.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_personnel.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_personnel.Location = new Point(295, 9);
+            lbl_personnel.Name = "lbl_personnel";
+            lbl_personnel.Size = new Size(204, 59);
+            lbl_personnel.TabIndex = 1;
+            lbl_personnel.Text = "عکس پرسنلی";
+            // 
+            // action_panel
+            // 
+            action_panel.BackColor = Color.FromArgb(113, 128, 147);
+            action_panel.BorderStyle = BorderStyle.FixedSingle;
+            action_panel.Controls.Add(txtbox_fullname);
+            action_panel.Controls.Add(btn_removeQueue);
+            action_panel.Controls.Add(btn_addQueue);
+            action_panel.Controls.Add(lbl_fullname);
+            action_panel.Location = new Point(113, 364);
+            action_panel.Name = "action_panel";
+            action_panel.Size = new Size(568, 162);
+            action_panel.TabIndex = 15;
+            // 
+            // txtbox_fullname
+            // 
+            txtbox_fullname.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtbox_fullname.Location = new Point(173, 56);
+            txtbox_fullname.Name = "txtbox_fullname";
+            txtbox_fullname.RightToLeft = RightToLeft.Yes;
+            txtbox_fullname.Size = new Size(221, 37);
+            txtbox_fullname.TabIndex = 0;
+            txtbox_fullname.TextAlign = HorizontalAlignment.Center;
+            txtbox_fullname.KeyDown += txtbox_fullname_KeyDown;
+            // 
+            // btn_removeQueue
+            // 
+            btn_removeQueue.BackColor = Color.FromArgb(194, 54, 22);
+            btn_removeQueue.FlatAppearance.BorderSize = 0;
+            btn_removeQueue.FlatStyle = FlatStyle.Flat;
+            btn_removeQueue.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_removeQueue.ForeColor = Color.FromArgb(245, 246, 250);
+            btn_removeQueue.Location = new Point(303, 99);
+            btn_removeQueue.Name = "btn_removeQueue";
+            btn_removeQueue.Size = new Size(90, 41);
+            btn_removeQueue.TabIndex = 2;
+            btn_removeQueue.Text = "حذف نوبت";
+            btn_removeQueue.UseVisualStyleBackColor = false;
+            btn_removeQueue.Click += btn_removeQueue_Click;
+            // 
+            // btn_addQueue
+            // 
+            btn_addQueue.BackColor = Color.FromArgb(68, 189, 50);
+            btn_addQueue.FlatAppearance.BorderSize = 0;
+            btn_addQueue.FlatStyle = FlatStyle.Flat;
+            btn_addQueue.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_addQueue.ForeColor = Color.FromArgb(245, 246, 250);
+            btn_addQueue.Location = new Point(173, 99);
+            btn_addQueue.Name = "btn_addQueue";
+            btn_addQueue.Size = new Size(124, 41);
+            btn_addQueue.TabIndex = 1;
+            btn_addQueue.Text = "افزودن نوبت جدید";
+            btn_addQueue.UseVisualStyleBackColor = false;
+            btn_addQueue.Click += btn_addQueue_Click;
+            // 
+            // lbl_fullname
+            // 
+            lbl_fullname.Font = new Font("Vazirmatn ExtraBold", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_fullname.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_fullname.Location = new Point(189, 20);
+            lbl_fullname.Name = "lbl_fullname";
+            lbl_fullname.Size = new Size(188, 35);
+            lbl_fullname.TabIndex = 1;
+            lbl_fullname.Text = "نام خانوادگی";
+            lbl_fullname.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // QueuePanel
+            // 
+            QueuePanel.BackColor = Color.FromArgb(113, 128, 147);
+            QueuePanel.BorderStyle = BorderStyle.FixedSingle;
+            QueuePanel.Controls.Add(btn_nextQueue);
+            QueuePanel.Controls.Add(lbl_CurrentQueue);
+            QueuePanel.Controls.Add(lbl_currentQueueText);
+            QueuePanel.Location = new Point(113, 364);
+            QueuePanel.Name = "QueuePanel";
+            QueuePanel.Size = new Size(568, 162);
+            QueuePanel.TabIndex = 14;
+            // 
+            // btn_nextQueue
+            // 
+            btn_nextQueue.BackColor = Color.FromArgb(39, 60, 117);
+            btn_nextQueue.Dock = DockStyle.Bottom;
+            btn_nextQueue.FlatAppearance.BorderSize = 0;
+            btn_nextQueue.FlatStyle = FlatStyle.Flat;
+            btn_nextQueue.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_nextQueue.ForeColor = Color.FromArgb(245, 246, 250);
+            btn_nextQueue.Location = new Point(0, 111);
+            btn_nextQueue.Name = "btn_nextQueue";
+            btn_nextQueue.Size = new Size(566, 49);
+            btn_nextQueue.TabIndex = 9;
+            btn_nextQueue.Text = "اتمام نوبت فعلی و اعلام نوبت بعدی";
+            btn_nextQueue.UseVisualStyleBackColor = false;
+            btn_nextQueue.Click += btn_nextQueue_Click;
+            // 
+            // lbl_CurrentQueue
+            // 
+            lbl_CurrentQueue.Dock = DockStyle.Top;
+            lbl_CurrentQueue.FlatStyle = FlatStyle.Flat;
+            lbl_CurrentQueue.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_CurrentQueue.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_CurrentQueue.Location = new Point(0, 48);
+            lbl_CurrentQueue.Name = "lbl_CurrentQueue";
+            lbl_CurrentQueue.Size = new Size(566, 61);
+            lbl_CurrentQueue.TabIndex = 0;
+            lbl_CurrentQueue.Text = "?";
+            lbl_CurrentQueue.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lbl_currentQueueText
+            // 
+            lbl_currentQueueText.Dock = DockStyle.Top;
+            lbl_currentQueueText.FlatStyle = FlatStyle.Flat;
+            lbl_currentQueueText.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_currentQueueText.ForeColor = Color.FromArgb(251, 197, 49);
+            lbl_currentQueueText.Location = new Point(0, 0);
+            lbl_currentQueueText.Name = "lbl_currentQueueText";
+            lbl_currentQueueText.Size = new Size(566, 48);
+            lbl_currentQueueText.TabIndex = 1;
+            lbl_currentQueueText.Text = "( نوبت فعلی )";
+            lbl_currentQueueText.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // AtelierPanel
+            // 
+            AtelierPanel.Controls.Add(StatusPanel);
+            AtelierPanel.Controls.Add(QueueStatusPanel);
+            AtelierPanel.Controls.Add(DayStatusPanel);
+            AtelierPanel.Controls.Add(AtelierDatagridview);
+            AtelierPanel.Controls.Add(ActionPanel);
+            AtelierPanel.Controls.Add(FilterPanel);
+            AtelierPanel.Dock = DockStyle.Fill;
+            AtelierPanel.Location = new Point(0, 0);
+            AtelierPanel.Name = "AtelierPanel";
+            AtelierPanel.Size = new Size(1000, 541);
+            AtelierPanel.TabIndex = 12;
+            // 
+            // StatusPanel
+            // 
+            StatusPanel.BorderStyle = BorderStyle.FixedSingle;
+            StatusPanel.Controls.Add(lbl_Status);
+            StatusPanel.Controls.Add(btn_CancelAtelierQueue);
+            StatusPanel.Controls.Add(btn_DoneAtelierQueue);
+            StatusPanel.Location = new Point(545, 441);
+            StatusPanel.Name = "StatusPanel";
+            StatusPanel.Size = new Size(236, 88);
+            StatusPanel.TabIndex = 28;
+            // 
+            // lbl_Status
+            // 
+            lbl_Status.AutoSize = true;
+            lbl_Status.Font = new Font("Vazirmatn ExtraBold", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Status.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_Status.Location = new Point(90, 2);
+            lbl_Status.Name = "lbl_Status";
+            lbl_Status.Size = new Size(55, 34);
+            lbl_Status.TabIndex = 23;
+            lbl_Status.Text = "نوبت";
+            // 
+            // btn_CancelAtelierQueue
+            // 
+            btn_CancelAtelierQueue.BackColor = Color.FromArgb(194, 54, 22);
+            btn_CancelAtelierQueue.FlatAppearance.BorderSize = 0;
+            btn_CancelAtelierQueue.FlatStyle = FlatStyle.Flat;
+            btn_CancelAtelierQueue.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_CancelAtelierQueue.ForeColor = Color.FromArgb(245, 246, 250);
+            btn_CancelAtelierQueue.Location = new Point(120, 40);
+            btn_CancelAtelierQueue.Name = "btn_CancelAtelierQueue";
+            btn_CancelAtelierQueue.Size = new Size(104, 41);
+            btn_CancelAtelierQueue.TabIndex = 22;
+            btn_CancelAtelierQueue.Text = "کنسل شود";
+            btn_CancelAtelierQueue.UseVisualStyleBackColor = false;
+            btn_CancelAtelierQueue.Click += btn_CancelAtelierQueue_Click;
+            // 
+            // btn_DoneAtelierQueue
+            // 
+            btn_DoneAtelierQueue.BackColor = Color.FromArgb(68, 189, 50);
+            btn_DoneAtelierQueue.FlatAppearance.BorderSize = 0;
+            btn_DoneAtelierQueue.FlatStyle = FlatStyle.Flat;
+            btn_DoneAtelierQueue.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_DoneAtelierQueue.ForeColor = Color.FromArgb(245, 246, 250);
+            btn_DoneAtelierQueue.Location = new Point(10, 40);
+            btn_DoneAtelierQueue.Name = "btn_DoneAtelierQueue";
+            btn_DoneAtelierQueue.Size = new Size(104, 41);
+            btn_DoneAtelierQueue.TabIndex = 21;
+            btn_DoneAtelierQueue.Text = "انجام شود";
+            btn_DoneAtelierQueue.UseVisualStyleBackColor = false;
+            btn_DoneAtelierQueue.Click += btn_DoneAtelierQueue_Click;
+            // 
+            // QueueStatusPanel
+            // 
+            QueueStatusPanel.BorderStyle = BorderStyle.FixedSingle;
+            QueueStatusPanel.Controls.Add(lbl_Undone);
+            QueueStatusPanel.Controls.Add(UndonePic);
+            QueueStatusPanel.Controls.Add(lbl_Cancel);
+            QueueStatusPanel.Controls.Add(CancelPic);
+            QueueStatusPanel.Controls.Add(lbl_Done);
+            QueueStatusPanel.Controls.Add(DonePic);
+            QueueStatusPanel.Location = new Point(14, 441);
+            QueueStatusPanel.Name = "QueueStatusPanel";
+            QueueStatusPanel.Size = new Size(291, 41);
+            QueueStatusPanel.TabIndex = 22;
+            // 
+            // lbl_Undone
+            // 
+            lbl_Undone.AutoSize = true;
+            lbl_Undone.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Undone.Location = new Point(18, 9);
+            lbl_Undone.Name = "lbl_Undone";
+            lbl_Undone.Size = new Size(58, 19);
+            lbl_Undone.TabIndex = 23;
+            lbl_Undone.Text = "انجام نشده";
+            lbl_Undone.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // UndonePic
+            // 
+            UndonePic.Location = new Point(78, 10);
+            UndonePic.Name = "UndonePic";
+            UndonePic.Size = new Size(16, 16);
+            UndonePic.TabIndex = 24;
+            UndonePic.TabStop = false;
+            // 
+            // lbl_Cancel
+            // 
+            lbl_Cancel.AutoSize = true;
+            lbl_Cancel.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Cancel.Location = new Point(109, 9);
+            lbl_Cancel.Name = "lbl_Cancel";
+            lbl_Cancel.Size = new Size(58, 19);
+            lbl_Cancel.TabIndex = 25;
+            lbl_Cancel.Text = "کنسل شده";
+            lbl_Cancel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // CancelPic
+            // 
+            CancelPic.Location = new Point(168, 10);
+            CancelPic.Name = "CancelPic";
+            CancelPic.Size = new Size(16, 16);
+            CancelPic.TabIndex = 26;
+            CancelPic.TabStop = false;
+            // 
+            // lbl_Done
+            // 
+            lbl_Done.AutoSize = true;
+            lbl_Done.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Done.Location = new Point(196, 9);
+            lbl_Done.Name = "lbl_Done";
+            lbl_Done.Size = new Size(55, 19);
+            lbl_Done.TabIndex = 27;
+            lbl_Done.Text = "انجام شده";
+            lbl_Done.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // DonePic
+            // 
+            DonePic.Location = new Point(254, 10);
+            DonePic.Name = "DonePic";
+            DonePic.Size = new Size(16, 16);
+            DonePic.TabIndex = 28;
+            DonePic.TabStop = false;
+            // 
+            // DayStatusPanel
+            // 
+            DayStatusPanel.BorderStyle = BorderStyle.FixedSingle;
+            DayStatusPanel.Controls.Add(lbl_Expire);
+            DayStatusPanel.Controls.Add(ExpirePic);
+            DayStatusPanel.Controls.Add(lbl_Today);
+            DayStatusPanel.Controls.Add(TodayPic);
+            DayStatusPanel.Controls.Add(lbl_Upcoming);
+            DayStatusPanel.Controls.Add(UpcomingPic);
+            DayStatusPanel.Location = new Point(14, 488);
+            DayStatusPanel.Name = "DayStatusPanel";
+            DayStatusPanel.Size = new Size(291, 41);
+            DayStatusPanel.TabIndex = 22;
+            // 
+            // lbl_Expire
+            // 
+            lbl_Expire.AutoSize = true;
+            lbl_Expire.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Expire.Location = new Point(5, 9);
+            lbl_Expire.Name = "lbl_Expire";
+            lbl_Expire.Size = new Size(87, 19);
+            lbl_Expire.TabIndex = 23;
+            lbl_Expire.Text = "نوبت منقضی شده";
+            lbl_Expire.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ExpirePic
+            // 
+            ExpirePic.Location = new Point(92, 10);
+            ExpirePic.Name = "ExpirePic";
+            ExpirePic.Size = new Size(16, 16);
+            ExpirePic.TabIndex = 24;
+            ExpirePic.TabStop = false;
+            // 
+            // lbl_Today
+            // 
+            lbl_Today.AutoSize = true;
+            lbl_Today.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Today.Location = new Point(120, 9);
+            lbl_Today.Name = "lbl_Today";
+            lbl_Today.Size = new Size(46, 19);
+            lbl_Today.TabIndex = 25;
+            lbl_Today.Text = "روز نوبت";
+            lbl_Today.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // TodayPic
+            // 
+            TodayPic.Location = new Point(166, 10);
+            TodayPic.Name = "TodayPic";
+            TodayPic.Size = new Size(16, 16);
+            TodayPic.TabIndex = 26;
+            TodayPic.TabStop = false;
+            // 
+            // lbl_Upcoming
+            // 
+            lbl_Upcoming.AutoSize = true;
+            lbl_Upcoming.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Upcoming.Location = new Point(192, 9);
+            lbl_Upcoming.Name = "lbl_Upcoming";
+            lbl_Upcoming.Size = new Size(76, 19);
+            lbl_Upcoming.TabIndex = 27;
+            lbl_Upcoming.Text = "قبل از روز نوبت";
+            lbl_Upcoming.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // UpcomingPic
+            // 
+            UpcomingPic.Location = new Point(268, 10);
+            UpcomingPic.Name = "UpcomingPic";
+            UpcomingPic.Size = new Size(16, 16);
+            UpcomingPic.TabIndex = 28;
+            UpcomingPic.TabStop = false;
+            // 
+            // AtelierDatagridview
+            // 
+            AtelierDatagridview.AllowUserToAddRows = false;
+            AtelierDatagridview.AllowUserToDeleteRows = false;
+            AtelierDatagridview.AllowUserToResizeColumns = false;
+            AtelierDatagridview.AllowUserToResizeRows = false;
+            AtelierDatagridview.BackgroundColor = Color.FromArgb(127, 143, 166);
+            AtelierDatagridview.BorderStyle = BorderStyle.Fixed3D;
+            AtelierDatagridview.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            AtelierDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            AtelierDatagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            AtelierDatagridview.Columns.AddRange(new DataGridViewColumn[] { AtelierStatusDayColumn, AtelierStatusColumn, AtelierDateColumn, AtelierHourColumn, AtelierSpentColumn, AtelierFullNameColumn, AtelierPhoneNumberColumn, AtelierNoteColumn, AtelierQueueIDColumn });
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            AtelierDatagridview.DefaultCellStyle = dataGridViewCellStyle8;
+            AtelierDatagridview.EditMode = DataGridViewEditMode.EditProgrammatically;
+            AtelierDatagridview.Location = new Point(14, 133);
+            AtelierDatagridview.MultiSelect = false;
+            AtelierDatagridview.Name = "AtelierDatagridview";
+            AtelierDatagridview.ReadOnly = true;
+            AtelierDatagridview.RowHeadersVisible = false;
+            AtelierDatagridview.RowHeadersWidth = 51;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AtelierDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            AtelierDatagridview.ScrollBars = ScrollBars.Vertical;
+            AtelierDatagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            AtelierDatagridview.ShowCellErrors = false;
+            AtelierDatagridview.ShowCellToolTips = false;
+            AtelierDatagridview.ShowEditingIcon = false;
+            AtelierDatagridview.ShowRowErrors = false;
+            AtelierDatagridview.Size = new Size(767, 302);
+            AtelierDatagridview.TabIndex = 3;
+            AtelierDatagridview.TabStop = false;
+            AtelierDatagridview.CellContentClick += AtelierDatagridview_CellContentClick;
+            AtelierDatagridview.SelectionChanged += AtelierDatagridview_SelectionChanged;
             // 
             // AtelierStatusDayColumn
             // 
-            this.AtelierStatusDayColumn.FillWeight = 101.7589F;
-            this.AtelierStatusDayColumn.HeaderText = "وضعیت روز";
-            this.AtelierStatusDayColumn.MinimumWidth = 6;
-            this.AtelierStatusDayColumn.Name = "AtelierStatusDayColumn";
-            this.AtelierStatusDayColumn.ReadOnly = true;
-            this.AtelierStatusDayColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            AtelierStatusDayColumn.FillWeight = 101.7589F;
+            AtelierStatusDayColumn.HeaderText = "وضعیت روز";
+            AtelierStatusDayColumn.MinimumWidth = 6;
+            AtelierStatusDayColumn.Name = "AtelierStatusDayColumn";
+            AtelierStatusDayColumn.ReadOnly = true;
+            AtelierStatusDayColumn.Resizable = DataGridViewTriState.False;
             // 
             // AtelierStatusColumn
             // 
-            this.AtelierStatusColumn.FillWeight = 102.837F;
-            this.AtelierStatusColumn.HeaderText = "وضعیت نوبت";
-            this.AtelierStatusColumn.MinimumWidth = 6;
-            this.AtelierStatusColumn.Name = "AtelierStatusColumn";
-            this.AtelierStatusColumn.ReadOnly = true;
-            this.AtelierStatusColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AtelierStatusColumn.Width = 75;
+            AtelierStatusColumn.FillWeight = 102.837F;
+            AtelierStatusColumn.HeaderText = "وضعیت نوبت";
+            AtelierStatusColumn.MinimumWidth = 6;
+            AtelierStatusColumn.Name = "AtelierStatusColumn";
+            AtelierStatusColumn.ReadOnly = true;
+            AtelierStatusColumn.Resizable = DataGridViewTriState.False;
+            AtelierStatusColumn.Width = 75;
             // 
             // AtelierDateColumn
             // 
-            this.AtelierDateColumn.FillWeight = 100.2909F;
-            this.AtelierDateColumn.HeaderText = "تاریخ";
-            this.AtelierDateColumn.MinimumWidth = 6;
-            this.AtelierDateColumn.Name = "AtelierDateColumn";
-            this.AtelierDateColumn.ReadOnly = true;
-            this.AtelierDateColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AtelierDateColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            AtelierDateColumn.FillWeight = 100.2909F;
+            AtelierDateColumn.HeaderText = "تاریخ";
+            AtelierDateColumn.MinimumWidth = 6;
+            AtelierDateColumn.Name = "AtelierDateColumn";
+            AtelierDateColumn.ReadOnly = true;
+            AtelierDateColumn.Resizable = DataGridViewTriState.False;
+            AtelierDateColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // AtelierHourColumn
             // 
-            this.AtelierHourColumn.FillWeight = 101.7259F;
-            this.AtelierHourColumn.HeaderText = "ساعت";
-            this.AtelierHourColumn.MinimumWidth = 6;
-            this.AtelierHourColumn.Name = "AtelierHourColumn";
-            this.AtelierHourColumn.ReadOnly = true;
-            this.AtelierHourColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AtelierHourColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.AtelierHourColumn.Width = 70;
+            AtelierHourColumn.FillWeight = 101.7259F;
+            AtelierHourColumn.HeaderText = "ساعت";
+            AtelierHourColumn.MinimumWidth = 6;
+            AtelierHourColumn.Name = "AtelierHourColumn";
+            AtelierHourColumn.ReadOnly = true;
+            AtelierHourColumn.Resizable = DataGridViewTriState.False;
+            AtelierHourColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            AtelierHourColumn.Width = 70;
             // 
             // AtelierSpentColumn
             // 
-            this.AtelierSpentColumn.HeaderText = "زمان نوبت";
-            this.AtelierSpentColumn.Name = "AtelierSpentColumn";
-            this.AtelierSpentColumn.ReadOnly = true;
-            this.AtelierSpentColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AtelierSpentColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.AtelierSpentColumn.Width = 90;
+            AtelierSpentColumn.HeaderText = "زمان نوبت";
+            AtelierSpentColumn.Name = "AtelierSpentColumn";
+            AtelierSpentColumn.ReadOnly = true;
+            AtelierSpentColumn.Resizable = DataGridViewTriState.False;
+            AtelierSpentColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            AtelierSpentColumn.Width = 90;
             // 
             // AtelierFullNameColumn
             // 
-            this.AtelierFullNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.AtelierFullNameColumn.FillWeight = 100.2909F;
-            this.AtelierFullNameColumn.HeaderText = "نام و نام خانوادگی";
-            this.AtelierFullNameColumn.MinimumWidth = 6;
-            this.AtelierFullNameColumn.Name = "AtelierFullNameColumn";
-            this.AtelierFullNameColumn.ReadOnly = true;
-            this.AtelierFullNameColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AtelierFullNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            AtelierFullNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            AtelierFullNameColumn.FillWeight = 100.2909F;
+            AtelierFullNameColumn.HeaderText = "نام و نام خانوادگی";
+            AtelierFullNameColumn.MinimumWidth = 6;
+            AtelierFullNameColumn.Name = "AtelierFullNameColumn";
+            AtelierFullNameColumn.ReadOnly = true;
+            AtelierFullNameColumn.Resizable = DataGridViewTriState.False;
+            AtelierFullNameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // AtelierPhoneNumberColumn
             // 
-            this.AtelierPhoneNumberColumn.FillWeight = 101.7259F;
-            this.AtelierPhoneNumberColumn.HeaderText = "شماره تماس";
-            this.AtelierPhoneNumberColumn.MinimumWidth = 6;
-            this.AtelierPhoneNumberColumn.Name = "AtelierPhoneNumberColumn";
-            this.AtelierPhoneNumberColumn.ReadOnly = true;
-            this.AtelierPhoneNumberColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AtelierPhoneNumberColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.AtelierPhoneNumberColumn.Width = 120;
+            AtelierPhoneNumberColumn.FillWeight = 101.7259F;
+            AtelierPhoneNumberColumn.HeaderText = "شماره تماس";
+            AtelierPhoneNumberColumn.MinimumWidth = 6;
+            AtelierPhoneNumberColumn.Name = "AtelierPhoneNumberColumn";
+            AtelierPhoneNumberColumn.ReadOnly = true;
+            AtelierPhoneNumberColumn.Resizable = DataGridViewTriState.False;
+            AtelierPhoneNumberColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            AtelierPhoneNumberColumn.Width = 120;
             // 
             // AtelierNoteColumn
             // 
-            this.AtelierNoteColumn.HeaderText = "یادداشت";
-            this.AtelierNoteColumn.MinimumWidth = 6;
-            this.AtelierNoteColumn.Name = "AtelierNoteColumn";
-            this.AtelierNoteColumn.ReadOnly = true;
-            this.AtelierNoteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AtelierNoteColumn.Width = 70;
+            AtelierNoteColumn.HeaderText = "یادداشت";
+            AtelierNoteColumn.MinimumWidth = 6;
+            AtelierNoteColumn.Name = "AtelierNoteColumn";
+            AtelierNoteColumn.ReadOnly = true;
+            AtelierNoteColumn.Resizable = DataGridViewTriState.False;
+            AtelierNoteColumn.Width = 70;
             // 
             // AtelierQueueIDColumn
             // 
-            this.AtelierQueueIDColumn.FillWeight = 91.37056F;
-            this.AtelierQueueIDColumn.HeaderText = "آیدی";
-            this.AtelierQueueIDColumn.MinimumWidth = 6;
-            this.AtelierQueueIDColumn.Name = "AtelierQueueIDColumn";
-            this.AtelierQueueIDColumn.ReadOnly = true;
-            this.AtelierQueueIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.AtelierQueueIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.AtelierQueueIDColumn.Visible = false;
-            this.AtelierQueueIDColumn.Width = 116;
+            AtelierQueueIDColumn.FillWeight = 91.37056F;
+            AtelierQueueIDColumn.HeaderText = "آیدی";
+            AtelierQueueIDColumn.MinimumWidth = 6;
+            AtelierQueueIDColumn.Name = "AtelierQueueIDColumn";
+            AtelierQueueIDColumn.ReadOnly = true;
+            AtelierQueueIDColumn.Resizable = DataGridViewTriState.False;
+            AtelierQueueIDColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            AtelierQueueIDColumn.Visible = false;
+            AtelierQueueIDColumn.Width = 116;
+            // 
+            // ActionPanel
+            // 
+            ActionPanel.BorderStyle = BorderStyle.FixedSingle;
+            ActionPanel.Controls.Add(lbl_Action);
+            ActionPanel.Controls.Add(btn_deleteAtelierQueue);
+            ActionPanel.Controls.Add(btn_addAtelierQueue);
+            ActionPanel.Location = new Point(311, 441);
+            ActionPanel.Name = "ActionPanel";
+            ActionPanel.Size = new Size(228, 88);
+            ActionPanel.TabIndex = 27;
+            // 
+            // lbl_Action
+            // 
+            lbl_Action.AutoSize = true;
+            lbl_Action.Font = new Font("Vazirmatn ExtraBold", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Action.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_Action.Location = new Point(86, 2);
+            lbl_Action.Name = "lbl_Action";
+            lbl_Action.Size = new Size(55, 34);
+            lbl_Action.TabIndex = 23;
+            lbl_Action.Text = "نوبت";
+            // 
+            // btn_deleteAtelierQueue
+            // 
+            btn_deleteAtelierQueue.BackColor = Color.FromArgb(194, 54, 22);
+            btn_deleteAtelierQueue.Enabled = false;
+            btn_deleteAtelierQueue.FlatAppearance.BorderSize = 0;
+            btn_deleteAtelierQueue.FlatStyle = FlatStyle.Flat;
+            btn_deleteAtelierQueue.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_deleteAtelierQueue.ForeColor = Color.FromArgb(245, 246, 250);
+            btn_deleteAtelierQueue.Location = new Point(116, 40);
+            btn_deleteAtelierQueue.Name = "btn_deleteAtelierQueue";
+            btn_deleteAtelierQueue.Size = new Size(104, 41);
+            btn_deleteAtelierQueue.TabIndex = 18;
+            btn_deleteAtelierQueue.Text = "حذف";
+            btn_deleteAtelierQueue.UseVisualStyleBackColor = false;
+            btn_deleteAtelierQueue.Click += Btn_deleteAtelierQueue_Click;
+            // 
+            // btn_addAtelierQueue
+            // 
+            btn_addAtelierQueue.BackColor = Color.FromArgb(68, 189, 50);
+            btn_addAtelierQueue.FlatAppearance.BorderSize = 0;
+            btn_addAtelierQueue.FlatStyle = FlatStyle.Flat;
+            btn_addAtelierQueue.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_addAtelierQueue.ForeColor = Color.FromArgb(245, 246, 250);
+            btn_addAtelierQueue.Location = new Point(6, 40);
+            btn_addAtelierQueue.Name = "btn_addAtelierQueue";
+            btn_addAtelierQueue.Size = new Size(104, 41);
+            btn_addAtelierQueue.TabIndex = 17;
+            btn_addAtelierQueue.Text = "افزودن";
+            btn_addAtelierQueue.UseVisualStyleBackColor = false;
+            btn_addAtelierQueue.Click += Btn_addAtelierQueue_Click;
+            // 
+            // FilterPanel
+            // 
+            FilterPanel.BorderStyle = BorderStyle.FixedSingle;
+            FilterPanel.Controls.Add(btnAddFilter);
+            FilterPanel.Controls.Add(lbl_FilterByQueueStatus);
+            FilterPanel.Controls.Add(lbl_FilterByDate);
+            FilterPanel.Controls.Add(lbl_FilterBySearch);
+            FilterPanel.Controls.Add(txtbox_SearchBy);
+            FilterPanel.Controls.Add(combobox_SearchBy);
+            FilterPanel.Controls.Add(btnClearFilter);
+            FilterPanel.Controls.Add(combobox_TimeFrame);
+            FilterPanel.Controls.Add(combobox_QueueStatus);
+            FilterPanel.Location = new Point(14, 9);
+            FilterPanel.Name = "FilterPanel";
+            FilterPanel.Size = new Size(767, 118);
+            FilterPanel.TabIndex = 29;
+            // 
+            // btnAddFilter
+            // 
+            btnAddFilter.BackColor = Color.FromArgb(68, 189, 50);
+            btnAddFilter.FlatAppearance.BorderSize = 0;
+            btnAddFilter.FlatStyle = FlatStyle.Flat;
+            btnAddFilter.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAddFilter.ForeColor = Color.FromArgb(245, 246, 250);
+            btnAddFilter.Location = new Point(18, 61);
+            btnAddFilter.Name = "btnAddFilter";
+            btnAddFilter.Size = new Size(103, 39);
+            btnAddFilter.TabIndex = 29;
+            btnAddFilter.Text = "اعمال فیلتر";
+            btnAddFilter.UseVisualStyleBackColor = false;
+            btnAddFilter.Click += btnAddFilter_Click;
+            // 
+            // lbl_FilterByQueueStatus
+            // 
+            lbl_FilterByQueueStatus.AutoSize = true;
+            lbl_FilterByQueueStatus.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_FilterByQueueStatus.ForeColor = Color.White;
+            lbl_FilterByQueueStatus.Location = new Point(139, 5);
+            lbl_FilterByQueueStatus.Name = "lbl_FilterByQueueStatus";
+            lbl_FilterByQueueStatus.Size = new Size(189, 27);
+            lbl_FilterByQueueStatus.TabIndex = 28;
+            lbl_FilterByQueueStatus.Text = "فیلتر براساس وضعیت نوبت";
+            // 
+            // lbl_FilterByDate
+            // 
+            lbl_FilterByDate.AutoSize = true;
+            lbl_FilterByDate.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_FilterByDate.ForeColor = Color.White;
+            lbl_FilterByDate.Location = new Point(368, 5);
+            lbl_FilterByDate.Name = "lbl_FilterByDate";
+            lbl_FilterByDate.Size = new Size(161, 27);
+            lbl_FilterByDate.TabIndex = 27;
+            lbl_FilterByDate.Text = "فیلتر براساس بازه زمانی";
+            // 
+            // lbl_FilterBySearch
+            // 
+            lbl_FilterBySearch.AutoSize = true;
+            lbl_FilterBySearch.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_FilterBySearch.ForeColor = Color.White;
+            lbl_FilterBySearch.Location = new Point(603, 5);
+            lbl_FilterBySearch.Name = "lbl_FilterBySearch";
+            lbl_FilterBySearch.Size = new Size(115, 27);
+            lbl_FilterBySearch.TabIndex = 26;
+            lbl_FilterBySearch.Text = "جستجو براساس";
+            // 
+            // txtbox_SearchBy
+            // 
+            txtbox_SearchBy.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtbox_SearchBy.Location = new Point(568, 71);
+            txtbox_SearchBy.Name = "txtbox_SearchBy";
+            txtbox_SearchBy.Size = new Size(187, 32);
+            txtbox_SearchBy.TabIndex = 25;
+            txtbox_SearchBy.TextAlign = HorizontalAlignment.Right;
+            txtbox_SearchBy.TextChanged += txtbox_SearchBy_TextChanged;
+            txtbox_SearchBy.KeyDown += txtbox_SearchBy_KeyDown;
+            txtbox_SearchBy.KeyPress += txtbox_SearchBy_KeyPress;
+            // 
+            // combobox_SearchBy
+            // 
+            combobox_SearchBy.BackColor = Color.FromArgb(245, 246, 250);
+            combobox_SearchBy.DropDownStyle = ComboBoxStyle.DropDownList;
+            combobox_SearchBy.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            combobox_SearchBy.FormattingEnabled = true;
+            combobox_SearchBy.Items.AddRange(new object[] { "پیشفرض (هیچکدام)", "نام و نام خانوادگی", "شماره تماس" });
+            combobox_SearchBy.Location = new Point(568, 35);
+            combobox_SearchBy.Name = "combobox_SearchBy";
+            combobox_SearchBy.RightToLeft = RightToLeft.Yes;
+            combobox_SearchBy.Size = new Size(187, 30);
+            combobox_SearchBy.TabIndex = 23;
+            combobox_SearchBy.SelectedIndexChanged += combobox_SortBy_SelectedIndexChanged;
+            // 
+            // btnClearFilter
+            // 
+            btnClearFilter.BackColor = Color.FromArgb(194, 54, 22);
+            btnClearFilter.FlatAppearance.BorderSize = 0;
+            btnClearFilter.FlatStyle = FlatStyle.Flat;
+            btnClearFilter.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClearFilter.ForeColor = Color.FromArgb(245, 246, 250);
+            btnClearFilter.Location = new Point(18, 16);
+            btnClearFilter.Name = "btnClearFilter";
+            btnClearFilter.Size = new Size(103, 39);
+            btnClearFilter.TabIndex = 24;
+            btnClearFilter.Text = "حذف فیلتر";
+            btnClearFilter.UseVisualStyleBackColor = false;
+            btnClearFilter.Click += btnClearFilter_Click;
+            // 
+            // combobox_TimeFrame
+            // 
+            combobox_TimeFrame.BackColor = Color.FromArgb(245, 246, 250);
+            combobox_TimeFrame.DropDownStyle = ComboBoxStyle.DropDownList;
+            combobox_TimeFrame.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            combobox_TimeFrame.FormattingEnabled = true;
+            combobox_TimeFrame.Items.AddRange(new object[] { "پیشفرض (هیچکدام)", "قبل از روز نوبت", "روز نوبت", "نوبت منقضی شده" });
+            combobox_TimeFrame.Location = new Point(355, 55);
+            combobox_TimeFrame.Name = "combobox_TimeFrame";
+            combobox_TimeFrame.RightToLeft = RightToLeft.Yes;
+            combobox_TimeFrame.Size = new Size(187, 30);
+            combobox_TimeFrame.TabIndex = 23;
+            combobox_TimeFrame.SelectedIndexChanged += comboboxTimeFrame_SelectedIndexChanged;
+            // 
+            // combobox_QueueStatus
+            // 
+            combobox_QueueStatus.BackColor = Color.FromArgb(245, 246, 250);
+            combobox_QueueStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            combobox_QueueStatus.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            combobox_QueueStatus.FormattingEnabled = true;
+            combobox_QueueStatus.Items.AddRange(new object[] { "پیشفرض (هیچکدام)", "انجام نشده", "انجام شده", "کنسل شده" });
+            combobox_QueueStatus.Location = new Point(139, 55);
+            combobox_QueueStatus.Name = "combobox_QueueStatus";
+            combobox_QueueStatus.RightToLeft = RightToLeft.Yes;
+            combobox_QueueStatus.Size = new Size(187, 30);
+            combobox_QueueStatus.TabIndex = 23;
+            combobox_QueueStatus.SelectedIndexChanged += combobox_QueueStatus_SelectedIndexChanged;
+            // 
+            // UsersPanel
+            // 
+            UsersPanel.Controls.Add(UsersDatagrid);
+            UsersPanel.Controls.Add(lbl_users);
+            UsersPanel.Dock = DockStyle.Fill;
+            UsersPanel.Location = new Point(0, 0);
+            UsersPanel.Name = "UsersPanel";
+            UsersPanel.Size = new Size(1000, 541);
+            UsersPanel.TabIndex = 14;
+            // 
+            // UsersDatagrid
+            // 
+            UsersDatagrid.AllowUserToAddRows = false;
+            UsersDatagrid.AllowUserToDeleteRows = false;
+            UsersDatagrid.AllowUserToResizeColumns = false;
+            UsersDatagrid.AllowUserToResizeRows = false;
+            UsersDatagrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            UsersDatagrid.BackgroundColor = Color.FromArgb(127, 143, 166);
+            UsersDatagrid.BorderStyle = BorderStyle.None;
+            UsersDatagrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = SystemColors.Control;
+            dataGridViewCellStyle10.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            UsersDatagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            UsersDatagrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            UsersDatagrid.Columns.AddRange(new DataGridViewColumn[] { UsernameColumn, StatusColumn });
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            UsersDatagrid.DefaultCellStyle = dataGridViewCellStyle11;
+            UsersDatagrid.EditMode = DataGridViewEditMode.EditProgrammatically;
+            UsersDatagrid.Location = new Point(14, 75);
+            UsersDatagrid.MultiSelect = false;
+            UsersDatagrid.Name = "UsersDatagrid";
+            UsersDatagrid.ReadOnly = true;
+            UsersDatagrid.RowHeadersVisible = false;
+            UsersDatagrid.RowHeadersWidth = 51;
+            UsersDatagrid.ScrollBars = ScrollBars.Vertical;
+            UsersDatagrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            UsersDatagrid.ShowCellErrors = false;
+            UsersDatagrid.ShowCellToolTips = false;
+            UsersDatagrid.ShowEditingIcon = false;
+            UsersDatagrid.ShowRowErrors = false;
+            UsersDatagrid.Size = new Size(767, 311);
+            UsersDatagrid.TabIndex = 2;
+            UsersDatagrid.TabStop = false;
+            UsersDatagrid.SelectionChanged += UsersDatagrid_SelectionChanged;
+            // 
+            // UsernameColumn
+            // 
+            UsernameColumn.HeaderText = "نام کاربری";
+            UsernameColumn.MinimumWidth = 6;
+            UsernameColumn.Name = "UsernameColumn";
+            UsernameColumn.ReadOnly = true;
+            UsernameColumn.Resizable = DataGridViewTriState.False;
+            UsernameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // StatusColumn
+            // 
+            StatusColumn.HeaderText = "وضعیت";
+            StatusColumn.MinimumWidth = 6;
+            StatusColumn.Name = "StatusColumn";
+            StatusColumn.ReadOnly = true;
+            StatusColumn.Resizable = DataGridViewTriState.False;
+            // 
+            // lbl_users
+            // 
+            lbl_users.AutoSize = true;
+            lbl_users.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_users.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_users.Location = new Point(329, 9);
+            lbl_users.Name = "lbl_users";
+            lbl_users.Size = new Size(137, 59);
+            lbl_users.TabIndex = 1;
+            lbl_users.Text = "همکاران";
+            // 
+            // SettingPanel
+            // 
+            SettingPanel.Controls.Add(groupbox_accManage);
+            SettingPanel.Controls.Add(groupbox_ChangePass);
+            SettingPanel.Controls.Add(lbl_setting);
+            SettingPanel.Dock = DockStyle.Fill;
+            SettingPanel.Location = new Point(0, 0);
+            SettingPanel.Name = "SettingPanel";
+            SettingPanel.Size = new Size(1000, 541);
+            SettingPanel.TabIndex = 15;
+            // 
+            // groupbox_accManage
+            // 
+            groupbox_accManage.Controls.Add(btnLogout);
+            groupbox_accManage.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupbox_accManage.Location = new Point(400, 138);
+            groupbox_accManage.Name = "groupbox_accManage";
+            groupbox_accManage.RightToLeft = RightToLeft.Yes;
+            groupbox_accManage.Size = new Size(269, 264);
+            groupbox_accManage.TabIndex = 4;
+            groupbox_accManage.TabStop = false;
+            groupbox_accManage.Text = "مدیریت حساب";
+            // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.FromArgb(39, 60, 117);
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = Color.FromArgb(245, 246, 250);
+            btnLogout.Location = new Point(62, 113);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(144, 39);
+            btnLogout.TabIndex = 4;
+            btnLogout.Text = "خروج از حساب کاربری";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += BtnLogout_Click;
+            // 
+            // groupbox_ChangePass
+            // 
+            groupbox_ChangePass.Controls.Add(btnResetPass);
+            groupbox_ChangePass.Controls.Add(lbl_newPass);
+            groupbox_ChangePass.Controls.Add(lbl_oldPass);
+            groupbox_ChangePass.Controls.Add(txtbox_newPass);
+            groupbox_ChangePass.Controls.Add(txtbox_oldPass);
+            groupbox_ChangePass.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupbox_ChangePass.Location = new Point(125, 138);
+            groupbox_ChangePass.Name = "groupbox_ChangePass";
+            groupbox_ChangePass.RightToLeft = RightToLeft.Yes;
+            groupbox_ChangePass.Size = new Size(269, 264);
+            groupbox_ChangePass.TabIndex = 2;
+            groupbox_ChangePass.TabStop = false;
+            groupbox_ChangePass.Text = "تغییر رمز عبور";
+            // 
+            // btnResetPass
+            // 
+            btnResetPass.BackColor = Color.FromArgb(39, 60, 117);
+            btnResetPass.FlatAppearance.BorderSize = 0;
+            btnResetPass.FlatStyle = FlatStyle.Flat;
+            btnResetPass.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnResetPass.ForeColor = Color.FromArgb(245, 246, 250);
+            btnResetPass.Location = new Point(41, 189);
+            btnResetPass.Name = "btnResetPass";
+            btnResetPass.Size = new Size(186, 41);
+            btnResetPass.TabIndex = 6;
+            btnResetPass.Text = "تغییر رمز عبور";
+            btnResetPass.UseVisualStyleBackColor = false;
+            btnResetPass.Click += BtnResetPass_Click;
+            // 
+            // lbl_newPass
+            // 
+            lbl_newPass.AutoSize = true;
+            lbl_newPass.Location = new Point(84, 118);
+            lbl_newPass.Name = "lbl_newPass";
+            lbl_newPass.Size = new Size(102, 27);
+            lbl_newPass.TabIndex = 2;
+            lbl_newPass.Text = "رمز عبور جدید";
+            // 
+            // lbl_oldPass
+            // 
+            lbl_oldPass.AutoSize = true;
+            lbl_oldPass.Location = new Point(84, 38);
+            lbl_oldPass.Name = "lbl_oldPass";
+            lbl_oldPass.Size = new Size(101, 27);
+            lbl_oldPass.TabIndex = 2;
+            lbl_oldPass.Text = "رمز عبور فعلی";
+            // 
+            // txtbox_newPass
+            // 
+            txtbox_newPass.Location = new Point(41, 151);
+            txtbox_newPass.Name = "txtbox_newPass";
+            txtbox_newPass.PasswordChar = '*';
+            txtbox_newPass.RightToLeft = RightToLeft.No;
+            txtbox_newPass.Size = new Size(186, 32);
+            txtbox_newPass.TabIndex = 1;
+            txtbox_newPass.TextAlign = HorizontalAlignment.Center;
+            // 
+            // txtbox_oldPass
+            // 
+            txtbox_oldPass.Location = new Point(41, 67);
+            txtbox_oldPass.Name = "txtbox_oldPass";
+            txtbox_oldPass.PasswordChar = '*';
+            txtbox_oldPass.RightToLeft = RightToLeft.No;
+            txtbox_oldPass.Size = new Size(186, 32);
+            txtbox_oldPass.TabIndex = 1;
+            txtbox_oldPass.TextAlign = HorizontalAlignment.Center;
+            // 
+            // lbl_setting
+            // 
+            lbl_setting.AutoSize = true;
+            lbl_setting.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_setting.ForeColor = Color.FromArgb(245, 246, 250);
+            lbl_setting.Location = new Point(326, 9);
+            lbl_setting.Name = "lbl_setting";
+            lbl_setting.Size = new Size(142, 59);
+            lbl_setting.TabIndex = 1;
+            lbl_setting.Text = "تنظیمات";
+            // 
+            // timerClock
+            // 
+            timerClock.Enabled = true;
+            timerClock.Interval = 60000;
+            timerClock.Tick += TimerClock_Tick;
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 19F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(143)))), ((int)(((byte)(166)))));
-            this.ClientSize = new System.Drawing.Size(1000, 541);
-            this.Controls.Add(this.AtelierPanel);
-            this.Controls.Add(this.PersonnelPanel);
-            this.Controls.Add(this.SettingPanel);
-            this.Controls.Add(this.DashboardPanel);
-            this.Controls.Add(this.UsersPanel);
-            this.Controls.Add(this.StatisticsPanel);
-            this.Controls.Add(this.sidebarPanel);
-            this.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
-            this.Name = "FrmMain";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "سیستم نوبت دهی";
-            this.Load += new System.EventHandler(this.FrmMain_Load);
-            this.sidebarPanel.ResumeLayout(false);
-            this.welcomePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SmallConnectionPic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDigitalClock)).EndInit();
-            this.DashboardPanel.ResumeLayout(false);
-            this.DashboardPanel.PerformLayout();
-            this.atelierCountPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picAtelierCountPanel)).EndInit();
-            this.ConnectionPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ConnectionPic)).EndInit();
-            this.UsernamePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picUsernamePanel)).EndInit();
-            this.StatisticsPanel.ResumeLayout(false);
-            this.StatisticsPanel.PerformLayout();
-            this.PersonnelPanel.ResumeLayout(false);
-            this.PersonnelPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PersonnelDoneDatagridview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PersonnelDatagridview)).EndInit();
-            this.action_panel.ResumeLayout(false);
-            this.action_panel.PerformLayout();
-            this.QueuePanel.ResumeLayout(false);
-            this.AtelierPanel.ResumeLayout(false);
-            this.StatusPanel.ResumeLayout(false);
-            this.StatusPanel.PerformLayout();
-            this.QueueStatusPanel.ResumeLayout(false);
-            this.QueueStatusPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UndonePic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CancelPic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DonePic)).EndInit();
-            this.DayStatusPanel.ResumeLayout(false);
-            this.DayStatusPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ExpirePic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TodayPic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UpcomingPic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AtelierDatagridview)).EndInit();
-            this.ActionPanel.ResumeLayout(false);
-            this.ActionPanel.PerformLayout();
-            this.UsersPanel.ResumeLayout(false);
-            this.UsersPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UsersDatagrid)).EndInit();
-            this.SettingPanel.ResumeLayout(false);
-            this.SettingPanel.PerformLayout();
-            this.groupbox_photographer.ResumeLayout(false);
-            this.groupbox_photographer.PerformLayout();
-            this.groupbox_accManage.ResumeLayout(false);
-            this.groupbox_ChangePass.ResumeLayout(false);
-            this.groupbox_ChangePass.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(6F, 19F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(127, 143, 166);
+            ClientSize = new Size(1000, 541);
+            Controls.Add(sidebarPanel);
+            Controls.Add(DashboardPanel);
+            Controls.Add(UsersPanel);
+            Controls.Add(StatisticsPanel);
+            Controls.Add(AtelierPanel);
+            Controls.Add(PersonnelPanel);
+            Controls.Add(SettingPanel);
+            Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            Name = "FrmMain";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "سیستم نوبت دهی";
+            Load += FrmMain_Load;
+            sidebarPanel.ResumeLayout(false);
+            welcomePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picDigitalClock).EndInit();
+            DashboardPanel.ResumeLayout(false);
+            DashboardPanel.PerformLayout();
+            RolePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)RolePic).EndInit();
+            atelierCountPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picAtelierCountPanel).EndInit();
+            ConnectionPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DatePic).EndInit();
+            UsernamePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picUsernamePanel).EndInit();
+            StatisticsPanel.ResumeLayout(false);
+            StatisticsPanel.PerformLayout();
+            PersonnelPanel.ResumeLayout(false);
+            PersonnelPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PersonnelDoneDatagridview).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PersonnelDatagridview).EndInit();
+            action_panel.ResumeLayout(false);
+            action_panel.PerformLayout();
+            QueuePanel.ResumeLayout(false);
+            AtelierPanel.ResumeLayout(false);
+            StatusPanel.ResumeLayout(false);
+            StatusPanel.PerformLayout();
+            QueueStatusPanel.ResumeLayout(false);
+            QueueStatusPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)UndonePic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CancelPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DonePic).EndInit();
+            DayStatusPanel.ResumeLayout(false);
+            DayStatusPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ExpirePic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TodayPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)UpcomingPic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)AtelierDatagridview).EndInit();
+            ActionPanel.ResumeLayout(false);
+            ActionPanel.PerformLayout();
+            FilterPanel.ResumeLayout(false);
+            FilterPanel.PerformLayout();
+            UsersPanel.ResumeLayout(false);
+            UsersPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)UsersDatagrid).EndInit();
+            SettingPanel.ResumeLayout(false);
+            SettingPanel.PerformLayout();
+            groupbox_accManage.ResumeLayout(false);
+            groupbox_ChangePass.ResumeLayout(false);
+            groupbox_ChangePass.PerformLayout();
+            ResumeLayout(false);
 
         }
 
@@ -1667,7 +1717,7 @@
         private Queuing_System_Alipour.Tool.SafeLabel lbl_oldPass;
         private System.Windows.Forms.TextBox txtbox_newPass;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_newPass;
-        private System.Windows.Forms.Button btnChangePass;
+        private System.Windows.Forms.Button btnResetPass;
         private System.Windows.Forms.DataGridView UsersDatagrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn UsernameColumn;
         private System.Windows.Forms.DataGridViewImageColumn StatusColumn;
@@ -1675,17 +1725,16 @@
         private System.Windows.Forms.PictureBox picDigitalClock;
         private System.Windows.Forms.Timer timerClock;
         private Queuing_System_Alipour.Tool.SafeLabel lblUsername;
-        private Queuing_System_Alipour.Tool.SafeLabel lbl_welcome;
+        private Queuing_System_Alipour.Tool.SafeLabel lblWelcomeText;
         private System.Windows.Forms.Panel UsernamePanel;
         private System.Windows.Forms.PictureBox picUsernamePanel;
         private System.Windows.Forms.DataGridView AtelierDatagridview;
         private System.Windows.Forms.Button btn_addAtelierQueue;
         private System.Windows.Forms.Button btn_deleteAtelierQueue;
-        private Queuing_System_Alipour.Tool.SafeLabel lbl_connection;
+        private Queuing_System_Alipour.Tool.SafeLabel lblDateText;
         public System.Windows.Forms.Panel ConnectionPanel;
-        public System.Windows.Forms.PictureBox ConnectionPic;
-        public Queuing_System_Alipour.Tool.SafeLabel lbl_ConnectionStatus;
-        public System.Windows.Forms.PictureBox SmallConnectionPic;
+        public System.Windows.Forms.PictureBox DatePic;
+        public Queuing_System_Alipour.Tool.SafeLabel lblDate;
         private System.Windows.Forms.Panel atelierCountPanel;
         private System.Windows.Forms.PictureBox picAtelierCountPanel;
         private Queuing_System_Alipour.Tool.SafeLabel lblAtelierCount;
@@ -1699,9 +1748,8 @@
         private Queuing_System_Alipour.Tool.SafeLabel lbl_Expire;
         private System.Windows.Forms.ComboBox combobox_QueueStatus;
         private System.Windows.Forms.Button btnClearFilter;
-        private System.Windows.Forms.ComboBox combobox_SortBy;
-        private System.Windows.Forms.ComboBox comboboxTimeFrame;
-        private Queuing_System_Alipour.Tool.SafeLabel lbl_date;
+        private System.Windows.Forms.ComboBox combobox_SearchBy;
+        private System.Windows.Forms.ComboBox combobox_TimeFrame;
         private System.Windows.Forms.Panel QueueStatusPanel;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_Undone;
         private System.Windows.Forms.PictureBox UndonePic;
@@ -1715,8 +1763,6 @@
         private System.Windows.Forms.Button btn_DoneAtelierQueue;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_Status;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_Action;
-        private System.Windows.Forms.GroupBox groupbox_photographer;
-        private System.Windows.Forms.CheckBox chckbox_accStatus;
         private System.Windows.Forms.GroupBox groupbox_accManage;
         private System.Windows.Forms.Button btnLogout;
         public System.Windows.Forms.Panel action_panel;
@@ -1746,5 +1792,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AtelierPhoneNumberColumn;
         private System.Windows.Forms.DataGridViewButtonColumn AtelierNoteColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn AtelierQueueIDColumn;
+        private Panel FilterPanel;
+        private Tool.SafeLabel lbl_FilterBySearch;
+        private TextBox txtbox_SearchBy;
+        private Tool.SafeLabel lbl_FilterByDate;
+        private Tool.SafeLabel lbl_FilterByQueueStatus;
+        private Button btnAddFilter;
+        private Panel RolePanel;
+        private PictureBox RolePic;
+        private Tool.SafeLabel lblRole;
+        private Tool.SafeLabel lblRoleText;
     }
 }
