@@ -153,7 +153,7 @@ namespace Queuing_System_Alipour.Window
             LogoutAccount();
         }
 
-        private async void BtnChangePass_Click(object sender, EventArgs e)
+        private async void BtnResetPass_Click(object sender, EventArgs e)
         {
             ResetPassword();
         }
