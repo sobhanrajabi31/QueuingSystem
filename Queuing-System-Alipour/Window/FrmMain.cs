@@ -43,34 +43,35 @@ namespace Queuing_System_Alipour.Window
 
         SoundPlayer player;
 
-        //public static bool ConnectionStatus = true;
-
-        //public static SortType SortTypeIndex = 0;
-        //public static TimeFrame TimeFrameIndex = 0;
-        //public static QueueStatus QueueStatusIndex = 0;
-
-        //public static int test = 0;
-
-        //int prePersonelCount = 0;
-        //int prePersonelTempCount = 0;
-
-        //private static object PersonelRefresh_Lock = new object();
-
         private void FrmMain_Load(object sender, EventArgs e)
         {
             if (!AppState.IsAuthenticated)
             {
-                FrmLogin frm = new FrmLogin();
-                this.Hide();
-                frm.ShowDialog();
-                this.Close();
+                var frmLogin = new FrmLogin();
+                Hide();
+                frmLogin.ShowDialog();
+                Close();
             }
 
-            player = new SoundPlayer(Resource.alarm);
-            player.Load();
+            LoadAlertSound();
+            LoadDisplayImages();
+            DigitalClock();
 
-            //PictureConnection();
+            ShowPanel(DashboardPanel);
+            SwitchButton(btnDashboard);
 
+            lblUsername.Text = AppState.Username;
+            lblRole.Text = AppState.Role ? "عکاس" : "منشی";
+
+            RefreshDataGrid(RefreshType.Atelier);
+            LoadDefaultFilters();
+            ShowTodayQueuesCount();
+            
+            AtelierButtonDesign();
+        }
+
+        private void LoadDisplayImages()
+        {
             UpcomingPic.Image = Img.ConvertToBmp(Resource.Yellow);
             TodayPic.Image = Img.ConvertToBmp(Resource.Green);
             ExpirePic.Image = Img.ConvertToBmp(Resource.Red);
@@ -78,18 +79,12 @@ namespace Queuing_System_Alipour.Window
             DonePic.Image = Img.ConvertToBmp(Resource.check);
             CancelPic.Image = Img.ConvertToBmp(Resource.x);
             UndonePic.Image = Img.ConvertToBmp(Resource.clockwise);
+        }
 
-            TimerClock_Tick(null, null);
-            SwitchButton(btnDashboard);
-            ShowPanel(DashboardPanel);
-
-            lblUsername.Text = AppState.Username;
-            //lblRole.Text = AppState.Role ? "عکاس" : "کارمند";
-
-            AtelierDatagridview_SelectionChanged(null, null);
-
-            //DefaultFilter();
-            ShowTodayQueuesCount();
+        private void LoadAlertSound()
+        {
+            player = new SoundPlayer(Resource.alarm);
+            player.Load();
         }
 
         // ============ [ Events ] ============
