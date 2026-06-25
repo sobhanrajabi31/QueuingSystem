@@ -17,6 +17,8 @@ namespace Queuing_System_Alipour.Window
 
         private void FrmRegister_Load(object sender, EventArgs e)
         {
+            if (comboBoxRole.Items.Count > 0)
+                comboBoxRole.SelectedIndex = 0;
         }
 
         private void Btn_login_Click(object sender, EventArgs e)
@@ -72,7 +74,8 @@ namespace Queuing_System_Alipour.Window
             {
                 Username = txtbox_username.Text,
                 Password = txtbox_password.Text,
-                Role = false
+                RepeatPassword = txtbox_rpassword.Text,
+                Role = comboBoxRole.SelectedIndex == 0 ? false : true
             };
 
             var registerResult = _employeeSrv.Register(registerData);

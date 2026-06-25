@@ -32,7 +32,10 @@ namespace Queuing_System_Alipour.Window
                         OpenFrmAndSaveData(result.Data);
 
                     else
+                    {
+                        File.Delete(AppState.TokenFileName);
                         Mbox.Error(result.Message, Caption.Error);
+                    }
                 }
 
                 else

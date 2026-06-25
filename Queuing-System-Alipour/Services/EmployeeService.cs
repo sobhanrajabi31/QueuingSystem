@@ -19,8 +19,9 @@ namespace Queuing_System_Alipour.Services
         public EmployeeService()
         {
             _repo = new EmployeeRepository();
-            _loginValidator = new LoginValidator();
             _resetPassvalidator = new ResetPasswordValidator();
+            _loginValidator = new LoginValidator();
+            _registerValidator = new RegisterValidator();
         }
 
         public ResultModel<LoginInfoDto> Login(LoginDto data)
@@ -45,6 +46,7 @@ namespace Queuing_System_Alipour.Services
                         {
                             Id = employee.Id,
                             Username = employee.Username,
+                            Password = data.Password,
                             Role = employee.Role
                         };
                     }
@@ -74,42 +76,46 @@ namespace Queuing_System_Alipour.Services
 
             if (validation.IsValid)
             {
-                if (_repo.IsConnectionOk())
+                if (data.Password == data.RepeatPassword)
                 {
-                    var exists = _repo.ExistsByUsername(data.Username);
-
-                    if (exists)
-                        result.Message = ErrorHandler.GetMessage(ErrorCode.UsernameExists);
-
-                    else
+                    if (_repo.IsConnectionOk())
                     {
-                        var employee = new Employee
-                        {
-                            Username = data.Username,
-                            Password = data.Password,
-                            Role = data.Role,
-                            AccessLevel = false
-                        };
+                        var exists = _repo.ExistsByUsername(data.Username);
 
-                        _repo.Create(employee);
-
-                        if (_repo.SaveChanges())
-                        {
-                            result.IsSuccess = true;
-                            result.Message = MessageHandler.GetMessage(MessageCode.AccountCreated);
-                        }
+                        if (exists)
+                            result.Message = ErrorHandler.GetMessage(ErrorCode.UsernameExists);
 
                         else
-                            result.Message = ErrorHandler.GetMessage(ErrorCode.FailedToCreateAccount);
+                        {
+                            var employee = new Employee
+                            {
+                                Username = data.Username,
+                                Password = PasswordHasher.Hash(data.Password),
+                                Role = data.Role,
+                                AccessLevel = false
+                            };
+
+                            _repo.Create(employee);
+
+                            if (_repo.SaveChanges())
+                            {
+                                result.IsSuccess = true;
+                                result.Message = MessageHandler.GetMessage(MessageCode.AccountCreated);
+                            }
+
+                            else
+                                result.Message = ErrorHandler.GetMessage(ErrorCode.FailedToCreateAccount);
+                        }
                     }
+
+                    else
+                        result.Message = ErrorHandler.GetMessage(ErrorCode.DbConnectionFailed);
                 }
 
                 else
-                    result.Message = ErrorHandler.GetMessage(ErrorCode.DbConnectionFailed);
+                    result.Message = ErrorHandler.GetMessage(ErrorCode.InvalidRepeatPassword);
             }
 
-            else
-                result.Message = validation.Errors.ToString();
             else
                 result.Message = validation.Errors.ToText();
 

@@ -9,6 +9,7 @@ namespace Queuing_System_Alipour.Validator.Employee
         {
             UsernameRules(x => x.Username);
             PasswordRules(x => x.Password);
+            PasswordRules(x => x.RepeatPassword);
             RoleRules(x => x.Role);
         }
     }
