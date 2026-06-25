@@ -59,7 +59,7 @@ namespace Queuing_System_Alipour.Services
             }
 
             else
-                result.Message = validation.Errors.ToString();
+                result.Message = validation.Errors.ToText();
 
             return result;
         }
@@ -113,7 +113,7 @@ namespace Queuing_System_Alipour.Services
             }
 
             else
-                result.Message = validation.Errors.ToString();
+                result.Message = validation.Errors.ToText();
 
             return result;
         }

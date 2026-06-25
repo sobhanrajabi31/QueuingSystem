@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using FluentValidation.Results;
+using System.Globalization;
+using System.Text;
 
 public static class PublicExtension
 {
@@ -25,6 +27,22 @@ public static class PublicExtension
         int day = int.Parse(cal[2]);
 
         return new DateTime(year, month, day, new PersianCalendar());
+    }
+
+    public static string ToText(this List<ValidationFailure>? errors)
+    {
+        if (errors == null)
+            return "empty error list";
+
+        else
+        {
+            var builder = new StringBuilder();
+
+            foreach (var error in errors)
+                builder.AppendLine(error.ErrorMessage);
+
+            return builder.ToString();
+        }
     }
 }
 
