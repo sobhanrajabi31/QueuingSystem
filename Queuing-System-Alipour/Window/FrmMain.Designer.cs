@@ -31,19 +31,22 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             sidebarPanel = new Panel();
             btnSetting = new Button();
-            btnUsers = new Button();
             btnPersonnel = new Button();
             btnAtelier = new Button();
             btnStatistics = new Button();
@@ -69,22 +72,25 @@
             lblWelcomeText = new Queuing_System_Alipour.Tool.SafeLabel();
             lbl_dashboard = new Queuing_System_Alipour.Tool.SafeLabel();
             StatisticsPanel = new Panel();
-            safeLabel1 = new Queuing_System_Alipour.Tool.SafeLabel();
+            StatsDatagrid = new DataGridView();
+            StatUsernameColumn = new DataGridViewTextBoxColumn();
+            StatAtelierCount = new DataGridViewTextBoxColumn();
+            StatPersonnelCount = new DataGridViewTextBoxColumn();
+            StatConnectionColumn = new DataGridViewTextBoxColumn();
             lbl_statistics = new Queuing_System_Alipour.Tool.SafeLabel();
             PersonnelPanel = new Panel();
             PersonnelDoneDatagridview = new DataGridView();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             PersonnelDatagridview = new DataGridView();
-            PersonnelQueueIDColumn = new DataGridViewTextBoxColumn();
-            PersonnelQueueNumberColumn = new DataGridViewTextBoxColumn();
-            PersonnelQueueNameColumn = new DataGridViewTextBoxColumn();
-            PersonnelQueueWaitTimeColumn = new DataGridViewTextBoxColumn();
+            PersonnelIdColumn = new DataGridViewTextBoxColumn();
+            PersonnelLastNameColumn = new DataGridViewTextBoxColumn();
+            PersonnelWaitTimeColumn = new DataGridViewTextBoxColumn();
             lbl_next = new Queuing_System_Alipour.Tool.SafeLabel();
             lbl_nextText = new Queuing_System_Alipour.Tool.SafeLabel();
             lbl_personnel = new Queuing_System_Alipour.Tool.SafeLabel();
             action_panel = new Panel();
             txtbox_fullname = new TextBox();
-            btn_removeQueue = new Button();
+            btn_deletePersonnelQueue = new Button();
             btn_addQueue = new Button();
             lbl_fullname = new Queuing_System_Alipour.Tool.SafeLabel();
             QueuePanel = new Panel();
@@ -92,6 +98,15 @@
             lbl_CurrentQueue = new Queuing_System_Alipour.Tool.SafeLabel();
             lbl_currentQueueText = new Queuing_System_Alipour.Tool.SafeLabel();
             AtelierPanel = new Panel();
+            panel3 = new Panel();
+            lbl_FilterByQueueStatus = new Queuing_System_Alipour.Tool.SafeLabel();
+            combobox_QueueStatus = new ComboBox();
+            panel2 = new Panel();
+            lbl_FilterByDate = new Queuing_System_Alipour.Tool.SafeLabel();
+            combobox_TimeFrame = new ComboBox();
+            panel1 = new Panel();
+            btnAddFilter = new Button();
+            btnClearFilter = new Button();
             StatusPanel = new Panel();
             lbl_Status = new Queuing_System_Alipour.Tool.SafeLabel();
             btn_CancelAtelierQueue = new Button();
@@ -111,34 +126,23 @@
             lbl_Upcoming = new Queuing_System_Alipour.Tool.SafeLabel();
             UpcomingPic = new PictureBox();
             AtelierDatagridview = new DataGridView();
+            AtelierNoteColumn = new DataGridViewButtonColumn();
             AtelierStatusDayColumn = new DataGridViewImageColumn();
             AtelierStatusColumn = new DataGridViewImageColumn();
             AtelierDateColumn = new DataGridViewTextBoxColumn();
             AtelierHourColumn = new DataGridViewTextBoxColumn();
             AtelierSpentColumn = new DataGridViewTextBoxColumn();
-            AtelierFullNameColumn = new DataGridViewTextBoxColumn();
             AtelierPhoneNumberColumn = new DataGridViewTextBoxColumn();
-            AtelierNoteColumn = new DataGridViewButtonColumn();
-            AtelierQueueIDColumn = new DataGridViewTextBoxColumn();
+            AtelierFullNameColumn = new DataGridViewTextBoxColumn();
+            AtelierIDColumn = new DataGridViewTextBoxColumn();
             ActionPanel = new Panel();
             lbl_Action = new Queuing_System_Alipour.Tool.SafeLabel();
             btn_deleteAtelierQueue = new Button();
             btn_addAtelierQueue = new Button();
             FilterPanel = new Panel();
-            btnAddFilter = new Button();
-            lbl_FilterByQueueStatus = new Queuing_System_Alipour.Tool.SafeLabel();
-            lbl_FilterByDate = new Queuing_System_Alipour.Tool.SafeLabel();
             lbl_FilterBySearch = new Queuing_System_Alipour.Tool.SafeLabel();
-            txtbox_SearchBy = new TextBox();
             combobox_SearchBy = new ComboBox();
-            btnClearFilter = new Button();
-            combobox_TimeFrame = new ComboBox();
-            combobox_QueueStatus = new ComboBox();
-            UsersPanel = new Panel();
-            UsersDatagrid = new DataGridView();
-            UsernameColumn = new DataGridViewTextBoxColumn();
-            StatusColumn = new DataGridViewImageColumn();
-            lbl_users = new Queuing_System_Alipour.Tool.SafeLabel();
+            txtbox_SearchBy = new TextBox();
             SettingPanel = new Panel();
             groupbox_accManage = new GroupBox();
             btnLogout = new Button();
@@ -163,12 +167,16 @@
             UsernamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picUsernamePanel).BeginInit();
             StatisticsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)StatsDatagrid).BeginInit();
             PersonnelPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PersonnelDoneDatagridview).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PersonnelDatagridview).BeginInit();
             action_panel.SuspendLayout();
             QueuePanel.SuspendLayout();
             AtelierPanel.SuspendLayout();
+            panel3.SuspendLayout();
+            panel2.SuspendLayout();
+            panel1.SuspendLayout();
             StatusPanel.SuspendLayout();
             QueueStatusPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)UndonePic).BeginInit();
@@ -181,8 +189,6 @@
             ((System.ComponentModel.ISupportInitialize)AtelierDatagridview).BeginInit();
             ActionPanel.SuspendLayout();
             FilterPanel.SuspendLayout();
-            UsersPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)UsersDatagrid).BeginInit();
             SettingPanel.SuspendLayout();
             groupbox_accManage.SuspendLayout();
             groupbox_ChangePass.SuspendLayout();
@@ -192,7 +198,6 @@
             // 
             sidebarPanel.BackColor = Color.FromArgb(25, 42, 86);
             sidebarPanel.Controls.Add(btnSetting);
-            sidebarPanel.Controls.Add(btnUsers);
             sidebarPanel.Controls.Add(btnPersonnel);
             sidebarPanel.Controls.Add(btnAtelier);
             sidebarPanel.Controls.Add(btnStatistics);
@@ -212,7 +217,7 @@
             btnSetting.ForeColor = Color.FromArgb(245, 246, 250);
             btnSetting.Image = Resources.Resource.settings;
             btnSetting.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSetting.Location = new Point(6, 455);
+            btnSetting.Location = new Point(6, 411);
             btnSetting.Name = "btnSetting";
             btnSetting.Size = new Size(193, 55);
             btnSetting.TabIndex = 8;
@@ -223,25 +228,6 @@
             btnSetting.UseVisualStyleBackColor = true;
             btnSetting.Click += BtnSetting_Click;
             // 
-            // btnUsers
-            // 
-            btnUsers.FlatAppearance.BorderSize = 0;
-            btnUsers.FlatStyle = FlatStyle.Flat;
-            btnUsers.Font = new Font("Vazirmatn ExtraBold", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnUsers.ForeColor = Color.FromArgb(245, 246, 250);
-            btnUsers.Image = Resources.Resource.drawio;
-            btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsers.Location = new Point(6, 394);
-            btnUsers.Name = "btnUsers";
-            btnUsers.Size = new Size(193, 55);
-            btnUsers.TabIndex = 7;
-            btnUsers.TabStop = false;
-            btnUsers.Text = "همکاران";
-            btnUsers.TextAlign = ContentAlignment.MiddleRight;
-            btnUsers.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btnUsers.UseVisualStyleBackColor = true;
-            btnUsers.Click += BtnUsers_Click;
-            // 
             // btnPersonnel
             // 
             btnPersonnel.FlatAppearance.BorderSize = 0;
@@ -250,7 +236,7 @@
             btnPersonnel.ForeColor = Color.FromArgb(245, 246, 250);
             btnPersonnel.Image = Resources.Resource.authors;
             btnPersonnel.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPersonnel.Location = new Point(6, 272);
+            btnPersonnel.Location = new Point(6, 289);
             btnPersonnel.Name = "btnPersonnel";
             btnPersonnel.Size = new Size(193, 55);
             btnPersonnel.TabIndex = 5;
@@ -269,7 +255,7 @@
             btnAtelier.ForeColor = Color.FromArgb(245, 246, 250);
             btnAtelier.Image = Resources.Resource.palette;
             btnAtelier.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAtelier.Location = new Point(6, 333);
+            btnAtelier.Location = new Point(6, 350);
             btnAtelier.Name = "btnAtelier";
             btnAtelier.Size = new Size(193, 55);
             btnAtelier.TabIndex = 6;
@@ -288,7 +274,7 @@
             btnStatistics.ForeColor = Color.FromArgb(245, 246, 250);
             btnStatistics.Image = (Image)resources.GetObject("btnStatistics.Image");
             btnStatistics.ImageAlign = ContentAlignment.MiddleLeft;
-            btnStatistics.Location = new Point(6, 211);
+            btnStatistics.Location = new Point(6, 228);
             btnStatistics.Name = "btnStatistics";
             btnStatistics.Size = new Size(193, 55);
             btnStatistics.TabIndex = 4;
@@ -307,7 +293,7 @@
             btnDashboard.ForeColor = Color.FromArgb(245, 246, 250);
             btnDashboard.Image = Resources.Resource.context;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(6, 150);
+            btnDashboard.Location = new Point(6, 167);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(193, 55);
             btnDashboard.TabIndex = 3;
@@ -534,7 +520,7 @@
             // 
             // StatisticsPanel
             // 
-            StatisticsPanel.Controls.Add(safeLabel1);
+            StatisticsPanel.Controls.Add(StatsDatagrid);
             StatisticsPanel.Controls.Add(lbl_statistics);
             StatisticsPanel.Dock = DockStyle.Fill;
             StatisticsPanel.Location = new Point(0, 0);
@@ -542,16 +528,102 @@
             StatisticsPanel.Size = new Size(1000, 541);
             StatisticsPanel.TabIndex = 2;
             // 
-            // safeLabel1
+            // StatsDatagrid
             // 
-            safeLabel1.AutoSize = true;
-            safeLabel1.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            safeLabel1.ForeColor = Color.FromArgb(245, 246, 250);
-            safeLabel1.Location = new Point(317, 241);
-            safeLabel1.Name = "safeLabel1";
-            safeLabel1.Size = new Size(161, 59);
-            safeLabel1.TabIndex = 0;
-            safeLabel1.Text = "...به زودی";
+            StatsDatagrid.AllowUserToAddRows = false;
+            StatsDatagrid.AllowUserToDeleteRows = false;
+            StatsDatagrid.AllowUserToResizeColumns = false;
+            StatsDatagrid.AllowUserToResizeRows = false;
+            StatsDatagrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            StatsDatagrid.BackgroundColor = Color.FromArgb(127, 143, 166);
+            StatsDatagrid.BorderStyle = BorderStyle.None;
+            StatsDatagrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            StatsDatagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            StatsDatagrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            StatsDatagrid.Columns.AddRange(new DataGridViewColumn[] { StatUsernameColumn, StatAtelierCount, StatPersonnelCount, StatConnectionColumn });
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            StatsDatagrid.DefaultCellStyle = dataGridViewCellStyle6;
+            StatsDatagrid.EditMode = DataGridViewEditMode.EditProgrammatically;
+            StatsDatagrid.Location = new Point(17, 76);
+            StatsDatagrid.MultiSelect = false;
+            StatsDatagrid.Name = "StatsDatagrid";
+            StatsDatagrid.ReadOnly = true;
+            StatsDatagrid.RowHeadersVisible = false;
+            StatsDatagrid.RowHeadersWidth = 51;
+            StatsDatagrid.ScrollBars = ScrollBars.Vertical;
+            StatsDatagrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            StatsDatagrid.ShowCellErrors = false;
+            StatsDatagrid.ShowCellToolTips = false;
+            StatsDatagrid.ShowEditingIcon = false;
+            StatsDatagrid.ShowRowErrors = false;
+            StatsDatagrid.Size = new Size(767, 449);
+            StatsDatagrid.TabIndex = 3;
+            StatsDatagrid.TabStop = false;
+            // 
+            // StatUsernameColumn
+            // 
+            StatUsernameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            StatUsernameColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            StatUsernameColumn.Frozen = true;
+            StatUsernameColumn.HeaderText = "نام کاربری";
+            StatUsernameColumn.Name = "StatUsernameColumn";
+            StatUsernameColumn.ReadOnly = true;
+            StatUsernameColumn.Resizable = DataGridViewTriState.False;
+            StatUsernameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            StatUsernameColumn.Width = 190;
+            // 
+            // StatAtelierCount
+            // 
+            StatAtelierCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            StatAtelierCount.DefaultCellStyle = dataGridViewCellStyle3;
+            StatAtelierCount.Frozen = true;
+            StatAtelierCount.HeaderText = "تعداد نوبت های آتلیه";
+            StatAtelierCount.Name = "StatAtelierCount";
+            StatAtelierCount.ReadOnly = true;
+            StatAtelierCount.Resizable = DataGridViewTriState.False;
+            StatAtelierCount.SortMode = DataGridViewColumnSortMode.NotSortable;
+            StatAtelierCount.Width = 190;
+            // 
+            // StatPersonnelCount
+            // 
+            StatPersonnelCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            StatPersonnelCount.DefaultCellStyle = dataGridViewCellStyle4;
+            StatPersonnelCount.Frozen = true;
+            StatPersonnelCount.HeaderText = "تعداد نوبت های پرسنلی";
+            StatPersonnelCount.Name = "StatPersonnelCount";
+            StatPersonnelCount.ReadOnly = true;
+            StatPersonnelCount.Resizable = DataGridViewTriState.False;
+            StatPersonnelCount.SortMode = DataGridViewColumnSortMode.NotSortable;
+            StatPersonnelCount.Width = 190;
+            // 
+            // StatConnectionColumn
+            // 
+            StatConnectionColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            StatConnectionColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            StatConnectionColumn.Frozen = true;
+            StatConnectionColumn.HeaderText = "وضعیت اتصال";
+            StatConnectionColumn.Name = "StatConnectionColumn";
+            StatConnectionColumn.ReadOnly = true;
+            StatConnectionColumn.Resizable = DataGridViewTriState.False;
+            StatConnectionColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            StatConnectionColumn.Width = 190;
             // 
             // lbl_statistics
             // 
@@ -587,24 +659,24 @@
             PersonnelDoneDatagridview.AllowUserToResizeRows = false;
             PersonnelDoneDatagridview.BackgroundColor = Color.FromArgb(127, 143, 166);
             PersonnelDoneDatagridview.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            PersonnelDoneDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            PersonnelDoneDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             PersonnelDoneDatagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             PersonnelDoneDatagridview.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn2 });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            PersonnelDoneDatagridview.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            PersonnelDoneDatagridview.DefaultCellStyle = dataGridViewCellStyle8;
             PersonnelDoneDatagridview.EditMode = DataGridViewEditMode.EditProgrammatically;
             PersonnelDoneDatagridview.Location = new Point(492, 73);
             PersonnelDoneDatagridview.MultiSelect = false;
@@ -612,9 +684,9 @@
             PersonnelDoneDatagridview.ReadOnly = true;
             PersonnelDoneDatagridview.RowHeadersVisible = false;
             PersonnelDoneDatagridview.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PersonnelDoneDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PersonnelDoneDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle9;
             PersonnelDoneDatagridview.ScrollBars = ScrollBars.Vertical;
             PersonnelDoneDatagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             PersonnelDoneDatagridview.ShowCellErrors = false;
@@ -644,24 +716,24 @@
             PersonnelDatagridview.AllowUserToResizeRows = false;
             PersonnelDatagridview.BackgroundColor = Color.FromArgb(127, 143, 166);
             PersonnelDatagridview.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            PersonnelDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = SystemColors.Control;
+            dataGridViewCellStyle10.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            PersonnelDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             PersonnelDatagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            PersonnelDatagridview.Columns.AddRange(new DataGridViewColumn[] { PersonnelQueueIDColumn, PersonnelQueueNumberColumn, PersonnelQueueNameColumn, PersonnelQueueWaitTimeColumn });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            PersonnelDatagridview.DefaultCellStyle = dataGridViewCellStyle5;
+            PersonnelDatagridview.Columns.AddRange(new DataGridViewColumn[] { PersonnelIdColumn, PersonnelLastNameColumn, PersonnelWaitTimeColumn });
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            PersonnelDatagridview.DefaultCellStyle = dataGridViewCellStyle11;
             PersonnelDatagridview.EditMode = DataGridViewEditMode.EditProgrammatically;
             PersonnelDatagridview.Location = new Point(113, 73);
             PersonnelDatagridview.MultiSelect = false;
@@ -669,9 +741,9 @@
             PersonnelDatagridview.ReadOnly = true;
             PersonnelDatagridview.RowHeadersVisible = false;
             PersonnelDatagridview.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PersonnelDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PersonnelDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle12;
             PersonnelDatagridview.ScrollBars = ScrollBars.Vertical;
             PersonnelDatagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             PersonnelDatagridview.ShowCellErrors = false;
@@ -682,44 +754,35 @@
             PersonnelDatagridview.TabIndex = 13;
             PersonnelDatagridview.TabStop = false;
             // 
-            // PersonnelQueueIDColumn
+            // PersonnelIdColumn
             // 
-            PersonnelQueueIDColumn.HeaderText = "آیدی";
-            PersonnelQueueIDColumn.Name = "PersonnelQueueIDColumn";
-            PersonnelQueueIDColumn.ReadOnly = true;
-            PersonnelQueueIDColumn.Resizable = DataGridViewTriState.False;
-            PersonnelQueueIDColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            PersonnelQueueIDColumn.Visible = false;
+            PersonnelIdColumn.FillWeight = 91.37056F;
+            PersonnelIdColumn.HeaderText = "شماره نوبت";
+            PersonnelIdColumn.MinimumWidth = 6;
+            PersonnelIdColumn.Name = "PersonnelIdColumn";
+            PersonnelIdColumn.ReadOnly = true;
+            PersonnelIdColumn.Resizable = DataGridViewTriState.False;
+            PersonnelIdColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // PersonnelQueueNumberColumn
+            // PersonnelLastNameColumn
             // 
-            PersonnelQueueNumberColumn.FillWeight = 91.37056F;
-            PersonnelQueueNumberColumn.HeaderText = "شماره نوبت";
-            PersonnelQueueNumberColumn.MinimumWidth = 6;
-            PersonnelQueueNumberColumn.Name = "PersonnelQueueNumberColumn";
-            PersonnelQueueNumberColumn.ReadOnly = true;
-            PersonnelQueueNumberColumn.Resizable = DataGridViewTriState.False;
-            PersonnelQueueNumberColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            PersonnelLastNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            PersonnelLastNameColumn.FillWeight = 100.2909F;
+            PersonnelLastNameColumn.HeaderText = "نام خانوادگی";
+            PersonnelLastNameColumn.MinimumWidth = 6;
+            PersonnelLastNameColumn.Name = "PersonnelLastNameColumn";
+            PersonnelLastNameColumn.ReadOnly = true;
+            PersonnelLastNameColumn.Resizable = DataGridViewTriState.False;
+            PersonnelLastNameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // PersonnelQueueNameColumn
+            // PersonnelWaitTimeColumn
             // 
-            PersonnelQueueNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            PersonnelQueueNameColumn.FillWeight = 100.2909F;
-            PersonnelQueueNameColumn.HeaderText = "فامیلی";
-            PersonnelQueueNameColumn.MinimumWidth = 6;
-            PersonnelQueueNameColumn.Name = "PersonnelQueueNameColumn";
-            PersonnelQueueNameColumn.ReadOnly = true;
-            PersonnelQueueNameColumn.Resizable = DataGridViewTriState.False;
-            PersonnelQueueNameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PersonnelQueueWaitTimeColumn
-            // 
-            PersonnelQueueWaitTimeColumn.HeaderText = "مدت زمان انتظار (دقیقه)";
-            PersonnelQueueWaitTimeColumn.Name = "PersonnelQueueWaitTimeColumn";
-            PersonnelQueueWaitTimeColumn.ReadOnly = true;
-            PersonnelQueueWaitTimeColumn.Resizable = DataGridViewTriState.False;
-            PersonnelQueueWaitTimeColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            PersonnelQueueWaitTimeColumn.Width = 130;
+            PersonnelWaitTimeColumn.HeaderText = "مدت زمان انتظار (دقیقه)";
+            PersonnelWaitTimeColumn.Name = "PersonnelWaitTimeColumn";
+            PersonnelWaitTimeColumn.ReadOnly = true;
+            PersonnelWaitTimeColumn.Resizable = DataGridViewTriState.False;
+            PersonnelWaitTimeColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            PersonnelWaitTimeColumn.Width = 130;
             // 
             // lbl_next
             // 
@@ -759,7 +822,7 @@
             action_panel.BackColor = Color.FromArgb(113, 128, 147);
             action_panel.BorderStyle = BorderStyle.FixedSingle;
             action_panel.Controls.Add(txtbox_fullname);
-            action_panel.Controls.Add(btn_removeQueue);
+            action_panel.Controls.Add(btn_deletePersonnelQueue);
             action_panel.Controls.Add(btn_addQueue);
             action_panel.Controls.Add(lbl_fullname);
             action_panel.Location = new Point(113, 364);
@@ -778,20 +841,20 @@
             txtbox_fullname.TextAlign = HorizontalAlignment.Center;
             txtbox_fullname.KeyDown += txtbox_fullname_KeyDown;
             // 
-            // btn_removeQueue
+            // btn_deletePersonnelQueue
             // 
-            btn_removeQueue.BackColor = Color.FromArgb(194, 54, 22);
-            btn_removeQueue.FlatAppearance.BorderSize = 0;
-            btn_removeQueue.FlatStyle = FlatStyle.Flat;
-            btn_removeQueue.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_removeQueue.ForeColor = Color.FromArgb(245, 246, 250);
-            btn_removeQueue.Location = new Point(303, 99);
-            btn_removeQueue.Name = "btn_removeQueue";
-            btn_removeQueue.Size = new Size(90, 41);
-            btn_removeQueue.TabIndex = 2;
-            btn_removeQueue.Text = "حذف نوبت";
-            btn_removeQueue.UseVisualStyleBackColor = false;
-            btn_removeQueue.Click += btn_removeQueue_Click;
+            btn_deletePersonnelQueue.BackColor = Color.FromArgb(194, 54, 22);
+            btn_deletePersonnelQueue.FlatAppearance.BorderSize = 0;
+            btn_deletePersonnelQueue.FlatStyle = FlatStyle.Flat;
+            btn_deletePersonnelQueue.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_deletePersonnelQueue.ForeColor = Color.FromArgb(245, 246, 250);
+            btn_deletePersonnelQueue.Location = new Point(303, 99);
+            btn_deletePersonnelQueue.Name = "btn_deletePersonnelQueue";
+            btn_deletePersonnelQueue.Size = new Size(90, 41);
+            btn_deletePersonnelQueue.TabIndex = 2;
+            btn_deletePersonnelQueue.Text = "حذف نوبت";
+            btn_deletePersonnelQueue.UseVisualStyleBackColor = false;
+            btn_deletePersonnelQueue.Click += btn_deletePersonnelQueue_Click;
             // 
             // btn_addQueue
             // 
@@ -806,7 +869,7 @@
             btn_addQueue.TabIndex = 1;
             btn_addQueue.Text = "افزودن نوبت جدید";
             btn_addQueue.UseVisualStyleBackColor = false;
-            btn_addQueue.Click += btn_addQueue_Click;
+            btn_addQueue.Click += btn_addPersonnelQueue_Click;
             // 
             // lbl_fullname
             // 
@@ -845,7 +908,7 @@
             btn_nextQueue.TabIndex = 9;
             btn_nextQueue.Text = "اتمام نوبت فعلی و اعلام نوبت بعدی";
             btn_nextQueue.UseVisualStyleBackColor = false;
-            btn_nextQueue.Click += btn_nextQueue_Click;
+            btn_nextQueue.Click += btn_nextPersonnelQueue_Click;
             // 
             // lbl_CurrentQueue
             // 
@@ -875,6 +938,9 @@
             // 
             // AtelierPanel
             // 
+            AtelierPanel.Controls.Add(panel3);
+            AtelierPanel.Controls.Add(panel2);
+            AtelierPanel.Controls.Add(panel1);
             AtelierPanel.Controls.Add(StatusPanel);
             AtelierPanel.Controls.Add(QueueStatusPanel);
             AtelierPanel.Controls.Add(DayStatusPanel);
@@ -886,6 +952,114 @@
             AtelierPanel.Name = "AtelierPanel";
             AtelierPanel.Size = new Size(1000, 541);
             AtelierPanel.TabIndex = 12;
+            // 
+            // panel3
+            // 
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(lbl_FilterByQueueStatus);
+            panel3.Controls.Add(combobox_QueueStatus);
+            panel3.Location = new Point(350, 317);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(189, 118);
+            panel3.TabIndex = 32;
+            // 
+            // lbl_FilterByQueueStatus
+            // 
+            lbl_FilterByQueueStatus.AutoSize = true;
+            lbl_FilterByQueueStatus.Font = new Font("Vazirmatn ExtraBold", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_FilterByQueueStatus.ForeColor = Color.White;
+            lbl_FilterByQueueStatus.Location = new Point(5, 27);
+            lbl_FilterByQueueStatus.Name = "lbl_FilterByQueueStatus";
+            lbl_FilterByQueueStatus.Size = new Size(178, 26);
+            lbl_FilterByQueueStatus.TabIndex = 28;
+            lbl_FilterByQueueStatus.Text = "فیلتر براساس وضعیت نوبت";
+            // 
+            // combobox_QueueStatus
+            // 
+            combobox_QueueStatus.BackColor = Color.FromArgb(245, 246, 250);
+            combobox_QueueStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            combobox_QueueStatus.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            combobox_QueueStatus.FormattingEnabled = true;
+            combobox_QueueStatus.Items.AddRange(new object[] { "پیشفرض (هیچکدام)", "انجام نشده", "انجام شده", "کنسل شده" });
+            combobox_QueueStatus.Location = new Point(15, 61);
+            combobox_QueueStatus.Name = "combobox_QueueStatus";
+            combobox_QueueStatus.RightToLeft = RightToLeft.Yes;
+            combobox_QueueStatus.Size = new Size(158, 30);
+            combobox_QueueStatus.TabIndex = 23;
+            // 
+            // panel2
+            // 
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(lbl_FilterByDate);
+            panel2.Controls.Add(combobox_TimeFrame);
+            panel2.Location = new Point(155, 317);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(189, 118);
+            panel2.TabIndex = 31;
+            // 
+            // lbl_FilterByDate
+            // 
+            lbl_FilterByDate.AutoSize = true;
+            lbl_FilterByDate.Font = new Font("Vazirmatn ExtraBold", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_FilterByDate.ForeColor = Color.White;
+            lbl_FilterByDate.Location = new Point(18, 27);
+            lbl_FilterByDate.Name = "lbl_FilterByDate";
+            lbl_FilterByDate.Size = new Size(152, 26);
+            lbl_FilterByDate.TabIndex = 27;
+            lbl_FilterByDate.Text = "فیلتر براساس بازه زمانی";
+            // 
+            // combobox_TimeFrame
+            // 
+            combobox_TimeFrame.BackColor = Color.FromArgb(245, 246, 250);
+            combobox_TimeFrame.DropDownStyle = ComboBoxStyle.DropDownList;
+            combobox_TimeFrame.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            combobox_TimeFrame.FormattingEnabled = true;
+            combobox_TimeFrame.Items.AddRange(new object[] { "پیشفرض (هیچکدام)", "قبل از روز نوبت", "روز نوبت", "روز نوبت رد شده" });
+            combobox_TimeFrame.Location = new Point(15, 61);
+            combobox_TimeFrame.Name = "combobox_TimeFrame";
+            combobox_TimeFrame.RightToLeft = RightToLeft.Yes;
+            combobox_TimeFrame.Size = new Size(158, 30);
+            combobox_TimeFrame.TabIndex = 23;
+            // 
+            // panel1
+            // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnAddFilter);
+            panel1.Controls.Add(btnClearFilter);
+            panel1.Location = new Point(14, 317);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(135, 118);
+            panel1.TabIndex = 30;
+            // 
+            // btnAddFilter
+            // 
+            btnAddFilter.BackColor = Color.FromArgb(68, 189, 50);
+            btnAddFilter.FlatAppearance.BorderSize = 0;
+            btnAddFilter.FlatStyle = FlatStyle.Flat;
+            btnAddFilter.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAddFilter.ForeColor = Color.FromArgb(245, 246, 250);
+            btnAddFilter.Location = new Point(16, 62);
+            btnAddFilter.Name = "btnAddFilter";
+            btnAddFilter.Size = new Size(103, 39);
+            btnAddFilter.TabIndex = 29;
+            btnAddFilter.Text = "اعمال فیلتر";
+            btnAddFilter.UseVisualStyleBackColor = false;
+            btnAddFilter.Click += btnAddFilter_Click;
+            // 
+            // btnClearFilter
+            // 
+            btnClearFilter.BackColor = Color.FromArgb(194, 54, 22);
+            btnClearFilter.FlatAppearance.BorderSize = 0;
+            btnClearFilter.FlatStyle = FlatStyle.Flat;
+            btnClearFilter.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClearFilter.ForeColor = Color.FromArgb(245, 246, 250);
+            btnClearFilter.Location = new Point(16, 17);
+            btnClearFilter.Name = "btnClearFilter";
+            btnClearFilter.Size = new Size(103, 39);
+            btnClearFilter.TabIndex = 24;
+            btnClearFilter.Text = "حذف فیلتر";
+            btnClearFilter.UseVisualStyleBackColor = false;
+            btnClearFilter.Click += btnClearFilter_Click;
             // 
             // StatusPanel
             // 
@@ -903,11 +1077,11 @@
             lbl_Status.AutoSize = true;
             lbl_Status.Font = new Font("Vazirmatn ExtraBold", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_Status.ForeColor = Color.FromArgb(245, 246, 250);
-            lbl_Status.Location = new Point(90, 2);
+            lbl_Status.Location = new Point(51, 2);
             lbl_Status.Name = "lbl_Status";
-            lbl_Status.Size = new Size(55, 34);
+            lbl_Status.Size = new Size(133, 34);
             lbl_Status.TabIndex = 23;
-            lbl_Status.Text = "نوبت";
+            lbl_Status.Text = "تکمیل وضعیت";
             // 
             // btn_CancelAtelierQueue
             // 
@@ -1030,9 +1204,9 @@
             lbl_Expire.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_Expire.Location = new Point(5, 9);
             lbl_Expire.Name = "lbl_Expire";
-            lbl_Expire.Size = new Size(87, 19);
+            lbl_Expire.Size = new Size(81, 19);
             lbl_Expire.TabIndex = 23;
-            lbl_Expire.Text = "نوبت منقضی شده";
+            lbl_Expire.Text = "روز نوبت رد شده";
             lbl_Expire.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // ExpirePic
@@ -1090,34 +1264,34 @@
             AtelierDatagridview.BackgroundColor = Color.FromArgb(127, 143, 166);
             AtelierDatagridview.BorderStyle = BorderStyle.Fixed3D;
             AtelierDatagridview.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            AtelierDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = SystemColors.Control;
+            dataGridViewCellStyle13.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            AtelierDatagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             AtelierDatagridview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            AtelierDatagridview.Columns.AddRange(new DataGridViewColumn[] { AtelierStatusDayColumn, AtelierStatusColumn, AtelierDateColumn, AtelierHourColumn, AtelierSpentColumn, AtelierFullNameColumn, AtelierPhoneNumberColumn, AtelierNoteColumn, AtelierQueueIDColumn });
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            AtelierDatagridview.DefaultCellStyle = dataGridViewCellStyle8;
+            AtelierDatagridview.Columns.AddRange(new DataGridViewColumn[] { AtelierNoteColumn, AtelierStatusDayColumn, AtelierStatusColumn, AtelierDateColumn, AtelierHourColumn, AtelierSpentColumn, AtelierPhoneNumberColumn, AtelierFullNameColumn, AtelierIDColumn });
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = SystemColors.Window;
+            dataGridViewCellStyle14.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle14.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            AtelierDatagridview.DefaultCellStyle = dataGridViewCellStyle14;
             AtelierDatagridview.EditMode = DataGridViewEditMode.EditProgrammatically;
-            AtelierDatagridview.Location = new Point(14, 133);
+            AtelierDatagridview.Location = new Point(14, 9);
             AtelierDatagridview.MultiSelect = false;
             AtelierDatagridview.Name = "AtelierDatagridview";
             AtelierDatagridview.ReadOnly = true;
             AtelierDatagridview.RowHeadersVisible = false;
             AtelierDatagridview.RowHeadersWidth = 51;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AtelierDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AtelierDatagridview.RowsDefaultCellStyle = dataGridViewCellStyle15;
             AtelierDatagridview.ScrollBars = ScrollBars.Vertical;
             AtelierDatagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             AtelierDatagridview.ShowCellErrors = false;
@@ -1129,6 +1303,15 @@
             AtelierDatagridview.TabStop = false;
             AtelierDatagridview.CellContentClick += AtelierDatagridview_CellContentClick;
             AtelierDatagridview.SelectionChanged += AtelierDatagridview_SelectionChanged;
+            // 
+            // AtelierNoteColumn
+            // 
+            AtelierNoteColumn.HeaderText = "یادداشت";
+            AtelierNoteColumn.MinimumWidth = 6;
+            AtelierNoteColumn.Name = "AtelierNoteColumn";
+            AtelierNoteColumn.ReadOnly = true;
+            AtelierNoteColumn.Resizable = DataGridViewTriState.False;
+            AtelierNoteColumn.Width = 70;
             // 
             // AtelierStatusDayColumn
             // 
@@ -1179,6 +1362,16 @@
             AtelierSpentColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             AtelierSpentColumn.Width = 90;
             // 
+            // AtelierPhoneNumberColumn
+            // 
+            AtelierPhoneNumberColumn.FillWeight = 101.7259F;
+            AtelierPhoneNumberColumn.HeaderText = "شماره تماس";
+            AtelierPhoneNumberColumn.MinimumWidth = 6;
+            AtelierPhoneNumberColumn.Name = "AtelierPhoneNumberColumn";
+            AtelierPhoneNumberColumn.ReadOnly = true;
+            AtelierPhoneNumberColumn.Resizable = DataGridViewTriState.False;
+            AtelierPhoneNumberColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
             // AtelierFullNameColumn
             // 
             AtelierFullNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -1190,37 +1383,16 @@
             AtelierFullNameColumn.Resizable = DataGridViewTriState.False;
             AtelierFullNameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
-            // AtelierPhoneNumberColumn
+            // AtelierIDColumn
             // 
-            AtelierPhoneNumberColumn.FillWeight = 101.7259F;
-            AtelierPhoneNumberColumn.HeaderText = "شماره تماس";
-            AtelierPhoneNumberColumn.MinimumWidth = 6;
-            AtelierPhoneNumberColumn.Name = "AtelierPhoneNumberColumn";
-            AtelierPhoneNumberColumn.ReadOnly = true;
-            AtelierPhoneNumberColumn.Resizable = DataGridViewTriState.False;
-            AtelierPhoneNumberColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            AtelierPhoneNumberColumn.Width = 120;
-            // 
-            // AtelierNoteColumn
-            // 
-            AtelierNoteColumn.HeaderText = "یادداشت";
-            AtelierNoteColumn.MinimumWidth = 6;
-            AtelierNoteColumn.Name = "AtelierNoteColumn";
-            AtelierNoteColumn.ReadOnly = true;
-            AtelierNoteColumn.Resizable = DataGridViewTriState.False;
-            AtelierNoteColumn.Width = 70;
-            // 
-            // AtelierQueueIDColumn
-            // 
-            AtelierQueueIDColumn.FillWeight = 91.37056F;
-            AtelierQueueIDColumn.HeaderText = "آیدی";
-            AtelierQueueIDColumn.MinimumWidth = 6;
-            AtelierQueueIDColumn.Name = "AtelierQueueIDColumn";
-            AtelierQueueIDColumn.ReadOnly = true;
-            AtelierQueueIDColumn.Resizable = DataGridViewTriState.False;
-            AtelierQueueIDColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            AtelierQueueIDColumn.Visible = false;
-            AtelierQueueIDColumn.Width = 116;
+            AtelierIDColumn.FillWeight = 91.37056F;
+            AtelierIDColumn.HeaderText = "آیدی";
+            AtelierIDColumn.MinimumWidth = 6;
+            AtelierIDColumn.Name = "AtelierIDColumn";
+            AtelierIDColumn.ReadOnly = true;
+            AtelierIDColumn.Resizable = DataGridViewTriState.False;
+            AtelierIDColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            AtelierIDColumn.Width = 60;
             // 
             // ActionPanel
             // 
@@ -1238,11 +1410,11 @@
             lbl_Action.AutoSize = true;
             lbl_Action.Font = new Font("Vazirmatn ExtraBold", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_Action.ForeColor = Color.FromArgb(245, 246, 250);
-            lbl_Action.Location = new Point(86, 2);
+            lbl_Action.Location = new Point(73, 2);
             lbl_Action.Name = "lbl_Action";
-            lbl_Action.Size = new Size(55, 34);
+            lbl_Action.Size = new Size(80, 34);
             lbl_Action.TabIndex = 23;
-            lbl_Action.Text = "نوبت";
+            lbl_Action.Text = "اقدامات";
             // 
             // btn_deleteAtelierQueue
             // 
@@ -1278,79 +1450,24 @@
             // FilterPanel
             // 
             FilterPanel.BorderStyle = BorderStyle.FixedSingle;
-            FilterPanel.Controls.Add(btnAddFilter);
-            FilterPanel.Controls.Add(lbl_FilterByQueueStatus);
-            FilterPanel.Controls.Add(lbl_FilterByDate);
             FilterPanel.Controls.Add(lbl_FilterBySearch);
-            FilterPanel.Controls.Add(txtbox_SearchBy);
             FilterPanel.Controls.Add(combobox_SearchBy);
-            FilterPanel.Controls.Add(btnClearFilter);
-            FilterPanel.Controls.Add(combobox_TimeFrame);
-            FilterPanel.Controls.Add(combobox_QueueStatus);
-            FilterPanel.Location = new Point(14, 9);
+            FilterPanel.Controls.Add(txtbox_SearchBy);
+            FilterPanel.Location = new Point(545, 317);
             FilterPanel.Name = "FilterPanel";
-            FilterPanel.Size = new Size(767, 118);
+            FilterPanel.Size = new Size(236, 118);
             FilterPanel.TabIndex = 29;
-            // 
-            // btnAddFilter
-            // 
-            btnAddFilter.BackColor = Color.FromArgb(68, 189, 50);
-            btnAddFilter.FlatAppearance.BorderSize = 0;
-            btnAddFilter.FlatStyle = FlatStyle.Flat;
-            btnAddFilter.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAddFilter.ForeColor = Color.FromArgb(245, 246, 250);
-            btnAddFilter.Location = new Point(18, 61);
-            btnAddFilter.Name = "btnAddFilter";
-            btnAddFilter.Size = new Size(103, 39);
-            btnAddFilter.TabIndex = 29;
-            btnAddFilter.Text = "اعمال فیلتر";
-            btnAddFilter.UseVisualStyleBackColor = false;
-            btnAddFilter.Click += btnAddFilter_Click;
-            // 
-            // lbl_FilterByQueueStatus
-            // 
-            lbl_FilterByQueueStatus.AutoSize = true;
-            lbl_FilterByQueueStatus.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_FilterByQueueStatus.ForeColor = Color.White;
-            lbl_FilterByQueueStatus.Location = new Point(139, 5);
-            lbl_FilterByQueueStatus.Name = "lbl_FilterByQueueStatus";
-            lbl_FilterByQueueStatus.Size = new Size(189, 27);
-            lbl_FilterByQueueStatus.TabIndex = 28;
-            lbl_FilterByQueueStatus.Text = "فیلتر براساس وضعیت نوبت";
-            // 
-            // lbl_FilterByDate
-            // 
-            lbl_FilterByDate.AutoSize = true;
-            lbl_FilterByDate.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_FilterByDate.ForeColor = Color.White;
-            lbl_FilterByDate.Location = new Point(368, 5);
-            lbl_FilterByDate.Name = "lbl_FilterByDate";
-            lbl_FilterByDate.Size = new Size(161, 27);
-            lbl_FilterByDate.TabIndex = 27;
-            lbl_FilterByDate.Text = "فیلتر براساس بازه زمانی";
             // 
             // lbl_FilterBySearch
             // 
             lbl_FilterBySearch.AutoSize = true;
             lbl_FilterBySearch.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_FilterBySearch.ForeColor = Color.White;
-            lbl_FilterBySearch.Location = new Point(603, 5);
+            lbl_FilterBySearch.Location = new Point(59, 9);
             lbl_FilterBySearch.Name = "lbl_FilterBySearch";
             lbl_FilterBySearch.Size = new Size(115, 27);
             lbl_FilterBySearch.TabIndex = 26;
             lbl_FilterBySearch.Text = "جستجو براساس";
-            // 
-            // txtbox_SearchBy
-            // 
-            txtbox_SearchBy.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtbox_SearchBy.Location = new Point(568, 71);
-            txtbox_SearchBy.Name = "txtbox_SearchBy";
-            txtbox_SearchBy.Size = new Size(187, 32);
-            txtbox_SearchBy.TabIndex = 25;
-            txtbox_SearchBy.TextAlign = HorizontalAlignment.Right;
-            txtbox_SearchBy.TextChanged += txtbox_SearchBy_TextChanged;
-            txtbox_SearchBy.KeyDown += txtbox_SearchBy_KeyDown;
-            txtbox_SearchBy.KeyPress += txtbox_SearchBy_KeyPress;
             // 
             // combobox_SearchBy
             // 
@@ -1359,139 +1476,23 @@
             combobox_SearchBy.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             combobox_SearchBy.FormattingEnabled = true;
             combobox_SearchBy.Items.AddRange(new object[] { "پیشفرض (هیچکدام)", "نام و نام خانوادگی", "شماره تماس" });
-            combobox_SearchBy.Location = new Point(568, 35);
+            combobox_SearchBy.Location = new Point(24, 39);
             combobox_SearchBy.Name = "combobox_SearchBy";
             combobox_SearchBy.RightToLeft = RightToLeft.Yes;
             combobox_SearchBy.Size = new Size(187, 30);
             combobox_SearchBy.TabIndex = 23;
             combobox_SearchBy.SelectedIndexChanged += combobox_SortBy_SelectedIndexChanged;
             // 
-            // btnClearFilter
+            // txtbox_SearchBy
             // 
-            btnClearFilter.BackColor = Color.FromArgb(194, 54, 22);
-            btnClearFilter.FlatAppearance.BorderSize = 0;
-            btnClearFilter.FlatStyle = FlatStyle.Flat;
-            btnClearFilter.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnClearFilter.ForeColor = Color.FromArgb(245, 246, 250);
-            btnClearFilter.Location = new Point(18, 16);
-            btnClearFilter.Name = "btnClearFilter";
-            btnClearFilter.Size = new Size(103, 39);
-            btnClearFilter.TabIndex = 24;
-            btnClearFilter.Text = "حذف فیلتر";
-            btnClearFilter.UseVisualStyleBackColor = false;
-            btnClearFilter.Click += btnClearFilter_Click;
-            // 
-            // combobox_TimeFrame
-            // 
-            combobox_TimeFrame.BackColor = Color.FromArgb(245, 246, 250);
-            combobox_TimeFrame.DropDownStyle = ComboBoxStyle.DropDownList;
-            combobox_TimeFrame.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            combobox_TimeFrame.FormattingEnabled = true;
-            combobox_TimeFrame.Items.AddRange(new object[] { "پیشفرض (هیچکدام)", "قبل از روز نوبت", "روز نوبت", "نوبت منقضی شده" });
-            combobox_TimeFrame.Location = new Point(355, 55);
-            combobox_TimeFrame.Name = "combobox_TimeFrame";
-            combobox_TimeFrame.RightToLeft = RightToLeft.Yes;
-            combobox_TimeFrame.Size = new Size(187, 30);
-            combobox_TimeFrame.TabIndex = 23;
-            combobox_TimeFrame.SelectedIndexChanged += comboboxTimeFrame_SelectedIndexChanged;
-            // 
-            // combobox_QueueStatus
-            // 
-            combobox_QueueStatus.BackColor = Color.FromArgb(245, 246, 250);
-            combobox_QueueStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            combobox_QueueStatus.Font = new Font("Vazirmatn ExtraBold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            combobox_QueueStatus.FormattingEnabled = true;
-            combobox_QueueStatus.Items.AddRange(new object[] { "پیشفرض (هیچکدام)", "انجام نشده", "انجام شده", "کنسل شده" });
-            combobox_QueueStatus.Location = new Point(139, 55);
-            combobox_QueueStatus.Name = "combobox_QueueStatus";
-            combobox_QueueStatus.RightToLeft = RightToLeft.Yes;
-            combobox_QueueStatus.Size = new Size(187, 30);
-            combobox_QueueStatus.TabIndex = 23;
-            combobox_QueueStatus.SelectedIndexChanged += combobox_QueueStatus_SelectedIndexChanged;
-            // 
-            // UsersPanel
-            // 
-            UsersPanel.Controls.Add(UsersDatagrid);
-            UsersPanel.Controls.Add(lbl_users);
-            UsersPanel.Dock = DockStyle.Fill;
-            UsersPanel.Location = new Point(0, 0);
-            UsersPanel.Name = "UsersPanel";
-            UsersPanel.Size = new Size(1000, 541);
-            UsersPanel.TabIndex = 14;
-            // 
-            // UsersDatagrid
-            // 
-            UsersDatagrid.AllowUserToAddRows = false;
-            UsersDatagrid.AllowUserToDeleteRows = false;
-            UsersDatagrid.AllowUserToResizeColumns = false;
-            UsersDatagrid.AllowUserToResizeRows = false;
-            UsersDatagrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            UsersDatagrid.BackgroundColor = Color.FromArgb(127, 143, 166);
-            UsersDatagrid.BorderStyle = BorderStyle.None;
-            UsersDatagrid.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = SystemColors.Control;
-            dataGridViewCellStyle10.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
-            UsersDatagrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            UsersDatagrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            UsersDatagrid.Columns.AddRange(new DataGridViewColumn[] { UsernameColumn, StatusColumn });
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = SystemColors.Window;
-            dataGridViewCellStyle11.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
-            UsersDatagrid.DefaultCellStyle = dataGridViewCellStyle11;
-            UsersDatagrid.EditMode = DataGridViewEditMode.EditProgrammatically;
-            UsersDatagrid.Location = new Point(14, 75);
-            UsersDatagrid.MultiSelect = false;
-            UsersDatagrid.Name = "UsersDatagrid";
-            UsersDatagrid.ReadOnly = true;
-            UsersDatagrid.RowHeadersVisible = false;
-            UsersDatagrid.RowHeadersWidth = 51;
-            UsersDatagrid.ScrollBars = ScrollBars.Vertical;
-            UsersDatagrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            UsersDatagrid.ShowCellErrors = false;
-            UsersDatagrid.ShowCellToolTips = false;
-            UsersDatagrid.ShowEditingIcon = false;
-            UsersDatagrid.ShowRowErrors = false;
-            UsersDatagrid.Size = new Size(767, 311);
-            UsersDatagrid.TabIndex = 2;
-            UsersDatagrid.TabStop = false;
-            UsersDatagrid.SelectionChanged += UsersDatagrid_SelectionChanged;
-            // 
-            // UsernameColumn
-            // 
-            UsernameColumn.HeaderText = "نام کاربری";
-            UsernameColumn.MinimumWidth = 6;
-            UsernameColumn.Name = "UsernameColumn";
-            UsernameColumn.ReadOnly = true;
-            UsernameColumn.Resizable = DataGridViewTriState.False;
-            UsernameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // StatusColumn
-            // 
-            StatusColumn.HeaderText = "وضعیت";
-            StatusColumn.MinimumWidth = 6;
-            StatusColumn.Name = "StatusColumn";
-            StatusColumn.ReadOnly = true;
-            StatusColumn.Resizable = DataGridViewTriState.False;
-            // 
-            // lbl_users
-            // 
-            lbl_users.AutoSize = true;
-            lbl_users.Font = new Font("Vazirmatn ExtraBold", 25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_users.ForeColor = Color.FromArgb(245, 246, 250);
-            lbl_users.Location = new Point(329, 9);
-            lbl_users.Name = "lbl_users";
-            lbl_users.Size = new Size(137, 59);
-            lbl_users.TabIndex = 1;
-            lbl_users.Text = "همکاران";
+            txtbox_SearchBy.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtbox_SearchBy.Location = new Point(24, 75);
+            txtbox_SearchBy.Name = "txtbox_SearchBy";
+            txtbox_SearchBy.Size = new Size(187, 32);
+            txtbox_SearchBy.TabIndex = 25;
+            txtbox_SearchBy.TextAlign = HorizontalAlignment.Right;
+            txtbox_SearchBy.KeyDown += txtbox_SearchBy_KeyDown;
+            txtbox_SearchBy.KeyPress += txtbox_SearchBy_KeyPress;
             // 
             // SettingPanel
             // 
@@ -1624,12 +1625,11 @@
             BackColor = Color.FromArgb(127, 143, 166);
             ClientSize = new Size(1000, 541);
             Controls.Add(sidebarPanel);
-            Controls.Add(DashboardPanel);
-            Controls.Add(UsersPanel);
-            Controls.Add(StatisticsPanel);
             Controls.Add(AtelierPanel);
             Controls.Add(PersonnelPanel);
             Controls.Add(SettingPanel);
+            Controls.Add(DashboardPanel);
+            Controls.Add(StatisticsPanel);
             Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -1654,6 +1654,7 @@
             ((System.ComponentModel.ISupportInitialize)picUsernamePanel).EndInit();
             StatisticsPanel.ResumeLayout(false);
             StatisticsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)StatsDatagrid).EndInit();
             PersonnelPanel.ResumeLayout(false);
             PersonnelPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PersonnelDoneDatagridview).EndInit();
@@ -1662,6 +1663,11 @@
             action_panel.PerformLayout();
             QueuePanel.ResumeLayout(false);
             AtelierPanel.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel1.ResumeLayout(false);
             StatusPanel.ResumeLayout(false);
             StatusPanel.PerformLayout();
             QueueStatusPanel.ResumeLayout(false);
@@ -1679,9 +1685,6 @@
             ActionPanel.PerformLayout();
             FilterPanel.ResumeLayout(false);
             FilterPanel.PerformLayout();
-            UsersPanel.ResumeLayout(false);
-            UsersPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)UsersDatagrid).EndInit();
             SettingPanel.ResumeLayout(false);
             SettingPanel.PerformLayout();
             groupbox_accManage.ResumeLayout(false);
@@ -1698,7 +1701,6 @@
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnPersonnel;
         private System.Windows.Forms.Button btnStatistics;
-        private System.Windows.Forms.Button btnUsers;
         private System.Windows.Forms.Button btnAtelier;
         private System.Windows.Forms.Button btnSetting;
         private System.Windows.Forms.Panel DashboardPanel;
@@ -1708,8 +1710,6 @@
         private System.Windows.Forms.Panel PersonnelPanel;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_personnel;
         private System.Windows.Forms.Panel AtelierPanel;
-        private System.Windows.Forms.Panel UsersPanel;
-        private Queuing_System_Alipour.Tool.SafeLabel lbl_users;
         private System.Windows.Forms.Panel SettingPanel;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_setting;
         private System.Windows.Forms.GroupBox groupbox_ChangePass;
@@ -1718,10 +1718,6 @@
         private System.Windows.Forms.TextBox txtbox_newPass;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_newPass;
         private System.Windows.Forms.Button btnResetPass;
-        private System.Windows.Forms.DataGridView UsersDatagrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UsernameColumn;
-        private System.Windows.Forms.DataGridViewImageColumn StatusColumn;
-        private Queuing_System_Alipour.Tool.SafeLabel safeLabel1;
         private System.Windows.Forms.PictureBox picDigitalClock;
         private System.Windows.Forms.Timer timerClock;
         private Queuing_System_Alipour.Tool.SafeLabel lblUsername;
@@ -1766,7 +1762,7 @@
         private System.Windows.Forms.GroupBox groupbox_accManage;
         private System.Windows.Forms.Button btnLogout;
         public System.Windows.Forms.Panel action_panel;
-        private System.Windows.Forms.Button btn_removeQueue;
+        private System.Windows.Forms.Button btn_deletePersonnelQueue;
         private System.Windows.Forms.Button btn_addQueue;
         public System.Windows.Forms.Panel QueuePanel;
         private System.Windows.Forms.Button btn_nextQueue;
@@ -1774,24 +1770,11 @@
         private Queuing_System_Alipour.Tool.SafeLabel lbl_currentQueueText;
         private System.Windows.Forms.DataGridView PersonnelDoneDatagridview;
         private System.Windows.Forms.DataGridView PersonnelDatagridview;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PersonnelQueueIDColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PersonnelQueueNumberColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PersonnelQueueNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PersonnelQueueWaitTimeColumn;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_nextText;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_next;
         private System.Windows.Forms.TextBox txtbox_fullname;
         private Queuing_System_Alipour.Tool.SafeLabel lbl_fullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewImageColumn AtelierStatusDayColumn;
-        private System.Windows.Forms.DataGridViewImageColumn AtelierStatusColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AtelierDateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AtelierHourColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AtelierSpentColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AtelierFullNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AtelierPhoneNumberColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn AtelierNoteColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AtelierQueueIDColumn;
         private Panel FilterPanel;
         private Tool.SafeLabel lbl_FilterBySearch;
         private TextBox txtbox_SearchBy;
@@ -1802,5 +1785,25 @@
         private PictureBox RolePic;
         private Tool.SafeLabel lblRole;
         private Tool.SafeLabel lblRoleText;
+        private Panel panel1;
+        private Panel panel3;
+        private Panel panel2;
+        private DataGridViewTextBoxColumn PersonnelIdColumn;
+        private DataGridViewTextBoxColumn PersonnelLastNameColumn;
+        private DataGridViewTextBoxColumn PersonnelWaitTimeColumn;
+        private DataGridViewButtonColumn AtelierNoteColumn;
+        private DataGridViewImageColumn AtelierStatusDayColumn;
+        private DataGridViewImageColumn AtelierStatusColumn;
+        private DataGridViewTextBoxColumn AtelierDateColumn;
+        private DataGridViewTextBoxColumn AtelierHourColumn;
+        private DataGridViewTextBoxColumn AtelierSpentColumn;
+        private DataGridViewTextBoxColumn AtelierPhoneNumberColumn;
+        private DataGridViewTextBoxColumn AtelierFullNameColumn;
+        private DataGridViewTextBoxColumn AtelierIDColumn;
+        private DataGridView StatsDatagrid;
+        private DataGridViewTextBoxColumn StatUsernameColumn;
+        private DataGridViewTextBoxColumn StatAtelierCount;
+        private DataGridViewTextBoxColumn StatPersonnelCount;
+        private DataGridViewTextBoxColumn StatConnectionColumn;
     }
 }

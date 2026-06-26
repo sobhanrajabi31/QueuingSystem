@@ -1,29 +1,28 @@
 ﻿using Queuing_System_Alipour.DTOs.Atelier;
 using Queuing_System_Alipour.DTOs.Employee;
 using Queuing_System_Alipour.DTOs.Personnel;
+using Queuing_System_Alipour.Entities;
 using Queuing_System_Alipour.Services;
 using Queuing_System_Alipour.Tool;
 using Queuing_System_Alipour.Tool.Handler;
-using System.Globalization;
 using System.Media;
 using System.Reflection;
 using Resource = Queuing_System_Alipour.Resources.Resource;
 
 namespace Queuing_System_Alipour.Window
 {
-    public enum SortType
+    public enum RefreshType
     {
-        ComboBoxText = 0, QueueStatus, Date, Time, Duration, FullName, PhoneNumber
-    }
+        Atelier,
+        Employee,
+        Personnel
+    };
 
-    public enum TimeFrame
+    public enum ButtonType
     {
-        ComboBoxText = 0, BeforeQueueDay, QueueDay, ExpireQueue
-    }
-
-    public enum QueueStatus
-    {
-        ComboBoxText = 0, Done, Canceled, Undone
+        Delete,
+        Done,
+        Cancel
     }
 
     public partial class FrmMain : Form
@@ -32,6 +31,9 @@ namespace Queuing_System_Alipour.Window
         private readonly PersonnelService _personnelSrv;
         private readonly EmployeeService _employeeSrv;
 
+        private Dictionary<int, string> _noteManager;
+        private SoundPlayer _player;
+
         public FrmMain()
         {
             InitializeComponent();
@@ -39,9 +41,9 @@ namespace Queuing_System_Alipour.Window
             _atelierSrv = new AtelierService();
             _personnelSrv = new PersonnelService();
             _employeeSrv = new EmployeeService();
-        }
 
-        SoundPlayer player;
+            _noteManager = [];
+        }
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
@@ -64,10 +66,33 @@ namespace Queuing_System_Alipour.Window
             lblRole.Text = AppState.Role ? "عکاس" : "منشی";
 
             RefreshDataGrid(RefreshType.Atelier);
+            RefreshDataGrid(RefreshType.Personnel);
+
             LoadDefaultFilters();
             ShowTodayQueuesCount();
-            
+
             AtelierButtonDesign();
+
+            //TODO: SignalR
+            //if (!AppState.Role) 
+            //{
+            //    try
+            //    {
+            //        ToastMessage.ShowToast("نوبت بعدی: " + lbl_next.Text);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Mbox.Error(ex.Message, Caption.Error);
+            //    }
+            //    try
+            //    {
+            //        player.Play();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Mbox.Error(ex.Message, Caption.Error);
+            //    }
+            //}
         }
 
         private void LoadDisplayImages()
@@ -83,12 +108,11 @@ namespace Queuing_System_Alipour.Window
 
         private void LoadAlertSound()
         {
-            player = new SoundPlayer(Resource.alarm);
-            player.Load();
+            _player = new SoundPlayer(Resource.alarm);
+            _player.Load();
         }
 
         // ============ [ Events ] ============
-
         private void BtnDashboard_Click(object sender, EventArgs e)
         {
             SwitchButton(btnDashboard);
@@ -115,6 +139,8 @@ namespace Queuing_System_Alipour.Window
                 lbl_nextText.Visible = false;
 
                 lbl_personnel.Visible = true;
+
+                btn_nextQueue.Enabled = true;
             }
             else
             {
@@ -125,6 +151,8 @@ namespace Queuing_System_Alipour.Window
                 lbl_nextText.Visible = true;
 
                 lbl_personnel.Visible = false;
+
+                btn_nextQueue.Enabled = false;
             }
         }
 
@@ -132,14 +160,6 @@ namespace Queuing_System_Alipour.Window
         {
             SwitchButton(btnAtelier);
             ShowPanel(AtelierPanel);
-        }
-
-        private void BtnUsers_Click(object sender, EventArgs e)
-        {
-            SwitchButton(btnUsers);
-            ShowPanel(UsersPanel);
-
-            //TODO: Load users here
         }
 
         private void BtnSetting_Click(object sender, EventArgs e)
@@ -153,14 +173,14 @@ namespace Queuing_System_Alipour.Window
             LogoutAccount();
         }
 
-        private async void BtnResetPass_Click(object sender, EventArgs e)
+        private void BtnResetPass_Click(object sender, EventArgs e)
         {
             ResetPassword();
         }
 
         private void UsersDatagrid_SelectionChanged(object sender, EventArgs e)
         {
-            UsersDatagrid.ClearSelection();
+            StatsDatagrid.ClearSelection();
         }
 
         private void TimerClock_Tick(object sender, EventArgs e)
@@ -170,28 +190,12 @@ namespace Queuing_System_Alipour.Window
 
         private void Btn_addAtelierQueue_Click(object sender, EventArgs e)
         {
-            FrmAddAtelierQueue frm = new FrmAddAtelierQueue();
-            frm.ShowDialog();
+            AddAtelierQueue();
         }
 
-        private async void Btn_deleteAtelierQueue_Click(object sender, EventArgs e)
+        private void Btn_deleteAtelierQueue_Click(object sender, EventArgs e)
         {
             DeleteAtelierQueue();
-        }
-
-        private void Database_OnRefreshPersonnelModel()
-        {
-            RefreshPersonnelModels();
-        }
-
-        private void Database_OnRefreshPersonnelTempModel()
-        {
-            RefreshPersonnelTempModels();
-        }
-
-        private void Database_OnRefreshAtelierModel()
-        {
-            RefreshAtelierModels();
         }
 
         private void btnClearFilter_Click(object sender, EventArgs e)
@@ -201,9 +205,22 @@ namespace Queuing_System_Alipour.Window
 
         private void ClearFilters()
         {
-            combobox_SortBy.SelectedIndex = 0;
-            combobox_QueueStatus.SelectedIndex = 0;
-            comboboxTimeFrame.SelectedIndex = 0;
+            LoadDefaultFilters();
+            RefreshDataGrid(RefreshType.Atelier);
+        }
+
+        private void LoadDefaultFilters()
+        {
+            if (combobox_SearchBy.Items.Count > 0 &&
+                combobox_TimeFrame.Items.Count > 0 &&
+                combobox_QueueStatus.Items.Count > 0)
+            {
+                combobox_SearchBy.SelectedIndex = 0;
+                combobox_TimeFrame.SelectedIndex = 0;
+                combobox_QueueStatus.SelectedIndex = 0;
+            }
+
+            txtbox_SearchBy.Clear();
         }
 
         private void AtelierDatagridview_SelectionChanged(object sender, EventArgs e)
@@ -211,35 +228,39 @@ namespace Queuing_System_Alipour.Window
             AtelierButtonDesign();
         }
 
-        private async void btn_DoneAtelierQueue_Click(object sender, EventArgs e)
+        private void btn_DoneAtelierQueue_Click(object sender, EventArgs e)
         {
-            SetQueueStatus(1);
+            UpdateAtelierQueue(QueueStatus.Done);
         }
 
-        private async void btn_CancelAtelierQueue_Click(object sender, EventArgs e)
+        private void btn_CancelAtelierQueue_Click(object sender, EventArgs e)
         {
-            SetQueueStatus(2);
+            UpdateAtelierQueue(QueueStatus.Canceled);
         }
 
         private void combobox_SortBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (combobox_SortBy.SelectedIndex != -1)
+            if (combobox_SearchBy.SelectedIndex != -1)
             {
+                if (combobox_SearchBy.SelectedIndex == 0)
+                {
+                    txtbox_SearchBy.Enabled = false;
+                    txtbox_SearchBy.MaxLength = 0;
+                }
 
-            }
-        }
+                else if (combobox_SearchBy.SelectedIndex == 1)
+                {
+                    txtbox_SearchBy.Enabled = true;
+                    txtbox_SearchBy.MaxLength = 30;
+                }
 
-        private void comboboxTimeFrame_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboboxTimeFrame.SelectedIndex != -1)
-            {
-            }
-        }
+                else if (combobox_SearchBy.SelectedIndex == 2)
+                {
+                    txtbox_SearchBy.Enabled = true;
+                    txtbox_SearchBy.MaxLength = 11;
+                }
 
-        private void combobox_QueueStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (combobox_QueueStatus.SelectedIndex != -1)
-            {
+                txtbox_SearchBy.Clear();
             }
         }
 
@@ -248,204 +269,45 @@ namespace Queuing_System_Alipour.Window
             ShowRowNote(e);
         }
 
-        private void btn_addQueue_Click(object sender, EventArgs e)
+        private void btn_addPersonnelQueue_Click(object sender, EventArgs e)
         {
             AddPersonnelQueue();
         }
 
-        private void btn_nextQueue_Click(object sender, EventArgs e)
+        private void btn_nextPersonnelQueue_Click(object sender, EventArgs e)
         {
-            NextPersonnelQueue();
-        }
-
-        private void btn_removeQueue_Click(object sender, EventArgs e)
-        {
+            UpdatePersonnelQueue();
         }
 
         private void txtbox_fullname_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                btn_addQueue_Click(null, null);
+                AddPersonnelQueue();
+        }
+
+        private void btn_deletePersonnelQueue_Click(object sender, EventArgs e)
+        {
+            DeletePersonnelQueue();
+        }
+
+        private void txtbox_SearchBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (combobox_SearchBy.SelectedIndex == 2 && char.IsLetter(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void txtbox_SearchBy_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                AddFilterToAtelier();
+        }
+
+        private void btnAddFilter_Click(object sender, EventArgs e)
+        {
+            AddFilterToAtelier();
         }
 
         // ============ [ Methods ] ============
-
-        private void RefreshPersonnelModels()
-        {
-            //lock (PersonelRefresh_Lock)
-            //{
-            //    this.Invoke(new Action(() =>
-            //    {
-            //        string todayDate = DateTime.Today.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture);
-            //        int personelCount = 0;
-            //        if (Database.PersonnelModels.ContainsKey(todayDate))
-            //        {
-            //            personelCount = Database.PersonnelModels[todayDate].Count;
-
-            //            PersonnelDoneDatagridview.Rows.Clear();
-            //            foreach (var model in Database.PersonnelModels[todayDate])
-            //                PersonnelDoneDatagridview.Rows.Add(model.FullName);
-            //        }
-
-            //        if (prePersonelTempCount > Database.PersonnelTempModels.Count && prePersonelCount < personelCount && !chckbox_accStatus.Checked)
-            //        {
-            //            if (Database.PersonnelTempModels.Count > 0)
-            //            {
-            //                try
-            //                {
-            //                    ToastMessage.ShowToast("نوبت بعدی: " + lbl_next.Text);
-            //                }
-            //                catch (Exception ex)
-            //                {
-            //                    Mbox.Error(ex.Message, Caption.Error);
-            //                }
-            //                try
-            //                {
-            //                    player.Play();
-            //                }
-            //                catch (Exception ex)
-            //                {
-            //                    Mbox.Error(ex.Message, Caption.Error);
-            //                }
-            //            }
-            //        }
-            //        prePersonelCount = personelCount;
-            //        prePersonelTempCount = Database.PersonnelTempModels.Count;
-            //    }));
-            //}
-        }
-
-        private void RefreshPersonnelTempModels()
-        {
-            //lock (PersonelRefresh_Lock)
-            //{
-            //    this.Invoke(new Action(() =>
-            //    {
-            //        string todayDate = DateTime.Today.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture);
-
-            //        PersonnelDatagridview.Rows.Clear();
-
-            //        foreach (var model in Database.PersonnelTempModels)
-            //            PersonnelDatagridview.Rows.Add(model.Id, "", model.FullName, "");
-
-            //        PersonnelTempNumeric();
-            //        PersonnelTempWaitTime();
-
-            //        if (Database.PersonnelTempModels.Count > 0)
-            //        {
-            //            lbl_CurrentQueue.Text = PersonnelDatagridview.Rows[0].Cells[2].Value.ToString();
-            //            lbl_next.Text = lbl_CurrentQueue.Text;
-            //        }
-            //        else
-            //            lbl_next.Text = lbl_CurrentQueue.Text = "?";
-            //    }));
-            //}
-        }
-
-        private void PersonnelTempNumeric()
-        {
-            int number = 1;
-            foreach (DataGridViewRow row in PersonnelDatagridview.Rows)
-                row.Cells[1].Value = number++;
-        }
-
-        private void PersonnelTempWaitTime()
-        {
-            int waitTime = 0;
-            foreach (DataGridViewRow row in PersonnelDatagridview.Rows)
-                row.Cells[3].Value = $"{waitTime += 3}";
-        }
-
-        private void RefreshAtelierModels()
-        {
-            //PersianCalendar calendar = new PersianCalendar();
-
-            //int index = -1;
-            //if (AtelierDatagridview.SelectedRows.Count > 0)
-            //    index = int.Parse(AtelierDatagridview.SelectedRows[0].Cells[8].Value.ToString());
-
-            //AtelierDatagridview.Invoke(new Action(() => { AtelierDatagridview.Rows.Clear(); }));
-
-            //if (!SortHandler())
-            //    return;
-
-            //if (!FilterHandler())
-            //    return;
-
-            //if (!Filter2Handler())
-            //    return;
-
-            //FilteredList.Clear();
-
-            //foreach (var model in Database.AtelierModels)
-            //{
-            //    Image img = null;
-            //    int compare = DateTime.Compare(DateTime.Parse(model.Key), DateTime.Today);
-
-            //    if (compare == 0)
-            //        img = Resource.Green;
-            //    else if (compare == 1)
-            //        img = Resource.Yellow;
-            //    else if (compare == -1)
-            //        img = Resource.Red;
-
-            //    AtelierDatagridview.Invoke(new Action(() =>
-            //    {
-            //        foreach (var item in model.Value)
-            //        {
-            //            Image img2 = null;
-
-            //            if (item.Status == null)
-            //                img2 = Resource.clockwise;
-            //            else if (item.Status.Value)
-            //                img2 = Resource.check;
-            //            else if (!item.Status.Value)
-            //                img2 = Resource.x;
-
-            //            var TodayDate = DateTime.Parse(model.Key);
-
-            //            //string shamsiDate = string.Format("{0:0000}/{1:00}/{2:00}",
-            //            //calendar.GetYear(TodayDate),
-            //            //calendar.GetMonth(TodayDate),
-            //            //calendar.GetDayOfMonth(TodayDate));
-            //            var spentTimeSplited = item.SpentTime.Split(':');
-            //            var spentTimeText = " ساعت" + "\u200E" + $" {spentTimeSplited[0]}";
-
-            //            if (spentTimeSplited[1] != "0")
-            //                spentTimeText = "نیم" + "\u200E" + spentTimeText;
-
-            //            AtelierDatagridview.Rows.Add(Img.ConvertToBmp(img), Img.ConvertToBmp(img2), Setting.ConvertToFa_Date(DateTime.Parse(model.Key)), item.StartHour, spentTimeText, item.FullName, item.PhoneNumber, "مشاهده", item.Id);
-            //        }
-
-            //        for (int i = 0; i < AtelierDatagridview.Rows.Count; i++)
-            //        {
-            //            if (int.Parse(AtelierDatagridview.Rows[i].Cells[8].Value?.ToString()) == index)
-            //            {
-            //                AtelierDatagridview.ClearSelection();
-            //                AtelierDatagridview.Rows[i].Selected = true;
-            //                AtelierDatagridview.FirstDisplayedScrollingRowIndex = i;
-            //            }
-            //        }
-            //    }));
-            //}
-
-            //this.Invoke(new Action(() =>
-            //{
-            //    AtelierButtonDesign();
-            //    ShowTodayQueuesCount();
-            //}));
-        }
-
-        //public void DefaultFilter()
-        //{
-        //    SortTypeIndex = SortType.ComboBoxText;
-        //    combobox_SortBy.SelectedIndex = 0;
-
-        //    combobox_QueueStatus.SelectedIndex = (int)Setting.QueueStatus;
-        //    comboboxTimeFrame.SelectedIndex = (int)Setting.TimeFrame;
-
-        //    Database.Refresh<AtelierModel>();
-        //}
 
         private void SwitchButton(Button target)
         {
@@ -453,7 +315,6 @@ namespace Queuing_System_Alipour.Window
             btnStatistics.Enabled = true;
             btnPersonnel.Enabled = true;
             btnAtelier.Enabled = true;
-            btnUsers.Enabled = true;
             btnSetting.Enabled = true;
 
             target.Enabled = false;
@@ -465,10 +326,284 @@ namespace Queuing_System_Alipour.Window
             StatisticsPanel.Visible = false;
             PersonnelPanel.Visible = false;
             AtelierPanel.Visible = false;
-            UsersPanel.Visible = false;
             SettingPanel.Visible = false;
 
             target.Visible = true;
+        }
+
+        private void RefreshDataGrid(RefreshType type)
+        {
+            switch (type)
+            {
+                case RefreshType.Atelier:
+                    var ateliers = _atelierSrv.GetByEmployeeId(AppState.EmployeeId);
+                    RefreshAtelierQueues(ateliers);
+                    break;
+
+                case RefreshType.Personnel:
+                    var personnels = _personnelSrv.GetByDate(DateTime.Today);
+                    RefreshPersonnelQueue(personnels);
+                    break;
+            }
+        }
+
+        private void RefreshAtelierQueues(List<Atelier> ateliers)
+        {
+            int selectedIndex = -1;
+            int rowIndex = 0;
+
+            if (AtelierDatagridview.SelectedRows.Count > 0)
+                selectedIndex = int.Parse(AtelierDatagridview.SelectedRows[rowIndex].Cells["AtelierIdColumn"].Value.ToString());
+
+            AtelierDatagridview.Rows.Clear();
+            _noteManager.Clear();
+
+            ateliers.ForEach(x =>
+            {
+                _noteManager.Add(x.Id, x.Note);
+
+                Image dateImage;
+                var today = DateTime.Today;
+
+                if (x.QueueCreatedAt > today)
+                    dateImage = Resource.Yellow;
+
+                else if (x.QueueCreatedAt == today)
+                    dateImage = Resource.Green;
+
+                else
+                    dateImage = Resource.Red;
+
+                Image statusImage;
+
+                if (x.QueueStatus == QueueStatus.Pending)
+                    statusImage = Resource.clockwise;
+
+                else if (x.QueueStatus == QueueStatus.Done)
+                    statusImage = Resource.check;
+
+                else
+                    statusImage = Resource.x;
+
+                AtelierDatagridview.Rows.Add("مشاهده", Img.ConvertToBmp(dateImage),
+                    Img.ConvertToBmp(statusImage), x.QueueCreatedAt.ToString("yyyy/MM/dd").ConvertToEn_Date().ConvertToFa_Date(),
+                    x.QueueCreatedAt.ToString("HH:mm"),
+                    "یک ساعت", x.PhoneNumber, x.FullName, x.Id);
+
+                for (int i = 0; i < AtelierDatagridview.Rows.Count; i++)
+                {
+                    int targetIndex = int.Parse(AtelierDatagridview.Rows[i].Cells["AtelierIdColumn"].Value.ToString());
+
+                    if (targetIndex == selectedIndex)
+                    {
+                        AtelierDatagridview.ClearSelection();
+                        AtelierDatagridview.Rows[i].Selected = true;
+                        AtelierDatagridview.FirstDisplayedScrollingRowIndex = i;
+                    }
+                }
+            });
+        }
+
+        private void RefreshPersonnelQueue(List<Personnel> personnels)
+        {
+            PersonnelDatagridview.Rows.Clear();
+            PersonnelDoneDatagridview.Rows.Clear();
+
+            personnels.ForEach(x =>
+            {
+                if (x.QueueStatus)
+                    PersonnelDoneDatagridview.Rows.Add(x.LastName);
+
+                else
+                {
+                    int waitTime = (PersonnelDatagridview.Rows.Count + 1) * 3;
+                    PersonnelDatagridview.Rows.Add(x.Id, x.LastName, waitTime.ToString());
+                }
+            });
+
+            if (PersonnelDatagridview.Rows.Count > 0)
+            {
+                int rowIndex = 0;
+                string lastName = PersonnelDatagridview.Rows[rowIndex].Cells["PersonnelLastNameColumn"].Value.ToString();
+
+                btn_nextQueue.Enabled = true;
+                btn_deletePersonnelQueue.Enabled = true;
+
+                lbl_CurrentQueue.Text = lastName;
+                lbl_next.Text = lastName;
+            }
+
+            else
+            {
+                btn_nextQueue.Enabled = false;
+                btn_deletePersonnelQueue.Enabled = false;
+
+                lbl_CurrentQueue.Text = "?";
+                lbl_next.Text = "?";
+            }
+        }
+
+        private void ButtonHandler(Button btn, ButtonType type, bool status)
+        {
+            btn.Enabled = status;
+            btn.ForeColor = Color.FromArgb(245, 246, 250);
+
+            switch (type)
+            {
+                case ButtonType.Delete or ButtonType.Cancel:
+                    btn.BackColor = status ? Color.FromArgb(194, 54, 22) : Color.FromArgb(39, 60, 117);
+                    break;
+
+                case ButtonType.Done:
+                    btn.BackColor = status ? Color.FromArgb(68, 189, 50) : Color.FromArgb(39, 60, 117);
+                    break;
+            }
+        }
+
+        private void AtelierButtonDesign()
+        {
+            ButtonHandler(btn_deleteAtelierQueue, ButtonType.Delete, false);
+            ButtonHandler(btn_DoneAtelierQueue, ButtonType.Done, false);
+            ButtonHandler(btn_CancelAtelierQueue, ButtonType.Cancel, false);
+
+            if (AtelierDatagridview.Rows.Count > 0)
+            {
+                if (AtelierDatagridview.SelectedRows.Count > 0)
+                {
+                    int rowIndex = 0;
+
+                    int id = int.Parse(AtelierDatagridview.SelectedRows[rowIndex].Cells["AtelierIdColumn"].Value.ToString());
+                    var queue = _atelierSrv.GetById(id);
+
+                    if (queue != null)
+                    {
+                        var targetDate = queue.QueueCreatedAt;
+                        var todayDate = DateTime.Today;
+
+                        if (targetDate.Date < todayDate.Date) // BeforeDay
+                        {
+                            ButtonHandler(btn_deleteAtelierQueue, ButtonType.Delete,
+                                queue.QueueStatus is QueueStatus.Pending);
+
+                            ButtonHandler(btn_DoneAtelierQueue, ButtonType.Done, false);
+                            ButtonHandler(btn_CancelAtelierQueue, ButtonType.Cancel, false);
+                        }
+
+                        else if (targetDate.Date == todayDate.Date) // InDay
+                        {
+                            bool status = (queue.QueueStatus is QueueStatus.Pending);
+
+                            ButtonHandler(btn_deleteAtelierQueue, ButtonType.Delete, status);
+                            ButtonHandler(btn_DoneAtelierQueue, ButtonType.Done, status);
+                            ButtonHandler(btn_CancelAtelierQueue, ButtonType.Cancel, status);
+                        }
+
+                        else if (targetDate.Date > todayDate.Date) // AfterDay
+                        {
+                            bool status = queue.QueueStatus is QueueStatus.Pending;
+
+                            ButtonHandler(btn_deleteAtelierQueue, ButtonType.Delete, status);
+                            ButtonHandler(btn_CancelAtelierQueue, ButtonType.Cancel, status);
+
+                            ButtonHandler(btn_DoneAtelierQueue, ButtonType.Done, false);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ShowTodayQueuesCount()
+        {
+            var countResult = _atelierSrv.GetTodayQueuesCount(AppState.EmployeeId);
+
+            if (countResult.IsSuccess)
+                lblAtelierCount.Text = countResult.Data.ToString();
+
+            else
+            {
+                lblAtelierCount.Text = string.Empty;
+                Mbox.Error(countResult.Message, Caption.Error);
+            }
+        }
+
+        private void ShowRowNote(DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == AtelierNoteColumn.Index && e.RowIndex != -1)
+            {
+                int rowIndex = 0;
+                int queueId = int.Parse(AtelierDatagridview.SelectedRows[rowIndex].Cells["AtelierIdColumn"].Value.ToString());
+
+                if (_noteManager.ContainsKey(queueId))
+                {
+                    var frmShowNote = new FrmShowNote();
+                    frmShowNote.txtbox_note.Text = _noteManager[queueId];
+                    frmShowNote.Show();
+                }
+            }
+        }
+
+        private void DigitalClock()
+        {
+            var date = DateTime.Today.ConvertToFa_Date();
+
+            if (date != lblDate.Text)
+                lblDate.Text = date;
+
+            int h, m;
+            h = DateTime.Now.Hour;
+            m = DateTime.Now.Minute;
+
+            int[] time = { h / 10, h % 10, m / 10, m % 10 };
+
+            Bitmap bmp = new Bitmap(picDigitalClock.Width, picDigitalClock.Height);
+
+            Graphics graphic = Graphics.FromImage(bmp);
+
+            for (int i = 0; i < time.Length; i++)
+            {
+                int extra = 30 * i + i / 2 * 5;
+
+                var resType = typeof(Resource);
+                var pi = resType.GetProperty($"_{time[i]}", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+                var img = (Bitmap)pi.GetValue(null, null);
+
+                graphic.DrawImage(img, 10 + extra, 10, 22, 30);
+            }
+
+            var font = new Font("Vazirmatn ExtraBold", 21);
+            var brush = new SolidBrush(Color.Black);
+            var point = new PointF(60, 8);
+
+            graphic.DrawString(":", font, brush, point);
+
+            picDigitalClock.Image = bmp;
+
+            graphic.Dispose();
+        }
+
+        private void AddFilterToAtelier()
+        {
+            var timeFrameVal = combobox_TimeFrame.SelectedIndex > 0;
+            var queueStatusVal = combobox_QueueStatus.SelectedIndex > 0;
+            var searchByVal = combobox_SearchBy.SelectedIndex > 0;
+
+            if (timeFrameVal || queueStatusVal || searchByVal)
+            {
+                var queueFilter = new QueueFilterDto
+                {
+                    EmployeeId = AppState.EmployeeId,
+                    TimeFrame = (FilterByTimeFrame)(timeFrameVal ? combobox_TimeFrame.SelectedIndex : 0),
+                    QueueStatus = (FilterByQueueStatus)(queueStatusVal ? combobox_QueueStatus.SelectedIndex : 0),
+                    Search = (FilterBySearch)(searchByVal ? combobox_SearchBy.SelectedIndex : 0),
+                    Data = txtbox_SearchBy.Text
+                };
+
+                var ateliers = _atelierSrv.GetQueues(queueFilter);
+                RefreshAtelierQueues(ateliers);
+            }
+
+            else
+                RefreshDataGrid(RefreshType.Atelier);
         }
 
         private void LogoutAccount()
@@ -510,236 +645,26 @@ namespace Queuing_System_Alipour.Window
                 Mbox.Error(rpResult.Message, Caption.Error);
         }
 
-        private void DigitalClock()
+        private void AddAtelierQueue()
         {
-            var date = DateTime.Today.ConvertToFa_Date();
-
-            if (date != lbl_date.Text)
-                lbl_date.Text = date;
-
-            int h, m;
-            h = DateTime.Now.Hour;
-            m = DateTime.Now.Minute;
-
-            int[] time = { h / 10, h % 10, m / 10, m % 10 };
-
-            Bitmap bmp = new Bitmap(picDigitalClock.Width, picDigitalClock.Height);
-
-            Graphics graphic = Graphics.FromImage(bmp);
-
-            for (int i = 0; i < time.Length; i++)
-            {
-                int extra = 30 * i + i / 2 * 5;
-
-                var resType = typeof(Resource);
-                var pi = resType.GetProperty($"_{time[i]}", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-                var img = (Bitmap)pi.GetValue(null, null);
-
-                graphic.DrawImage(img, 10 + extra, 10, 22, 30);
-            }
-
-            Font font = new Font("Vazirmatn", 21);
-            SolidBrush brush = new SolidBrush(Color.Black);
-            PointF point = new PointF(60, 8);
-
-            graphic.DrawString(":", font, brush, point);
-
-            picDigitalClock.Image = bmp;
-
-            graphic.Dispose();
+            var frmAddAtelier = new FrmAddAtelierQueue();
+            frmAddAtelier.ShowDialog();
         }
 
-        //public void PictureConnection()
-        //{
-        //    if (ConnectionStatus)
-        //    {
-        //        this.Invoke(new Action(() =>
-        //        {
-        //            ConnectionPic.Image = Img.ConvertToBmp(Resource.Green_Large);
-        //            SmallConnectionPic.Image = Img.ConvertToBmp(Resource.Green_Large);
-        //            lbl_ConnectionStatus.Text = "آنلاین";
-        //            lbl_ConnectionStatus.ForeColor = Color.Green;
-        //        }));
-        //    }
-        //    else
-        //    {
-        //        this.Invoke(new Action(() =>
-        //        {
-        //            ConnectionPic.Image = Img.ConvertToBmp(Resource.Red_Large);
-        //            SmallConnectionPic.Image = Img.ConvertToBmp(Resource.Red_Large);
-        //            lbl_ConnectionStatus.Text = "آفلاین";
-        //            lbl_ConnectionStatus.ForeColor = Color.Red;
-        //        }));
-        //    }
-        //}
-
-        private void AtelierButtonDesign()
+        private void UpdateAtelierQueue(QueueStatus queueStatus)
         {
-            if (AtelierDatagridview.Rows.Count > 0)
-            {
-                if (AtelierDatagridview.SelectedRows.Count > 0)
-                {
-                    var date = AtelierDatagridview.SelectedRows[0].Cells[2].Value.ToString().ConvertToEn_Date();
-                    int id = int.Parse(AtelierDatagridview.SelectedRows[0].Cells[8].Value.ToString());
-
-                    int compare = DateTime.Compare(DateTime.Today, date);
-                    var dateStr = date.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture);
-
-                    // x.EmployeeId == EmployeeId
-                    //if (model != null)
-                    //{
-                    //    // روز نوبت گدشته است
-                    //    if (compare == 1)
-                    //    {
-                    //        if (model.Status == null || !model.Status.Value)
-                    //        {
-                    //            btn_deleteAtelierQueue.Enabled = true;
-                    //            btn_deleteAtelierQueue.BackColor = Color.FromArgb(194, 54, 22);
-                    //        }
-                    //        else if (model.Status.Value)
-                    //        {
-                    //            btn_deleteAtelierQueue.Enabled = false;
-                    //            btn_deleteAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-                    //        }
-                    //        btn_DoneAtelierQueue.Enabled = false;
-                    //        btn_DoneAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-
-                    //        btn_CancelAtelierQueue.Enabled = false;
-                    //        btn_CancelAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-                    //    }
-
-                    //    // روز نوبت است
-                    //    else if (compare == 0)
-                    //    {
-                    //        if (model.Status != null)
-                    //        {
-                    //            if (model.Status.Value)
-                    //            {
-                    //                btn_deleteAtelierQueue.Enabled = false;
-                    //                btn_deleteAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-                    //            }
-                    //            else
-                    //            {
-                    //                btn_deleteAtelierQueue.Enabled = true;
-                    //                btn_deleteAtelierQueue.BackColor = Color.FromArgb(194, 54, 22);
-                    //            }
-                    //            btn_DoneAtelierQueue.Enabled = false;
-                    //            btn_DoneAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-
-                    //            btn_CancelAtelierQueue.Enabled = false;
-                    //            btn_CancelAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-                    //        }
-                    //        if (model.Status == null)
-                    //        {
-                    //            btn_DoneAtelierQueue.Enabled = true;
-                    //            btn_DoneAtelierQueue.BackColor = Color.FromArgb(68, 189, 50);
-
-                    //            btn_CancelAtelierQueue.Enabled = true;
-                    //            btn_CancelAtelierQueue.BackColor = Color.FromArgb(194, 54, 22);
-
-                    //            btn_deleteAtelierQueue.Enabled = true;
-                    //            btn_deleteAtelierQueue.BackColor = Color.FromArgb(194, 54, 22);
-                    //        }
-                    //    }
-                    //    // روز نوبت نرسیده
-                    //    else if (compare == -1)
-                    //    {
-                    //        if (model.Status != null)
-                    //        {
-                    //            if (model.Status.Value)
-                    //            {
-                    //                btn_deleteAtelierQueue.Enabled = false;
-                    //                btn_deleteAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-                    //            }
-                    //            else
-                    //            {
-                    //                btn_deleteAtelierQueue.Enabled = true;
-                    //                btn_deleteAtelierQueue.BackColor = Color.FromArgb(194, 54, 22);
-                    //            }
-                    //            btn_CancelAtelierQueue.Enabled = false;
-                    //            btn_CancelAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-                    //        }
-                    //        else
-                    //        {
-                    //            btn_CancelAtelierQueue.Enabled = true;
-                    //            btn_CancelAtelierQueue.BackColor = Color.FromArgb(194, 54, 22);
-
-                    //            btn_deleteAtelierQueue.Enabled = true;
-                    //            btn_deleteAtelierQueue.BackColor = Color.FromArgb(194, 54, 22);
-                    //        }
-                    //        btn_DoneAtelierQueue.Enabled = false;
-                    //        btn_DoneAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-                    //    }
-
-                    //    return;
-                    //}
-                }
-            }
-
-            btn_deleteAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-            btn_deleteAtelierQueue.ForeColor = Color.FromArgb(245, 246, 250);
-            btn_deleteAtelierQueue.Enabled = false;
-
-            btn_DoneAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-            btn_DoneAtelierQueue.ForeColor = Color.FromArgb(245, 246, 250);
-            btn_DoneAtelierQueue.Enabled = false;
-
-            btn_CancelAtelierQueue.BackColor = Color.FromArgb(39, 60, 117);
-            btn_CancelAtelierQueue.ForeColor = Color.FromArgb(245, 246, 250);
-            btn_CancelAtelierQueue.Enabled = false;
-        }
-
-        private void DeleteAtelierQueue()
-        {
-            btn_deleteAtelierQueue.Enabled = false;
+            var btn = queueStatus == QueueStatus.Done ? btn_DoneAtelierQueue : btn_CancelAtelierQueue;
+            btn.Enabled = false;
 
             if (AtelierDatagridview.SelectedRows.Count > 0)
             {
-                if (Mbox.Question(MessageHandler.GetMessage(MessageCode.QueueDeleteQuestion), Caption.Question) == DialogResult.Yes)
+                if (Mbox.Question(MessageHandler.GetMessage(MessageCode.QueueStatusToDoneQuestion), Caption.Question) == DialogResult.Yes)
                 {
-                    var deleteQueueDto = new DeleteAtelierQueueDto
-                    {
-                        QueueId = int.Parse(AtelierDatagridview.SelectedRows[0].Cells[8].Value.ToString()),
-                        EmployeeId = AppState.EmployeeId
-                    };
+                    int rowIndex = 0;
 
-                    var result = _atelierSrv.RemoveQueue(deleteQueueDto);
-
-                    if (result.IsSuccess)
-                        Mbox.Information(result.Message, Caption.Information);
-
-                    else
-                        Mbox.Error(result.Message, Caption.Error);
-
-                    //key.ToString("yyyy/MM/dd", CultureInfo.InvariantCulture)
-                }
-            }
-
-            btn_deleteAtelierQueue.Enabled = true;
-        }
-
-        private void ShowTodayQueuesCount()
-        {
-            // Count(x => x.EmployeeId == EmployeeId
-            // && x.CreatedAt + x.Duration >= Today && <= Tomorrow)
-        }
-
-        private void SetQueueStatus(int queueStatus)
-        {
-            if (queueStatus == 1)
-                btn_DoneAtelierQueue.Enabled = false;
-
-            else
-                btn_CancelAtelierQueue.Enabled = false;
-
-            if (AtelierDatagridview.SelectedRows.Count > 0)
-            {
-                if (Mbox.Question(MessageHandler.GetMessage(MessageCode.QueueStatusToDoneQuestion),
-                    Caption.Question) == DialogResult.Yes)
-                {
                     var updateDto = new UpdateAtelierQueueDto
                     {
-                        QueueId = int.Parse(AtelierDatagridview.SelectedRows[0].Cells[8].Value.ToString()),
+                        QueueId = int.Parse(AtelierDatagridview.SelectedRows[rowIndex].Cells["AtelierIdColumn"].Value.ToString()),
                         EmployeeId = AppState.EmployeeId,
                         QueueStatus = queueStatus
                     };
@@ -754,310 +679,39 @@ namespace Queuing_System_Alipour.Window
                 }
             }
 
-            if (queueStatus == 1)
-                btn_DoneAtelierQueue.Enabled = true;
-
-            else
-                btn_CancelAtelierQueue.Enabled = true;
+            btn.Enabled = true;
         }
 
-        private bool SortHandler()
+        private void DeleteAtelierQueue()
         {
-            //var date = Setting.ConvertToFa_Date(DateTime.Today);
-            //List<KeyValuePair<string, AtelierModel>> SortedList = new List<KeyValuePair<string, AtelierModel>>();
+            btn_deleteAtelierQueue.Enabled = false;
 
-            //if (SortTypeIndex == SortType.ComboBoxText)
-            //    return true;
-
-            //else if (SortTypeIndex == SortType.QueueStatus)
-            //{
-            //    SortedList = Database.AtelierModels.SelectMany(x => x.Value.Select(y =>
-            //    {
-            //        return new KeyValuePair<string, AtelierModel>(x.Key, y);
-            //    })).OrderBy(x =>
-            //        x.Value.Status == null ? 0 :
-            //        x.Value.Status.Value == false ? 1 : 2
-            //    ).ToList();
-            //}
-
-            //else if (SortTypeIndex == SortType.Date)
-            //{
-            //    Database.AtelierModels = Database.AtelierModels.OrderBy(x =>
-            //    {
-            //        return DateTime.Parse(x.Key).Ticks;
-            //    }).ToDictionary(x => x.Key, y => y.Value);
-            //}
-
-            //else if (SortTypeIndex == SortType.Time)
-            //{
-            //    SortedList = Database.AtelierModels.SelectMany(x => x.Value.Select(y =>
-            //    {
-            //        return new KeyValuePair<string, AtelierModel>(x.Key, y);
-            //    })).OrderBy(x => x.Value.StartHour).ToList();
-            //}
-
-            //else if (SortTypeIndex == SortType.Duration)
-            //{
-            //    SortedList = Database.AtelierModels.SelectMany(x => x.Value.Select(y =>
-            //    {
-            //        return new KeyValuePair<string, AtelierModel>(x.Key, y);
-            //    })).OrderBy(x => x.Value.SpentTime).ToList();
-            //}
-
-            //else if (SortTypeIndex == SortType.FullName)
-            //{
-            //    SortedList = Database.AtelierModels.SelectMany(x => x.Value.Select(y =>
-            //    {
-            //        return new KeyValuePair<string, AtelierModel>(x.Key, y);
-            //    })).OrderBy(x => x.Value.FullName).ToList();
-            //}
-
-            //else if (SortTypeIndex == SortType.PhoneNumber)
-            //{
-            //    SortedList = Database.AtelierModels.SelectMany(x => x.Value.Select(y =>
-            //    {
-            //        return new KeyValuePair<string, AtelierModel>(x.Key, y);
-            //    })).OrderBy(x => x.Value.PhoneNumber).ToList();
-            //}
-
-            //Image img, img2;
-            //int index = -1;
-            //if (AtelierDatagridview.SelectedRows.Count > 0)
-            //    index = int.Parse(AtelierDatagridview.SelectedRows[0].Cells[8].Value.ToString());
-
-            //AtelierDatagridview.Invoke(new Action(() =>
-            //{
-            //    AtelierDatagridview.Rows.Clear();
-
-            //    foreach (var item in SortedList)
-            //    {
-            //        int compare = DateTime.Compare(DateTime.Parse(item.Key), DateTime.Today);
-
-            //        if (compare == 0)
-            //            img = Resource.Green;
-            //        else if (compare == 1)
-            //            img = Resource.Yellow;
-            //        else
-            //            img = Resource.Red;
-
-            //        if (item.Value.Status == null)
-            //            img2 = Resource.clockwise;
-            //        else if (item.Value.Status.Value)
-            //            img2 = Resource.check;
-            //        else
-            //            img2 = Resource.x;
-            //        var spentTimeSplited = item.Value.SpentTime.Split(':');
-            //        var spentTimeText = $"{spentTimeSplited[0]} ساعت و {spentTimeSplited[1]} دقیقه";
-            //        AtelierDatagridview.Rows.Add(
-            //            Img.ConvertToBmp(img), Img.ConvertToBmp(img2), Setting.ConvertToFa_Date(DateTime.Parse(item.Key)), item.Value.StartHour, spentTimeText,
-            //            item.Value.FullName, item.Value.PhoneNumber, "مشاهده", item.Value.Id);
-            //    }
-            //    for (int i = 0; i < AtelierDatagridview.Rows.Count; i++)
-            //    {
-            //        if (int.Parse(AtelierDatagridview.Rows[i].Cells[8].Value?.ToString()) == index)
-            //        {
-            //            AtelierDatagridview.ClearSelection();
-            //            AtelierDatagridview.Rows[i].Selected = true;
-            //            AtelierDatagridview.FirstDisplayedScrollingRowIndex = i;
-            //        }
-            //    }
-            //}));
-
-            //this.Invoke(new Action(() =>
-            //{
-            //    AtelierButtonDesign();
-            //    ShowTodayQueuesCount();
-            //}));
-
-            //if (SortTypeIndex == SortType.Date)
-            //    return true;
-            //else
-            //    return false;
-
-            return false;
-        }
-
-        //List<KeyValuePair<string, AtelierModel>> FilteredList = new List<KeyValuePair<string, AtelierModel>>();
-
-        private bool FilterHandler()
-        {
-            //var date = Setting.ConvertToFa_Date(DateTime.Today);
-
-            //if (TimeFrameIndex == TimeFrame.ComboBoxText)
-            //    return true;
-
-            //if (TimeFrameIndex == TimeFrame.BeforeQueueDay)
-            //{
-            //    Database.AtelierModels = Database.AtelierModels
-            //        .Where(x => DateTime.Compare(DateTime.Parse(x.Key), DateTime.Today) == 1)
-            //        .ToDictionary(x => x.Key, y => y.Value);
-
-            //    return true;
-            //}
-
-            //else if (TimeFrameIndex == TimeFrame.QueueDay)
-            //{
-            //    Database.AtelierModels = Database.AtelierModels
-            //        .Where(x => DateTime.Compare(DateTime.Parse(x.Key), DateTime.Today) == 0)
-            //        .ToDictionary(x => x.Key, y => y.Value);
-
-            //    return true;
-            //}
-
-            //else if (TimeFrameIndex == TimeFrame.ExpireQueue)
-            //{
-            //    Database.AtelierModels = Database.AtelierModels
-            //        .Where(x => DateTime.Compare(DateTime.Parse(x.Key), DateTime.Today) == -1)
-            //        .ToDictionary(x => x.Key, y => y.Value);
-
-            //    return true;
-            //}
-
-            //Image img, img2;
-            //int index = -1;
-            //if (AtelierDatagridview.SelectedRows.Count > 0)
-            //    index = int.Parse(AtelierDatagridview.SelectedRows[0].Cells[8].Value.ToString());
-
-            //AtelierDatagridview.Invoke(new Action(() =>
-            //{
-            //    AtelierDatagridview.Rows.Clear();
-
-            //    foreach (var item in FilteredList)
-            //    {
-            //        int compare = DateTime.Compare(DateTime.Parse(item.Key), DateTime.Today);
-
-            //        if (compare == 0)
-            //            img = Resource.Green;
-            //        else if (compare == 1)
-            //            img = Resource.Yellow;
-            //        else
-            //            img = Resource.Red;
-
-            //        if (item.Value.Status == null)
-            //            img2 = Resource.clockwise;
-            //        else if (item.Value.Status.Value)
-            //            img2 = Resource.check;
-            //        else
-            //            img2 = Resource.x;
-            //        var spentTimeSplited = item.Value.SpentTime.Split(':');
-            //        var spentTimeText = $"{spentTimeSplited[0]} ساعت و {spentTimeSplited[1]} دقیقه";
-            //        AtelierDatagridview.Rows.Add(
-            //            Img.ConvertToBmp(img), Img.ConvertToBmp(img2), Setting.ConvertToFa_Date(DateTime.Parse(item.Key)), item.Value.StartHour, spentTimeText,
-            //            item.Value.FullName, item.Value.PhoneNumber, "مشاهده", item.Value.Id);
-            //    }
-            //    for (int i = 0; i < AtelierDatagridview.Rows.Count; i++)
-            //    {
-            //        if (int.Parse(AtelierDatagridview.Rows[i].Cells[8].Value?.ToString()) == index)
-            //        {
-            //            AtelierDatagridview.ClearSelection();
-            //            AtelierDatagridview.Rows[i].Selected = true;
-            //            AtelierDatagridview.FirstDisplayedScrollingRowIndex = i;
-            //        }
-            //    }
-            //}));
-
-            //this.Invoke(new Action(() =>
-            //{
-            //    AtelierButtonDesign();
-            //    ShowTodayQueuesCount();
-            //}));
-
-            return false;
-        }
-
-        private bool Filter2Handler()
-        {
-            //if (QueueStatusIndex == QueueStatus.ComboBoxText)
-            //    return true;
-
-            //else if (QueueStatusIndex == QueueStatus.Undone)
-            //{
-            //    FilteredList = Database.AtelierModels.SelectMany(x => x.Value.Select(y =>
-            //    {
-            //        return new KeyValuePair<string, AtelierModel>(x.Key, y);
-            //    })).Where(x => x.Value.Status == null).ToList();
-            //}
-
-            //else if (QueueStatusIndex == QueueStatus.Canceled)
-            //{
-            //    FilteredList = Database.AtelierModels.SelectMany(x => x.Value.Select(y =>
-            //    {
-            //        return new KeyValuePair<string, AtelierModel>(x.Key, y);
-            //    })).Where(x => x.Value.Status != null && x.Value.Status.Value == false).ToList();
-            //}
-
-            //else if (QueueStatusIndex == QueueStatus.Done)
-            //{
-            //    FilteredList = Database.AtelierModels.SelectMany(x => x.Value.Select(y =>
-            //    {
-            //        return new KeyValuePair<string, AtelierModel>(x.Key, y);
-            //    })).Where(x => x.Value.Status != null && x.Value.Status.Value == true).ToList();
-            //}
-
-            //Image img, img2;
-            //int index = -1;
-            //if (AtelierDatagridview.SelectedRows.Count > 0)
-            //    index = int.Parse(AtelierDatagridview.SelectedRows[0].Cells[8].Value.ToString());
-
-            //AtelierDatagridview.Invoke(new Action(() =>
-            //{
-            //    AtelierDatagridview.Rows.Clear();
-
-            //    foreach (var item in FilteredList)
-            //    {
-            //        int compare = DateTime.Compare(DateTime.Parse(item.Key), DateTime.Today);
-
-            //        if (compare == 0)
-            //            img = Resource.Green;
-            //        else if (compare == 1)
-            //            img = Resource.Yellow;
-            //        else
-            //            img = Resource.Red;
-
-            //        if (item.Value.Status == null)
-            //            img2 = Resource.clockwise;
-            //        else if (item.Value.Status.Value)
-            //            img2 = Resource.check;
-            //        else
-            //            img2 = Resource.x;
-            //        var spentTimeSplited = item.Value.SpentTime.Split(':');
-            //        var spentTimeText = $"{spentTimeSplited[0]} ساعت و {spentTimeSplited[1]} دقیقه";
-            //        AtelierDatagridview.Rows.Add(
-            //            Img.ConvertToBmp(img), Img.ConvertToBmp(img2), Setting.ConvertToFa_Date(DateTime.Parse(item.Key)), item.Value.StartHour, spentTimeText,
-            //            item.Value.FullName, item.Value.PhoneNumber, "مشاهده", item.Value.Id);
-            //    }
-            //    for (int i = 0; i < AtelierDatagridview.Rows.Count; i++)
-            //    {
-            //        if (int.Parse(AtelierDatagridview.Rows[i].Cells[8].Value?.ToString()) == index)
-            //        {
-            //            AtelierDatagridview.ClearSelection();
-            //            AtelierDatagridview.Rows[i].Selected = true;
-            //            AtelierDatagridview.FirstDisplayedScrollingRowIndex = i;
-            //        }
-            //    }
-            //}));
-
-            //this.Invoke(new Action(() =>
-            //{
-            //    AtelierButtonDesign();
-            //    ShowTodayQueuesCount();
-            //}));
-
-            return false;
-        }
-
-        private void ShowRowNote(DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == AtelierNoteColumn.Index && e.RowIndex != -1)
+            if (AtelierDatagridview.SelectedRows.Count > 0)
             {
-                int id = int.Parse(AtelierDatagridview.SelectedRows[0].Cells[8].Value.ToString());
+                if (Mbox.Question(MessageHandler.GetMessage(MessageCode.QueueDeleteQuestion), Caption.Question) == DialogResult.Yes)
+                {
+                    int rowIndex = 0;
 
-                // Get from dictionary;
+                    var deleteQueueDto = new DeleteAtelierQueueDto
+                    {
+                        QueueId = int.Parse(AtelierDatagridview.SelectedRows[rowIndex].Cells["AtelierIdColumn"].Value.ToString()),
+                        EmployeeId = AppState.EmployeeId
+                    };
 
-                FrmShowNote frm = new FrmShowNote();
-                frm.txtbox_note.Text = ""; //model.Note;
-                frm.Show();
+                    var result = _atelierSrv.RemoveQueue(deleteQueueDto);
+
+                    if (result.IsSuccess)
+                    {
+                        RefreshDataGrid(RefreshType.Atelier);
+                        Mbox.Information(result.Message, Caption.Information);
+                    }
+
+                    else
+                        Mbox.Error(result.Message, Caption.Error);
+                }
             }
+
+            btn_deleteAtelierQueue.Enabled = true;
         }
 
         private void AddPersonnelQueue()
@@ -1075,6 +729,8 @@ namespace Queuing_System_Alipour.Window
             if (createResult.IsSuccess)
             {
                 txtbox_fullname.Clear();
+                RefreshDataGrid(RefreshType.Personnel);
+
                 Mbox.Information(createResult.Message, Caption.Information);
             }
 
@@ -1084,25 +740,62 @@ namespace Queuing_System_Alipour.Window
             btn_addQueue.Enabled = true;
         }
 
-        private void NextPersonnelQueue()
+        private void UpdatePersonnelQueue()
         {
-            btn_nextQueue.Enabled = false;
-
-            var updatePersonnelQueue = new UpdatePersonnelQueueDto
+            if (PersonnelDatagridview.Rows.Count > 0)
             {
-                Id = int.Parse(PersonnelDatagridview.Rows[0].Cells[0].Value.ToString()),
-                QueueEndedAt = DateTime.Now,
-            };
+                if (Mbox.Question(MessageHandler.GetMessage(MessageCode.QueueStatusToDoneQuestion), Caption.Question) == DialogResult.Yes)
+                {
+                    btn_nextQueue.Enabled = false;
 
-            var updateResult = _personnelSrv.UpdateQueue(updatePersonnelQueue);
+                    int rowIndex = 0;
 
-            if (updateResult.IsSuccess)
-                Mbox.Information(updateResult.Message, Caption.Information);
+                    var updatePersonnelQueue = new UpdatePersonnelQueueDto
+                    {
+                        Id = int.Parse(PersonnelDatagridview.Rows[rowIndex].Cells["PersonnelIdColumn"].Value.ToString()),
+                        QueueEndedAt = DateTime.Now,
+                    };
 
-            else
-                Mbox.Error(updateResult.Message, Caption.Error);
+                    var updateResult = _personnelSrv.UpdateQueue(updatePersonnelQueue);
 
-            btn_nextQueue.Enabled = true;
+                    if (updateResult.IsSuccess)
+                    {
+                        RefreshDataGrid(RefreshType.Personnel);
+                        Mbox.Information(updateResult.Message, Caption.Information);
+                    }
+
+                    else
+                        Mbox.Error(updateResult.Message, Caption.Error);
+
+                    btn_nextQueue.Enabled = true;
+                }
+            }
         }
+
+        private void DeletePersonnelQueue()
+        {
+            int selectedRowIndex = PersonnelDatagridview.SelectedRows[0].Index;
+
+            if (PersonnelDatagridview.Rows.Count > 0 && selectedRowIndex != -1)
+            {
+                if (Mbox.Question(MessageHandler.GetMessage(MessageCode.QueueDeleteQuestion), Caption.Question) == DialogResult.Yes)
+                {
+                    int id = int.Parse(PersonnelDatagridview.Rows[selectedRowIndex].Cells["PersonnelIdColumn"].Value.ToString());
+
+                    var deleteResult = _personnelSrv.DeleteQueue(id);
+
+                    if (deleteResult.IsSuccess)
+                    {
+                        RefreshDataGrid(RefreshType.Personnel);
+                        Mbox.Information(deleteResult.Message, Caption.Information);
+                    }
+
+                    else
+                        Mbox.Error(deleteResult.Message, Caption.Error);
+                }
+            }
+        }
+
+        //ToString("yyyy/MM/dd", CultureInfo.InvariantCulture)
     }
 }
