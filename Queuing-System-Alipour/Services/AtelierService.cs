@@ -11,13 +11,21 @@ namespace Queuing_System_Alipour.Services
 {
     public sealed class AtelierService : BaseService<AtelierRepository>
     {
-        private readonly DeleteAtelierQueueValidator _deleteQueueValidator;
+        private readonly CreateAtelierQueueValidator _createAtelierQueueValidator;
         private readonly UpdateAtelierQueueStatusValidator _updateAtelierQueueStatusValidator;
+        private readonly DeleteAtelierQueueValidator _deleteQueueValidator;
+
+        private readonly TimeSpan _workStart;
+        private readonly TimeSpan _workEnd;
 
         public AtelierService()
         {
-            _deleteQueueValidator = new DeleteAtelierQueueValidator();
+            _createAtelierQueueValidator = new CreateAtelierQueueValidator();
             _updateAtelierQueueStatusValidator = new UpdateAtelierQueueStatusValidator();
+            _deleteQueueValidator = new DeleteAtelierQueueValidator();
+
+            _workStart = TimeSpan.FromHours(8);
+            _workEnd = TimeSpan.FromHours(22);
         }
 
         public List<Atelier> GetByEmployeeId(int employeeId)
@@ -30,7 +38,32 @@ namespace Queuing_System_Alipour.Services
             return _repo.GetById(id);
         }
 
-        public List<Atelier> GetQueues(QueueFilterDto filter)
+        public List<TimeSpan> GetByDate(int employeeId, DateTime date, TimeSpan duration)
+        {
+            var queues = _repo.GetByDate(employeeId, date);
+            var result = new List<TimeSpan>();
+
+            for (var current = _workStart; current + duration <= _workEnd; current += TimeSpan.FromHours(1))
+            {
+                var start = date.Date + current;
+                var end = start + duration;
+
+                bool hasConflict = queues.Any(x =>
+                {
+                    var queueStart = x.QueueCreatedAt;
+                    var queueEnd = x.QueueEndAt;
+
+                    return start < queueEnd && end > queueStart;
+                });
+
+                if (!hasConflict)
+                    result.Add(current);
+            }
+
+            return result;
+        }
+
+        public List<Atelier> GetByFilter(QueueFilterDto filter)
         {
             IQueryable<Atelier> query = _repo.GetByQuery(filter.EmployeeId);
 
@@ -119,7 +152,45 @@ namespace Queuing_System_Alipour.Services
             return Success(null, _repo.GetTodayAtelierQueuesCount(employeeId));
         }
 
-        public ResultModel RemoveQueue(DeleteAtelierQueueDto data)
+        public ResultModel CreateQueue(CreateAtelierQueueDto data)
+        {
+            var validation = _createAtelierQueueValidator.Validate(data);
+
+            if (validation.IsValid)
+            {
+                bool exists = _repo.IsTimeSlotExists(data.EmployeeId, data.QueueCreatedAt.Value, data.QueueDuration.Value);
+
+                if (exists)
+                    return Fail(ErrorCode.SelectedTimeIsUnavailable);
+
+                else
+                {
+                    var atelier = new Atelier
+                    {
+                        FullName = data.FullName,
+                        PhoneNumber = data.PhoneNumber,
+                        QueueCreatedAt = data.QueueCreatedAt.Value,
+                        QueueEndAt = data.QueueCreatedAt.Value.AddHours(data.QueueDuration.Value),
+                        QueueStatus = QueueStatus.Pending,
+                        Note = data.Note,
+                        EmployeeId = data.EmployeeId,
+                    };
+
+                    _repo.Create(atelier);
+
+                    if (_repo.SaveChanges())
+                        return Success(MessageCode.QueueAdded);
+
+                    else
+                        return Fail(ErrorCode.FailedToCreateQueue);
+                }
+            }
+
+            else
+                return Fail(validation.Errors.ToText());
+        }
+
+        public ResultModel DeleteQueue(DeleteAtelierQueueDto data)
         {
             var validation = _deleteQueueValidator.Validate(data);
 
@@ -129,9 +200,9 @@ namespace Queuing_System_Alipour.Services
 
                 if (exists)
                 {
-                    _repo.Delete(data.QueueId);
+                    var deleted = _repo.Delete(data.QueueId);
 
-                    if (_repo.SaveChanges())
+                    if (deleted)
                         return Success(MessageCode.QueueRemoved);
 
                     else

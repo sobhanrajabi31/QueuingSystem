@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.Json;
 using Queuing_System_Alipour.Entities;
 using Queuing_System_Alipour.Repositories.Base;
 
@@ -17,6 +18,17 @@ namespace Queuing_System_Alipour.Repositories
                 x.EmployeeId == employeeId);
         }
 
+        public bool IsTimeSlotExists(int employeeId, DateTime start, int duration)
+        {
+            var end = start.AddHours(duration);
+
+            return _context.Ateliers.Any(x =>
+                x.EmployeeId == employeeId &&
+                x.QueueStatus == QueueStatus.Pending &&
+                start < x.QueueEndAt &&
+                end > x.QueueCreatedAt);
+        }
+
         public Atelier? GetById(int id)
         {
             return _context.Ateliers.SingleOrDefault(x => x.Id == id);
@@ -26,6 +38,14 @@ namespace Queuing_System_Alipour.Repositories
         {
             return _context.Ateliers
                 .Where(x => x.EmployeeId == employeeId).ToList();
+        }
+
+        public List<Atelier> GetByDate(int employeeId, DateTime date)
+        {
+            return _context.Ateliers.Where(x => x.EmployeeId == employeeId &&
+                x.QueueCreatedAt.Date == date.Date &&
+                x.QueueStatus == QueueStatus.Pending)
+                .OrderBy(x => x.QueueCreatedAt).ToList();
         }
 
         public Atelier? GetByIdAndEmployeeId(int id, int employeeId)
@@ -45,6 +65,11 @@ namespace Queuing_System_Alipour.Repositories
             return _context.Ateliers.Where(x => x.EmployeeId == employeeId);
         }
 
+        public void Create(Atelier atelier)
+        {
+            _context.Ateliers.Add(atelier);
+        }
+
         public void Update(Atelier atelier)
         {
             _context.Ateliers.Update(atelier);
@@ -55,10 +80,10 @@ namespace Queuing_System_Alipour.Repositories
             _context.Ateliers.Remove(atelier);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            _context.Ateliers.Where(x => x.Id == id)
-                .ExecuteDelete();
+            return _context.Ateliers.Where(x => x.Id == id)
+                .ExecuteDelete() > 0;
         }
     }
 }

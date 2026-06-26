@@ -22,7 +22,8 @@
         FailedToUpdateQueue = 5,
         CannotSetQueueStatusAnymore = 6,
         FailedToCreateQueue = 7,
-        FailedToCreateAccount = 8
+        FailedToCreateAccount = 8,
+        SelectedTimeIsUnavailable = 9
     }
 
     public static class ErrorHandler
@@ -53,7 +54,8 @@
                 { ErrorCode.FailedToUpdateQueue, "خطایی هنگام بروزرسانی وضعیت نوبت مورد نظر رخ داد" },
                 { ErrorCode.CannotSetQueueStatusAnymore, "برای این نوبت قبلا تغییر وضعیت صورت گرفته و دیگر امکان پذیر نیست" },
                 { ErrorCode.FailedToCreateQueue, "خطایی هنگام ایجاد نوبت رخ داد" },
-                { ErrorCode.FailedToCreateAccount, "خطایی هنگام ساخت حساب کاربری رخ داد" }
+                { ErrorCode.FailedToCreateAccount, "خطایی هنگام ساخت حساب کاربری رخ داد" },
+                { ErrorCode.SelectedTimeIsUnavailable, "مدت زمان انتخاب شده برای این نوبت موجود نیست" }
             };
         }
 

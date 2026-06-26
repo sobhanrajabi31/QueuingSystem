@@ -19,7 +19,7 @@ namespace Queuing_System_Alipour.Configurations
             entity.Property(x => x.QueueCreatedAt)
                 .IsRequired();
 
-            entity.Property(x => x.QueueDuration)
+            entity.Property(x => x.QueueEndAt)
                 .IsRequired();
 
             entity.Property(x => x.QueueStatus)

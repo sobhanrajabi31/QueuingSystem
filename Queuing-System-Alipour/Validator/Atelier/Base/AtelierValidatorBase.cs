@@ -51,7 +51,7 @@ namespace Queuing_System_Alipour.Validator.Atelier.Base
                 .WithMessage("شماره تلفن وارد شده نامعتبر است");
         }
 
-        protected void QueueCreatedAtRules(Expression<Func<T, DateTime>> expression)
+        protected void QueueCreatedAtRules(Expression<Func<T, DateTime?>> expression)
         {
             RuleFor(expression)
                 .Cascade(CascadeMode.Stop)
@@ -64,7 +64,7 @@ namespace Queuing_System_Alipour.Validator.Atelier.Base
                 .WithMessage("تاریخ گذشته نمی تواند انتخاب شود");
         }
 
-        protected void QueueDurationRules(Expression<Func<T, TimeSpan>> expression)
+        protected void QueueDurationRules(Expression<Func<T, int?>> expression)
         {
             RuleFor(expression)
                 .Cascade(CascadeMode.Stop)
