@@ -1,7 +1,6 @@
 ﻿using Queuing_System_Alipour.DTOs.Employee;
 using Queuing_System_Alipour.Services;
 using Queuing_System_Alipour.Tool;
-using Queuing_System_Alipour.Tool.Handler;
 
 namespace Queuing_System_Alipour.Window
 {
@@ -15,6 +14,8 @@ namespace Queuing_System_Alipour.Window
             _employeeSrv = new EmployeeService();
         }
 
+        // ============ [ Events ] ============
+
         private void FrmRegister_Load(object sender, EventArgs e)
         {
             if (comboBoxRole.Items.Count > 0)
@@ -23,10 +24,7 @@ namespace Queuing_System_Alipour.Window
 
         private void Btn_login_Click(object sender, EventArgs e)
         {
-            FrmLogin frm = new FrmLogin();
-            this.Hide();
-            frm.ShowDialog();
-            this.Close();
+            Login();
         }
 
         private void Txtbox_username_TextChanged(object sender, EventArgs e)
@@ -66,7 +64,19 @@ namespace Queuing_System_Alipour.Window
                 btn_register.Enabled = false;
         }
 
-        private async void Btn_register_Click(object sender, EventArgs e)
+        private void Btn_register_Click(object sender, EventArgs e)
+        {
+            Register();
+        }
+
+        private void FrmRegister_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _employeeSrv.Dispose();
+        }
+
+        // ============ [ Methods ] ============
+
+        private void Register()
         {
             btn_register.Enabled = false;
 
@@ -94,6 +104,14 @@ namespace Queuing_System_Alipour.Window
                 Mbox.Error(registerResult.Message, Caption.Error);
 
             btn_register.Enabled = true;
+        }
+
+        private void Login()
+        {
+            var frmLogin = new FrmLogin();
+            Hide();
+            frmLogin.ShowDialog();
+            Close();
         }
     }
 }

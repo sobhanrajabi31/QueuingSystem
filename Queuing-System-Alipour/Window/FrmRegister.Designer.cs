@@ -184,6 +184,7 @@ namespace Queuing_System_Alipour.Window
             Name = "FrmRegister";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "پنل ثبت نام";
+            FormClosing += FrmRegister_FormClosing;
             Load += FrmRegister_Load;
             ResumeLayout(false);
             PerformLayout();
