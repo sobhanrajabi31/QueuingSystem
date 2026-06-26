@@ -1,54 +1,29 @@
 ﻿using Queuing_System_Alipour.DTOs.Employee;
-using Queuing_System_Alipour.Entities;
-using Queuing_System_Alipour.Models;
 using Queuing_System_Alipour.Services;
 using Queuing_System_Alipour.Tool;
-using Queuing_System_Alipour.Tool.Handler;
-using Queuing_System_Alipour.Validator;
 
 namespace Queuing_System_Alipour.Window
 {
     public partial class FrmLogin : Form
     {
-        private readonly EmployeeService _service;
+        private readonly EmployeeService _employeeSrv;
 
         public FrmLogin()
         {
             InitializeComponent();
-            _service = new EmployeeService();
+            _employeeSrv = new EmployeeService();
         }
+
+        // ============ [ Events ] ============
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            if (AppState.IsLoginWithToken)
-            {
-                var loginDto = DataProtector.Decrypt();
-
-                if (loginDto != null)
-                {
-                    var result = _service.Login(loginDto);
-
-                    if (result.IsSuccess)
-                        OpenFrmAndSaveData(result.Data);
-
-                    else
-                    {
-                        File.Delete(AppState.TokenFileName);
-                        Mbox.Error(result.Message, Caption.Error);
-                    }
-                }
-
-                else
-                    File.Delete(AppState.TokenFileName);
-            }
+            LoginWithToken();
         }
 
         private void btn_register_Click(object sender, EventArgs e)
         {
-            FrmRegister frm = new FrmRegister();
-            this.Hide();
-            frm.ShowDialog();
-            this.Close();
+            Register();
         }
 
         private void txtbox_username_TextChanged(object sender, EventArgs e)
@@ -75,34 +50,20 @@ namespace Queuing_System_Alipour.Window
         private void txtbox_password_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                btn_login_Click(null, null);
+                Login();
         }
 
-        private async void btn_login_Click(object sender, EventArgs e)
+        private void btn_login_Click(object sender, EventArgs e)
         {
-            var loginDto = new LoginDto
-            {
-                Username = txtbox_username.Text,
-                Password = txtbox_password.Text,
-            };
-
-            btn_login.Enabled = false;
-
-            var result = _service.Login(loginDto);
-
-            if (result.IsSuccess)
-            {
-                if (chckbox_remember.Checked)
-                    DataProtector.Encrypt(result.Data);
-
-                OpenFrmAndSaveData(result.Data);
-            }
-
-            else
-                Mbox.Error(result.Message, Caption.Error);
-
-            btn_login.Enabled = true;
+            Login();
         }
+
+        private void FrmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _employeeSrv.Dispose();
+        }
+
+        // ============ [ Methods ] ============
 
         private void OpenFrmAndSaveData(LoginInfoDto info)
         {
@@ -118,17 +79,63 @@ namespace Queuing_System_Alipour.Window
             Application.Exit();
         }
 
-        //private void ChangePictureConnectionStatus(bool status)
-        //{
-        //    var form = Application.OpenForms["FrmMain"];
-        //    if (form != null)
-        //    {
-        //        var FrmMain = (FrmMain)form;
-        //        FrmMain.ConnectionStatus = status;
-        //        FrmMain.PictureConnection();
-        //    }
-        //    else
-        //        FrmMain.ConnectionStatus = status;
-        //}
+        private void LoginWithToken()
+        {
+            if (AppState.IsLoginWithToken)
+            {
+                var loginDto = DataProtector.Decrypt();
+
+                if (loginDto != null)
+                {
+                    var result = _employeeSrv.Login(loginDto);
+
+                    if (result.IsSuccess)
+                        OpenFrmAndSaveData(result.Data);
+
+                    else
+                    {
+                        File.Delete(AppState.TokenFileName);
+                        Mbox.Error(result.Message, Caption.Error);
+                    }
+                }
+
+                else
+                    File.Delete(AppState.TokenFileName);
+            }
+        }
+
+        private void Login()
+        {
+            var loginDto = new LoginDto
+            {
+                Username = txtbox_username.Text,
+                Password = txtbox_password.Text,
+            };
+
+            btn_login.Enabled = false;
+
+            var result = _employeeSrv.Login(loginDto);
+
+            if (result.IsSuccess)
+            {
+                if (chckbox_remember.Checked)
+                    DataProtector.Encrypt(result.Data);
+
+                OpenFrmAndSaveData(result.Data);
+            }
+
+            else
+                Mbox.Error(result.Message, Caption.Error);
+
+            btn_login.Enabled = true;
+        }
+
+        private void Register()
+        {
+            var frmRegister = new FrmRegister();
+            Hide();
+            frmRegister.ShowDialog();
+            Close();
+        }
     }
 }

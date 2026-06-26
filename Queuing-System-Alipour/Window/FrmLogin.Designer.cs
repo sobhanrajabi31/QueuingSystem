@@ -31,114 +31,123 @@ namespace Queuing_System_Alipour.Window
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
-            this.btn_login = new System.Windows.Forms.Button();
-            this.txtbox_password = new System.Windows.Forms.TextBox();
-            this.txtbox_username = new System.Windows.Forms.TextBox();
-            this.chckbox_remember = new System.Windows.Forms.CheckBox();
-            this.btn_register = new System.Windows.Forms.Button();
-            this.lbl_password = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.lbl_username = new Queuing_System_Alipour.Tool.SafeLabel();
-            this.SuspendLayout();
+            btn_login = new Button();
+            txtbox_password = new TextBox();
+            txtbox_username = new TextBox();
+            chckbox_remember = new CheckBox();
+            btn_register = new Button();
+            lbl_password = new SafeLabel();
+            lbl_username = new SafeLabel();
+            SuspendLayout();
             // 
             // btn_login
             // 
-            this.btn_login.Enabled = false;
-            this.btn_login.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_login.Location = new System.Drawing.Point(72, 241);
-            this.btn_login.Name = "btn_login";
-            this.btn_login.Size = new System.Drawing.Size(121, 35);
-            this.btn_login.TabIndex = 3;
-            this.btn_login.Text = "ورود";
-            this.btn_login.UseVisualStyleBackColor = true;
-            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
+            btn_login.Enabled = false;
+            btn_login.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_login.Location = new Point(84, 278);
+            btn_login.Margin = new Padding(4, 3, 4, 3);
+            btn_login.Name = "btn_login";
+            btn_login.Size = new Size(141, 40);
+            btn_login.TabIndex = 3;
+            btn_login.Text = "ورود";
+            btn_login.UseVisualStyleBackColor = true;
+            btn_login.Click += btn_login_Click;
             // 
             // txtbox_password
             // 
-            this.txtbox_password.Enabled = false;
-            this.txtbox_password.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbox_password.Location = new System.Drawing.Point(72, 180);
-            this.txtbox_password.Name = "txtbox_password";
-            this.txtbox_password.PasswordChar = '*';
-            this.txtbox_password.Size = new System.Drawing.Size(179, 32);
-            this.txtbox_password.TabIndex = 1;
-            this.txtbox_password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtbox_password.TextChanged += new System.EventHandler(this.txtbox_password_TextChanged);
-            this.txtbox_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbox_password_KeyDown);
+            txtbox_password.Enabled = false;
+            txtbox_password.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtbox_password.Location = new Point(84, 208);
+            txtbox_password.Margin = new Padding(4, 3, 4, 3);
+            txtbox_password.Name = "txtbox_password";
+            txtbox_password.PasswordChar = '*';
+            txtbox_password.Size = new Size(208, 32);
+            txtbox_password.TabIndex = 1;
+            txtbox_password.TextAlign = HorizontalAlignment.Center;
+            txtbox_password.TextChanged += txtbox_password_TextChanged;
+            txtbox_password.KeyDown += txtbox_password_KeyDown;
             // 
             // txtbox_username
             // 
-            this.txtbox_username.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbox_username.Location = new System.Drawing.Point(72, 110);
-            this.txtbox_username.Name = "txtbox_username";
-            this.txtbox_username.Size = new System.Drawing.Size(179, 32);
-            this.txtbox_username.TabIndex = 0;
-            this.txtbox_username.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtbox_username.TextChanged += new System.EventHandler(this.txtbox_username_TextChanged);
+            txtbox_username.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtbox_username.Location = new Point(84, 127);
+            txtbox_username.Margin = new Padding(4, 3, 4, 3);
+            txtbox_username.Name = "txtbox_username";
+            txtbox_username.Size = new Size(208, 32);
+            txtbox_username.TabIndex = 0;
+            txtbox_username.TextAlign = HorizontalAlignment.Center;
+            txtbox_username.TextChanged += txtbox_username_TextChanged;
             // 
             // chckbox_remember
             // 
-            this.chckbox_remember.AutoSize = true;
-            this.chckbox_remember.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chckbox_remember.Location = new System.Drawing.Point(153, 218);
-            this.chckbox_remember.Name = "chckbox_remember";
-            this.chckbox_remember.Size = new System.Drawing.Size(103, 23);
-            this.chckbox_remember.TabIndex = 2;
-            this.chckbox_remember.Text = "مرا به خاطر بسپار";
-            this.chckbox_remember.UseVisualStyleBackColor = true;
+            chckbox_remember.AutoSize = true;
+            chckbox_remember.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chckbox_remember.Location = new Point(178, 252);
+            chckbox_remember.Margin = new Padding(4, 3, 4, 3);
+            chckbox_remember.Name = "chckbox_remember";
+            chckbox_remember.Size = new Size(103, 23);
+            chckbox_remember.TabIndex = 2;
+            chckbox_remember.Text = "مرا به خاطر بسپار";
+            chckbox_remember.UseVisualStyleBackColor = true;
             // 
             // btn_register
             // 
-            this.btn_register.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_register.Location = new System.Drawing.Point(199, 241);
-            this.btn_register.Name = "btn_register";
-            this.btn_register.Size = new System.Drawing.Size(52, 35);
-            this.btn_register.TabIndex = 4;
-            this.btn_register.Text = "ثبت نام";
-            this.btn_register.UseVisualStyleBackColor = true;
-            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
+            btn_register.Font = new Font("Vazirmatn ExtraBold", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_register.Location = new Point(232, 278);
+            btn_register.Margin = new Padding(4, 3, 4, 3);
+            btn_register.Name = "btn_register";
+            btn_register.Size = new Size(61, 40);
+            btn_register.TabIndex = 4;
+            btn_register.Text = "ثبت نام";
+            btn_register.UseVisualStyleBackColor = true;
+            btn_register.Click += btn_register_Click;
             // 
             // lbl_password
             // 
-            this.lbl_password.AutoSize = true;
-            this.lbl_password.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_password.Location = new System.Drawing.Point(129, 150);
-            this.lbl_password.Name = "lbl_password";
-            this.lbl_password.Size = new System.Drawing.Size(64, 27);
-            this.lbl_password.TabIndex = 3;
-            this.lbl_password.Text = "رمز عبور";
+            lbl_password.AutoSize = true;
+            lbl_password.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_password.Location = new Point(150, 173);
+            lbl_password.Margin = new Padding(4, 0, 4, 0);
+            lbl_password.Name = "lbl_password";
+            lbl_password.Size = new Size(64, 27);
+            lbl_password.TabIndex = 3;
+            lbl_password.Text = "رمز عبور";
             // 
             // lbl_username
             // 
-            this.lbl_username.AutoSize = true;
-            this.lbl_username.Font = new System.Drawing.Font("Vazirmatn ExtraBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_username.Location = new System.Drawing.Point(124, 80);
-            this.lbl_username.Name = "lbl_username";
-            this.lbl_username.Size = new System.Drawing.Size(75, 27);
-            this.lbl_username.TabIndex = 4;
-            this.lbl_username.Text = "نام کاربری";
+            lbl_username.AutoSize = true;
+            lbl_username.Font = new Font("Vazirmatn ExtraBold", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_username.Location = new Point(145, 92);
+            lbl_username.Margin = new Padding(4, 0, 4, 0);
+            lbl_username.Name = "lbl_username";
+            lbl_username.Size = new Size(75, 27);
+            lbl_username.TabIndex = 4;
+            lbl_username.Text = "نام کاربری";
             // 
             // FrmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 357);
-            this.Controls.Add(this.btn_register);
-            this.Controls.Add(this.chckbox_remember);
-            this.Controls.Add(this.btn_login);
-            this.Controls.Add(this.txtbox_password);
-            this.Controls.Add(this.txtbox_username);
-            this.Controls.Add(this.lbl_password);
-            this.Controls.Add(this.lbl_username);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FrmLogin";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "پنل ورود";
-            this.Load += new System.EventHandler(this.FrmLogin_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(384, 412);
+            Controls.Add(btn_register);
+            Controls.Add(chckbox_remember);
+            Controls.Add(btn_login);
+            Controls.Add(txtbox_password);
+            Controls.Add(txtbox_username);
+            Controls.Add(lbl_password);
+            Controls.Add(lbl_username);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FrmLogin";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "پنل ورود";
+            FormClosing += FrmLogin_FormClosing;
+            Load += FrmLogin_Load;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
