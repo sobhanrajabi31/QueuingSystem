@@ -2,75 +2,57 @@
 using Queuing_System_Alipour.Entities;
 using Queuing_System_Alipour.Models;
 using Queuing_System_Alipour.Repositories;
+using Queuing_System_Alipour.Services.Base;
 using Queuing_System_Alipour.Tool.Handler;
 using Queuing_System_Alipour.Validator.Personnel;
 
 namespace Queuing_System_Alipour.Services
 {
-    public sealed class PersonnelService : IDisposable
+    public sealed class PersonnelService : BaseService<PersonnelRepository>
     {
-        private readonly PersonnelRepository _repo;
-
         private readonly CreatePersonnelQueueValidator _createPersonnelQueueValidator;
         private readonly UpdatePersonnelQueueValidator _updatePersonnelQueueValidator;
 
         public PersonnelService()
         {
-            _repo = new PersonnelRepository();
             _createPersonnelQueueValidator = new CreatePersonnelQueueValidator();
             _updatePersonnelQueueValidator = new UpdatePersonnelQueueValidator();
         }
 
+        public List<Personnel> GetByDate(DateTime dateTime)
+        {
+            return _repo.GetByDate(dateTime);
+        }
+
         public ResultModel CreateQueue(CreatePersonnelQueueDto data)
         {
-            var result = new ResultModel
-            {
-                IsSuccess = false
-            };
-
             var validation = _createPersonnelQueueValidator.Validate(data);
 
             if (validation.IsValid)
             {
-                if (_repo.IsConnectionOk())
+                var newQueue = new Personnel
                 {
-                    var newQueue = new Personnel
-                    {
-                        LastName = data.LastName,
-                        QueueCreatedAt = data.QueueCreatedAt,
-                        QueueStatus = false,
-                        EmployeeId = AppState.EmployeeId
-                    };
+                    LastName = data.LastName,
+                    QueueCreatedAt = data.QueueCreatedAt,
+                    QueueStatus = false,
+                    EmployeeId = AppState.EmployeeId
+                };
 
-                    _repo.CreateQueue(newQueue);
+                _repo.CreateQueue(newQueue);
 
-                    if (_repo.SaveChanges())
-                    {
-                        result.IsSuccess = true;
-                        result.Message = MessageHandler.GetMessage(MessageCode.QueueAdded);
-                    }
-
-                    else
-                        result.Message = ErrorHandler.GetMessage(ErrorCode.FailedToCreateQueue);
-                }
+                if (_repo.SaveChanges())
+                    return Success(MessageCode.QueueAdded);
 
                 else
-                    result.Message = ErrorHandler.GetMessage(ErrorCode.DbConnectionFailed);
+                    return Fail(ErrorCode.FailedToCreateQueue);
             }
 
             else
-                result.Message = validation.Errors.ToText();
-
-            return result;
+                return Fail(validation.Errors.ToText());
         }
 
         public ResultModel UpdateQueue(UpdatePersonnelQueueDto data)
         {
-            var result = new ResultModel
-            {
-                IsSuccess = false
-            };
-
             var validation = _updatePersonnelQueueValidator.Validate(data);
 
             if (validation.IsValid)
@@ -79,32 +61,47 @@ namespace Queuing_System_Alipour.Services
 
                 if (queue != null)
                 {
-                    queue.QueueEndedAt = data.QueueEndedAt;
-                    queue.QueueStatus = true;
-
-                    if (_repo.SaveChanges())
-                    {
-                        result.IsSuccess = true;
-                        result.Message = MessageHandler.GetMessage(MessageCode.QueueStatusToDone);
-                    }
+                    if (queue.QueueStatus)
+                        return Fail(ErrorCode.CannotSetQueueStatusAnymore);
 
                     else
-                        result.Message = ErrorHandler.GetMessage(ErrorCode.FailedToUpdateQueue);
+                    {
+                        queue.QueueEndedAt = data.QueueEndedAt;
+                        queue.QueueStatus = true;
+
+                        if (_repo.SaveChanges())
+                            return Success(MessageCode.QueueStatusToDone);
+
+                        else
+                            return Fail(ErrorCode.FailedToUpdateQueue);
+                    }
                 }
 
                 else
-                    result.Message = ErrorHandler.GetMessage(ErrorCode.QueueNotFound);
+                    return Fail(ErrorCode.QueueNotFound);
             }
 
             else
-                result.Message = validation.Errors.ToText();
-
-            return result;
+                return Fail(validation.Errors.ToText());
         }
 
-        public void Dispose()
+        public ResultModel DeleteQueue(int id)
         {
-            _repo.Dispose();
+            var exists = _repo.Exists(id);
+
+            if (exists)
+            {
+                _repo.DeleteQueue(id);
+
+                if (_repo.SaveChanges())
+                    return Success(MessageCode.QueueRemoved);
+
+                else
+                    return Fail(ErrorCode.FailedToDeleteQueue);
+            }
+
+            else
+                return Fail(ErrorCode.QueueNotFound);
         }
     }
 }

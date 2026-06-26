@@ -1,126 +1,188 @@
-﻿using Queuing_System_Alipour.DTOs.Atelier;
+﻿using Microsoft.EntityFrameworkCore;
+using Queuing_System_Alipour.DTOs.Atelier;
+using Queuing_System_Alipour.Entities;
 using Queuing_System_Alipour.Models;
 using Queuing_System_Alipour.Repositories;
+using Queuing_System_Alipour.Services.Base;
 using Queuing_System_Alipour.Tool.Handler;
 using Queuing_System_Alipour.Validator.Atelier;
 
 namespace Queuing_System_Alipour.Services
 {
-    public sealed class AtelierService : IDisposable
+    public sealed class AtelierService : BaseService<AtelierRepository>
     {
-        private readonly AtelierRepository _repo;
-
         private readonly DeleteAtelierQueueValidator _deleteQueueValidator;
         private readonly UpdateAtelierQueueStatusValidator _updateAtelierQueueStatusValidator;
 
         public AtelierService()
         {
-            _repo = new AtelierRepository();
             _deleteQueueValidator = new DeleteAtelierQueueValidator();
             _updateAtelierQueueStatusValidator = new UpdateAtelierQueueStatusValidator();
         }
 
+        public List<Atelier> GetByEmployeeId(int employeeId)
+        {
+            return _repo.GetByEmployeeId(employeeId);
+        }
+
+        public Atelier? GetById(int id)
+        {
+            return _repo.GetById(id);
+        }
+
+        public List<Atelier> GetQueues(QueueFilterDto filter)
+        {
+            IQueryable<Atelier> query = _repo.GetByQuery(filter.EmployeeId);
+
+            query = ApplyTimeFilter(query, filter.TimeFrame);
+            query = ApplyStatusFilter(query, filter.QueueStatus);
+            query = ApplySearchFilter(query, filter.Search, filter.Data);
+
+            return [.. query];
+        }
+
+        #region GetQueues shattered into pieces
+
+        private IQueryable<Atelier> ApplyTimeFilter(IQueryable<Atelier> query, FilterByTimeFrame timeFrame)
+        {
+            if (timeFrame != FilterByTimeFrame.None)
+            {
+                DateTime today = DateTime.Today;
+
+                switch (timeFrame)
+                {
+                    case FilterByTimeFrame.BeforeQueueDay:
+                        query = query.Where(x => x.QueueCreatedAt.Date > today);
+                        break;
+
+                    case FilterByTimeFrame.InQueueDay:
+                        query = query.Where(x => x.QueueCreatedAt.Date == today);
+                        break;
+
+                    case FilterByTimeFrame.AfterQueueDay:
+                        query = query.Where(x => x.QueueCreatedAt < today);
+                        break;
+                }
+            }
+
+            return query;
+        }
+
+        private IQueryable<Atelier> ApplyStatusFilter(IQueryable<Atelier> query, FilterByQueueStatus queueStatus)
+        {
+            if (queueStatus != FilterByQueueStatus.None)
+            {
+                switch (queueStatus)
+                {
+                    case FilterByQueueStatus.Pending:
+                        query = query.Where(x => x.QueueStatus == QueueStatus.Pending);
+                        break;
+
+                    case FilterByQueueStatus.Done:
+                        query = query.Where(x => x.QueueStatus == QueueStatus.Done);
+                        break;
+
+                    case FilterByQueueStatus.Canceled:
+                        query = query.Where(x => x.QueueStatus == QueueStatus.Canceled);
+                        break;
+                }
+            }
+
+            return query;
+        }
+
+        private IQueryable<Atelier> ApplySearchFilter(IQueryable<Atelier> query, FilterBySearch search, string data)
+        {
+            if (search != FilterBySearch.None)
+            {
+                switch (search)
+                {
+                    case FilterBySearch.FullName:
+                        query = query.Where(x => EF.Functions.Like(
+                            x.FullName, $"%{data}%"));
+                        break;
+
+                    case FilterBySearch.PhoneNumber:
+                        query = query.Where(x => EF.Functions.Like(
+                            x.PhoneNumber, $"%{data}%"));
+                        break;
+                }
+            }
+
+            return query;
+        }
+
+        #endregion
+
+        public ResultModel<int> GetTodayQueuesCount(int employeeId)
+        {
+            return Success(null, _repo.GetTodayAtelierQueuesCount(employeeId));
+        }
+
         public ResultModel RemoveQueue(DeleteAtelierQueueDto data)
         {
-            var result = new ResultModel
-            {
-                IsSuccess = false
-            };
-
             var validation = _deleteQueueValidator.Validate(data);
 
             if (validation.IsValid)
             {
-                if (_repo.IsConnectionOk())
+                var exists = _repo.Exists(data.QueueId, data.EmployeeId);
+
+                if (exists)
                 {
-                    var queue = _repo.GetById(data.EmployeeId)
-                        .SingleOrDefault(x => x.Id == data.QueueId);
+                    _repo.Delete(data.QueueId);
 
-                    if (queue != null)
-                    {
-                        _repo.Delete(queue);
-
-                        if (_repo.SaveChanges())
-                        {
-                            result.IsSuccess = true;
-                            result.Message = MessageHandler.GetMessage(MessageCode.QueueRemoved);
-                        }
-
-                        else
-                            result.Message = ErrorHandler.GetMessage(ErrorCode.FailedToDeleteQueue);
-                    }
+                    if (_repo.SaveChanges())
+                        return Success(MessageCode.QueueRemoved);
 
                     else
-                        result.Message = ErrorHandler.GetMessage(ErrorCode.QueueNotFound);
+                        return Fail(ErrorCode.FailedToDeleteQueue);
                 }
 
                 else
-                    result.Message = ErrorHandler.GetMessage(ErrorCode.DbConnectionFailed);
+                    return Fail(ErrorCode.QueueNotFound);
             }
 
             else
-                result.Message = validation.Errors.ToText();
-
-            return result;
+                return Fail(validation.Errors.ToText());
         }
 
         public ResultModel UpdateQueue(UpdateAtelierQueueDto data)
         {
-            var result = new ResultModel
-            {
-                IsSuccess = false
-            };
-
             var validation = _updateAtelierQueueStatusValidator.Validate(data);
 
             if (validation.IsValid)
             {
-                if (_repo.IsConnectionOk())
+                var queue = _repo.GetByIdAndEmployeeId(data.QueueId, data.EmployeeId);
+
+                if (queue != null)
                 {
-                    var queue = _repo.GetById(data.EmployeeId)
-                        .SingleOrDefault(x => x.Id == data.QueueId);
-
-                    if (queue != null)
+                    if (queue.QueueStatus == QueueStatus.Pending)
                     {
-                        if (queue.QueueStatus == 0)
+                        queue.QueueStatus = data.QueueStatus;
+                        //_repo.Update(queue); It's not nessesery
+
+                        if (_repo.SaveChanges())
                         {
-                            queue.QueueStatus = data.QueueStatus;
-                            _repo.Update(queue);
+                            MessageCode messageCode = data.QueueStatus == QueueStatus.Done
+                                ? MessageCode.QueueStatusToDone : MessageCode.QueueStatusToCancel;
 
-                            if (_repo.SaveChanges())
-                            {
-                                MessageCode messageCode = data.QueueStatus == 1
-                                    ? MessageCode.QueueStatusToDone : MessageCode.QueueStatusToCancel;
-
-                                result.IsSuccess = true;
-                                result.Message = MessageHandler.GetMessage(messageCode);
-                            }
-
-                            else
-                                result.Message = ErrorHandler.GetMessage(ErrorCode.FailedToUpdateQueue);
+                            return Success(messageCode);
                         }
 
                         else
-                            result.Message = ErrorHandler.GetMessage(ErrorCode.CannotSetQueueStatusAnymore);
+                            return Fail(ErrorCode.FailedToUpdateQueue);
                     }
 
                     else
-                        result.Message = ErrorHandler.GetMessage(ErrorCode.QueueNotFound);
+                        return Fail(ErrorCode.CannotSetQueueStatusAnymore);
                 }
 
                 else
-                    result.Message = ErrorHandler.GetMessage(ErrorCode.DbConnectionFailed);
+                    return Fail(ErrorCode.QueueNotFound);
             }
 
             else
-                result.Message = validation.Errors.ToText();
-
-            return result;
-        }
-
-        public void Dispose()
-        {
-            _repo.Dispose();
+                return Fail(validation.Errors.ToText());
         }
     }
 }

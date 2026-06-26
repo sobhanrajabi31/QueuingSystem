@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Queuing_System_Alipour.Configurations;
 using Queuing_System_Alipour.Entities;
-using System.Configuration;
 
 namespace Queuing_System_Alipour
 {

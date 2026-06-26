@@ -2,23 +2,21 @@
 using Queuing_System_Alipour.Entities;
 using Queuing_System_Alipour.Models;
 using Queuing_System_Alipour.Repositories;
+using Queuing_System_Alipour.Services.Base;
 using Queuing_System_Alipour.Tool;
 using Queuing_System_Alipour.Tool.Handler;
 using Queuing_System_Alipour.Validator.Employee;
 
 namespace Queuing_System_Alipour.Services
 {
-    public sealed class EmployeeService : IDisposable
+    public sealed class EmployeeService : BaseService<EmployeeRepository>
     {
-        private readonly EmployeeRepository _repo;
-
         private readonly ResetPasswordValidator _resetPassvalidator;
         private readonly LoginValidator _loginValidator;
         private readonly RegisterValidator _registerValidator;
 
         public EmployeeService()
         {
-            _repo = new EmployeeRepository();
             _resetPassvalidator = new ResetPasswordValidator();
             _loginValidator = new LoginValidator();
             _registerValidator = new RegisterValidator();
@@ -26,149 +24,98 @@ namespace Queuing_System_Alipour.Services
 
         public ResultModel<LoginInfoDto> Login(LoginDto data)
         {
-            var result = new ResultModel<LoginInfoDto>
-            {
-                IsSuccess = false
-            };
-
             var validation = _loginValidator.Validate(data);
 
             if (validation.IsValid)
             {
-                if (_repo.IsConnectionOk())
-                {
-                    var employee = _repo.GetByUsername(data.Username);
+                var employee = _repo.GetByUsername(data.Username);
 
-                    if (employee != null && employee.Password == PasswordHasher.Hash(data.Password))
+                if (employee != null && employee.Password == PasswordHasher.Hash(data.Password))
+                    return Success(null, new LoginInfoDto
                     {
-                        result.IsSuccess = true;
-                        result.Data = new LoginInfoDto
-                        {
-                            Id = employee.Id,
-                            Username = employee.Username,
-                            Password = data.Password,
-                            Role = employee.Role
-                        };
-                    }
-
-                    else
-                        result.Message = ErrorHandler.GetMessage(ErrorCode.InvalidUsernameOrPassword);
-                }
+                        Id = employee.Id,
+                        Username = employee.Username,
+                        Password = data.Password,
+                        Role = employee.Role
+                    });
 
                 else
-                    result.Message = ErrorHandler.GetMessage(ErrorCode.DbConnectionFailed);
+                    return Fail<LoginInfoDto>(ErrorCode.InvalidUsernameOrPassword, null);
             }
 
             else
-                result.Message = validation.Errors.ToText();
-
-            return result;
+                return Fail<LoginInfoDto>(validation.Errors.ToText(), null);
         }
 
         public ResultModel Register(RegisterDto data)
         {
-            var result = new ResultModel
-            {
-                IsSuccess = false
-            };
-
             var validation = _registerValidator.Validate(data);
 
             if (validation.IsValid)
             {
                 if (data.Password == data.RepeatPassword)
                 {
-                    if (_repo.IsConnectionOk())
-                    {
-                        var exists = _repo.ExistsByUsername(data.Username);
+                    var exists = _repo.ExistsByUsername(data.Username);
 
-                        if (exists)
-                            result.Message = ErrorHandler.GetMessage(ErrorCode.UsernameExists);
-
-                        else
-                        {
-                            var employee = new Employee
-                            {
-                                Username = data.Username,
-                                Password = PasswordHasher.Hash(data.Password),
-                                Role = data.Role,
-                                AccessLevel = false
-                            };
-
-                            _repo.Create(employee);
-
-                            if (_repo.SaveChanges())
-                            {
-                                result.IsSuccess = true;
-                                result.Message = MessageHandler.GetMessage(MessageCode.AccountCreated);
-                            }
-
-                            else
-                                result.Message = ErrorHandler.GetMessage(ErrorCode.FailedToCreateAccount);
-                        }
-                    }
+                    if (exists)
+                        return Fail(ErrorCode.UsernameExists);
 
                     else
-                        result.Message = ErrorHandler.GetMessage(ErrorCode.DbConnectionFailed);
+                    {
+                        var employee = new Employee
+                        {
+                            Username = data.Username,
+                            Password = PasswordHasher.Hash(data.Password),
+                            Role = data.Role,
+                            AccessLevel = false
+                        };
+
+                        _repo.Create(employee);
+
+                        if (_repo.SaveChanges())
+                            return Success(MessageCode.AccountCreated);
+
+                        else
+                            return Fail(ErrorCode.FailedToCreateAccount);
+                    }
                 }
 
                 else
-                    result.Message = ErrorHandler.GetMessage(ErrorCode.InvalidRepeatPassword);
+                    return Fail(ErrorCode.InvalidRepeatPassword);
             }
 
             else
-                result.Message = validation.Errors.ToText();
-
-            return result;
+                return Fail(validation.Errors.ToText());
         }
 
         public ResultModel ResetPassword(ResetPasswordDto data)
         {
-            var result = new ResultModel
-            {
-                IsSuccess = false
-            };
-
             var validation = _resetPassvalidator.Validate(data);
 
             if (validation.IsValid)
             {
-                if (_repo.IsConnectionOk())
+                var employee = _repo.GetById(data.Id);
+
+                if (employee != null)
                 {
-                    var employee = _repo.GetById(data.Id);
-
-                    if (employee != null)
+                    if (employee.Password == PasswordHasher.Hash(data.CurrentPassword))
                     {
-                        if (employee.Password == PasswordHasher.Hash(data.CurrentPassword))
-                        {
-                            employee.Password = PasswordHasher.Hash(data.NewPassword);
-                            _repo.SaveChanges();
+                        employee.Password = PasswordHasher.Hash(data.NewPassword);
+                        _repo.SaveChanges();
 
-                            result.IsSuccess = true;
-                            result.Message = MessageHandler.GetMessage(MessageCode.PasswordChanged);
-                        }
-
-                        else
-                            result.Message = ErrorHandler.GetMessage(ErrorCode.InvalidCurrentPassword);
+                        return Success(MessageCode.PasswordChanged);
                     }
 
                     else
-                        result.Message = ErrorHandler.GetMessage(ErrorCode.UsernameNotFound);
+                        return Fail(ErrorCode.InvalidCurrentPassword);
                 }
 
                 else
-                    result.Message = ErrorHandler.GetMessage(ErrorCode.DbConnectionFailed);
+                    return Fail(ErrorCode.UsernameNotFound);
             }
 
             else
-                result.Message = validation.Errors.ToText();
-
-            return result;
-        }
-
-        public void Dispose()
-        {
-            _repo.Dispose();
+                return Fail(validation.Errors.ToText());
         }
     }
 }
