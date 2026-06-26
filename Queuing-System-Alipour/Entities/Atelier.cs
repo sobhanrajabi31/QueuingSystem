@@ -15,7 +15,7 @@
         public DateTime QueueCreatedAt { get; set; }
         public TimeSpan QueueDuration { get; set; }
         public QueueStatus QueueStatus { get; set; }
-        public string Note { get; set; }
+        public string? Note { get; set; }
 
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }

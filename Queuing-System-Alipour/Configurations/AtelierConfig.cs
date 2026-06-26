@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Queuing_System_Alipour.Entities;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Queuing_System_Alipour.Configurations
 {
@@ -17,9 +11,6 @@ namespace Queuing_System_Alipour.Configurations
             entity.Property(x => x.FullName)
                 .IsRequired()
                 .HasMaxLength(30);
-
-            entity.HasIndex(x => x.PhoneNumber)
-                .IsUnique();
 
             entity.Property(x => x.PhoneNumber)
                 .IsRequired()

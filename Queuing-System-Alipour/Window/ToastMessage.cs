@@ -52,7 +52,7 @@ namespace Queuing_System_Alipour.Window
             btnClose = new Button()
             {
                 Text = "×",
-                Font = new Font("Vazirmatn", 10, FontStyle.Bold),
+                Font = new Font("Vazirmatn ExtraBold", 10, FontStyle.Bold),
                 Width = 30,
                 Height = 30,
                 BackColor = Color.Transparent,
