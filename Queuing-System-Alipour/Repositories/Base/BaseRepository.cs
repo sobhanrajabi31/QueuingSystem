@@ -10,11 +10,6 @@
             //_context.Database.EnsureCreated();
         }
 
-        public bool IsConnectionOk()
-        {
-            return _context.Database.CanConnect();
-        }
-
         public bool SaveChanges()
         {
             return _context.SaveChanges() > 0;
