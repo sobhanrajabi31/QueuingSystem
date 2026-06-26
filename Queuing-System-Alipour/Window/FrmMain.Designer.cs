@@ -126,15 +126,6 @@
             lbl_Upcoming = new Queuing_System_Alipour.Tool.SafeLabel();
             UpcomingPic = new PictureBox();
             AtelierDatagridview = new DataGridView();
-            AtelierNoteColumn = new DataGridViewButtonColumn();
-            AtelierStatusDayColumn = new DataGridViewImageColumn();
-            AtelierStatusColumn = new DataGridViewImageColumn();
-            AtelierDateColumn = new DataGridViewTextBoxColumn();
-            AtelierHourColumn = new DataGridViewTextBoxColumn();
-            AtelierSpentColumn = new DataGridViewTextBoxColumn();
-            AtelierPhoneNumberColumn = new DataGridViewTextBoxColumn();
-            AtelierFullNameColumn = new DataGridViewTextBoxColumn();
-            AtelierIDColumn = new DataGridViewTextBoxColumn();
             ActionPanel = new Panel();
             lbl_Action = new Queuing_System_Alipour.Tool.SafeLabel();
             btn_deleteAtelierQueue = new Button();
@@ -154,6 +145,15 @@
             txtbox_oldPass = new TextBox();
             lbl_setting = new Queuing_System_Alipour.Tool.SafeLabel();
             timerClock = new System.Windows.Forms.Timer(components);
+            AtelierNoteColumn = new DataGridViewButtonColumn();
+            AtelierStatusDayColumn = new DataGridViewImageColumn();
+            AtelierStatusColumn = new DataGridViewImageColumn();
+            AtelierDateColumn = new DataGridViewTextBoxColumn();
+            AtelierHourColumn = new DataGridViewTextBoxColumn();
+            AtelierSpentColumn = new DataGridViewTextBoxColumn();
+            AtelierPhoneNumberColumn = new DataGridViewTextBoxColumn();
+            AtelierFullNameColumn = new DataGridViewTextBoxColumn();
+            AtelierIDColumn = new DataGridViewTextBoxColumn();
             sidebarPanel.SuspendLayout();
             welcomePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDigitalClock).BeginInit();
@@ -1304,96 +1304,6 @@
             AtelierDatagridview.CellContentClick += AtelierDatagridview_CellContentClick;
             AtelierDatagridview.SelectionChanged += AtelierDatagridview_SelectionChanged;
             // 
-            // AtelierNoteColumn
-            // 
-            AtelierNoteColumn.HeaderText = "یادداشت";
-            AtelierNoteColumn.MinimumWidth = 6;
-            AtelierNoteColumn.Name = "AtelierNoteColumn";
-            AtelierNoteColumn.ReadOnly = true;
-            AtelierNoteColumn.Resizable = DataGridViewTriState.False;
-            AtelierNoteColumn.Width = 70;
-            // 
-            // AtelierStatusDayColumn
-            // 
-            AtelierStatusDayColumn.FillWeight = 101.7589F;
-            AtelierStatusDayColumn.HeaderText = "وضعیت روز";
-            AtelierStatusDayColumn.MinimumWidth = 6;
-            AtelierStatusDayColumn.Name = "AtelierStatusDayColumn";
-            AtelierStatusDayColumn.ReadOnly = true;
-            AtelierStatusDayColumn.Resizable = DataGridViewTriState.False;
-            // 
-            // AtelierStatusColumn
-            // 
-            AtelierStatusColumn.FillWeight = 102.837F;
-            AtelierStatusColumn.HeaderText = "وضعیت نوبت";
-            AtelierStatusColumn.MinimumWidth = 6;
-            AtelierStatusColumn.Name = "AtelierStatusColumn";
-            AtelierStatusColumn.ReadOnly = true;
-            AtelierStatusColumn.Resizable = DataGridViewTriState.False;
-            AtelierStatusColumn.Width = 75;
-            // 
-            // AtelierDateColumn
-            // 
-            AtelierDateColumn.FillWeight = 100.2909F;
-            AtelierDateColumn.HeaderText = "تاریخ";
-            AtelierDateColumn.MinimumWidth = 6;
-            AtelierDateColumn.Name = "AtelierDateColumn";
-            AtelierDateColumn.ReadOnly = true;
-            AtelierDateColumn.Resizable = DataGridViewTriState.False;
-            AtelierDateColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AtelierHourColumn
-            // 
-            AtelierHourColumn.FillWeight = 101.7259F;
-            AtelierHourColumn.HeaderText = "ساعت";
-            AtelierHourColumn.MinimumWidth = 6;
-            AtelierHourColumn.Name = "AtelierHourColumn";
-            AtelierHourColumn.ReadOnly = true;
-            AtelierHourColumn.Resizable = DataGridViewTriState.False;
-            AtelierHourColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            AtelierHourColumn.Width = 70;
-            // 
-            // AtelierSpentColumn
-            // 
-            AtelierSpentColumn.HeaderText = "زمان نوبت";
-            AtelierSpentColumn.Name = "AtelierSpentColumn";
-            AtelierSpentColumn.ReadOnly = true;
-            AtelierSpentColumn.Resizable = DataGridViewTriState.False;
-            AtelierSpentColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            AtelierSpentColumn.Width = 90;
-            // 
-            // AtelierPhoneNumberColumn
-            // 
-            AtelierPhoneNumberColumn.FillWeight = 101.7259F;
-            AtelierPhoneNumberColumn.HeaderText = "شماره تماس";
-            AtelierPhoneNumberColumn.MinimumWidth = 6;
-            AtelierPhoneNumberColumn.Name = "AtelierPhoneNumberColumn";
-            AtelierPhoneNumberColumn.ReadOnly = true;
-            AtelierPhoneNumberColumn.Resizable = DataGridViewTriState.False;
-            AtelierPhoneNumberColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AtelierFullNameColumn
-            // 
-            AtelierFullNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            AtelierFullNameColumn.FillWeight = 100.2909F;
-            AtelierFullNameColumn.HeaderText = "نام و نام خانوادگی";
-            AtelierFullNameColumn.MinimumWidth = 6;
-            AtelierFullNameColumn.Name = "AtelierFullNameColumn";
-            AtelierFullNameColumn.ReadOnly = true;
-            AtelierFullNameColumn.Resizable = DataGridViewTriState.False;
-            AtelierFullNameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AtelierIDColumn
-            // 
-            AtelierIDColumn.FillWeight = 91.37056F;
-            AtelierIDColumn.HeaderText = "آیدی";
-            AtelierIDColumn.MinimumWidth = 6;
-            AtelierIDColumn.Name = "AtelierIDColumn";
-            AtelierIDColumn.ReadOnly = true;
-            AtelierIDColumn.Resizable = DataGridViewTriState.False;
-            AtelierIDColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            AtelierIDColumn.Width = 60;
-            // 
             // ActionPanel
             // 
             ActionPanel.BorderStyle = BorderStyle.FixedSingle;
@@ -1618,6 +1528,96 @@
             timerClock.Interval = 60000;
             timerClock.Tick += TimerClock_Tick;
             // 
+            // AtelierNoteColumn
+            // 
+            AtelierNoteColumn.HeaderText = "یادداشت";
+            AtelierNoteColumn.MinimumWidth = 6;
+            AtelierNoteColumn.Name = "AtelierNoteColumn";
+            AtelierNoteColumn.ReadOnly = true;
+            AtelierNoteColumn.Resizable = DataGridViewTriState.False;
+            AtelierNoteColumn.Width = 70;
+            // 
+            // AtelierStatusDayColumn
+            // 
+            AtelierStatusDayColumn.FillWeight = 101.7589F;
+            AtelierStatusDayColumn.HeaderText = "وضعیت روز";
+            AtelierStatusDayColumn.MinimumWidth = 6;
+            AtelierStatusDayColumn.Name = "AtelierStatusDayColumn";
+            AtelierStatusDayColumn.ReadOnly = true;
+            AtelierStatusDayColumn.Resizable = DataGridViewTriState.False;
+            // 
+            // AtelierStatusColumn
+            // 
+            AtelierStatusColumn.FillWeight = 102.837F;
+            AtelierStatusColumn.HeaderText = "وضعیت نوبت";
+            AtelierStatusColumn.MinimumWidth = 6;
+            AtelierStatusColumn.Name = "AtelierStatusColumn";
+            AtelierStatusColumn.ReadOnly = true;
+            AtelierStatusColumn.Resizable = DataGridViewTriState.False;
+            AtelierStatusColumn.Width = 75;
+            // 
+            // AtelierDateColumn
+            // 
+            AtelierDateColumn.FillWeight = 100.2909F;
+            AtelierDateColumn.HeaderText = "تاریخ";
+            AtelierDateColumn.MinimumWidth = 6;
+            AtelierDateColumn.Name = "AtelierDateColumn";
+            AtelierDateColumn.ReadOnly = true;
+            AtelierDateColumn.Resizable = DataGridViewTriState.False;
+            AtelierDateColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AtelierHourColumn
+            // 
+            AtelierHourColumn.FillWeight = 101.7259F;
+            AtelierHourColumn.HeaderText = "ساعت";
+            AtelierHourColumn.MinimumWidth = 6;
+            AtelierHourColumn.Name = "AtelierHourColumn";
+            AtelierHourColumn.ReadOnly = true;
+            AtelierHourColumn.Resizable = DataGridViewTriState.False;
+            AtelierHourColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            AtelierHourColumn.Width = 70;
+            // 
+            // AtelierSpentColumn
+            // 
+            AtelierSpentColumn.HeaderText = "مدت زمان نوبت";
+            AtelierSpentColumn.Name = "AtelierSpentColumn";
+            AtelierSpentColumn.ReadOnly = true;
+            AtelierSpentColumn.Resizable = DataGridViewTriState.False;
+            AtelierSpentColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            AtelierSpentColumn.Width = 90;
+            // 
+            // AtelierPhoneNumberColumn
+            // 
+            AtelierPhoneNumberColumn.FillWeight = 101.7259F;
+            AtelierPhoneNumberColumn.HeaderText = "شماره تماس";
+            AtelierPhoneNumberColumn.MinimumWidth = 6;
+            AtelierPhoneNumberColumn.Name = "AtelierPhoneNumberColumn";
+            AtelierPhoneNumberColumn.ReadOnly = true;
+            AtelierPhoneNumberColumn.Resizable = DataGridViewTriState.False;
+            AtelierPhoneNumberColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AtelierFullNameColumn
+            // 
+            AtelierFullNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            AtelierFullNameColumn.FillWeight = 100.2909F;
+            AtelierFullNameColumn.HeaderText = "نام و نام خانوادگی";
+            AtelierFullNameColumn.MinimumWidth = 6;
+            AtelierFullNameColumn.Name = "AtelierFullNameColumn";
+            AtelierFullNameColumn.ReadOnly = true;
+            AtelierFullNameColumn.Resizable = DataGridViewTriState.False;
+            AtelierFullNameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AtelierIDColumn
+            // 
+            AtelierIDColumn.FillWeight = 91.37056F;
+            AtelierIDColumn.HeaderText = "آیدی";
+            AtelierIDColumn.MinimumWidth = 6;
+            AtelierIDColumn.Name = "AtelierIDColumn";
+            AtelierIDColumn.ReadOnly = true;
+            AtelierIDColumn.Resizable = DataGridViewTriState.False;
+            AtelierIDColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            AtelierIDColumn.Width = 60;
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(6F, 19F);
@@ -1791,6 +1791,11 @@
         private DataGridViewTextBoxColumn PersonnelIdColumn;
         private DataGridViewTextBoxColumn PersonnelLastNameColumn;
         private DataGridViewTextBoxColumn PersonnelWaitTimeColumn;
+        private DataGridView StatsDatagrid;
+        private DataGridViewTextBoxColumn StatUsernameColumn;
+        private DataGridViewTextBoxColumn StatAtelierCount;
+        private DataGridViewTextBoxColumn StatPersonnelCount;
+        private DataGridViewTextBoxColumn StatConnectionColumn;
         private DataGridViewButtonColumn AtelierNoteColumn;
         private DataGridViewImageColumn AtelierStatusDayColumn;
         private DataGridViewImageColumn AtelierStatusColumn;
@@ -1800,10 +1805,5 @@
         private DataGridViewTextBoxColumn AtelierPhoneNumberColumn;
         private DataGridViewTextBoxColumn AtelierFullNameColumn;
         private DataGridViewTextBoxColumn AtelierIDColumn;
-        private DataGridView StatsDatagrid;
-        private DataGridViewTextBoxColumn StatUsernameColumn;
-        private DataGridViewTextBoxColumn StatAtelierCount;
-        private DataGridViewTextBoxColumn StatPersonnelCount;
-        private DataGridViewTextBoxColumn StatConnectionColumn;
     }
 }

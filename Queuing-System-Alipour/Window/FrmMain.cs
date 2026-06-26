@@ -331,7 +331,7 @@ namespace Queuing_System_Alipour.Window
             target.Visible = true;
         }
 
-        private void RefreshDataGrid(RefreshType type)
+        public void RefreshDataGrid(RefreshType type)
         {
             switch (type)
             {
@@ -363,12 +363,12 @@ namespace Queuing_System_Alipour.Window
                 _noteManager.Add(x.Id, x.Note);
 
                 Image dateImage;
-                var today = DateTime.Today;
+                var today = DateTime.Today.Date;
 
-                if (x.QueueCreatedAt > today)
+                if (x.QueueCreatedAt.Date > today)
                     dateImage = Resource.Yellow;
 
-                else if (x.QueueCreatedAt == today)
+                else if (x.QueueCreatedAt.Date == today)
                     dateImage = Resource.Green;
 
                 else
@@ -385,14 +385,19 @@ namespace Queuing_System_Alipour.Window
                 else
                     statusImage = Resource.x;
 
-                AtelierDatagridview.Rows.Add("مشاهده", Img.ConvertToBmp(dateImage),
-                    Img.ConvertToBmp(statusImage), x.QueueCreatedAt.ToString("yyyy/MM/dd").ConvertToEn_Date().ConvertToFa_Date(),
-                    x.QueueCreatedAt.ToString("HH:mm"),
-                    "یک ساعت", x.PhoneNumber, x.FullName, x.Id);
+                var id = x.Id;
+                var fullName = x.FullName;
+                var phoneNumber = x.PhoneNumber;
+                var duration = $"{x.QueueEndAt.Hour - x.QueueCreatedAt.Hour}";
+                var startAt = x.QueueCreatedAt.ToString("HH:mm");
+                var date = x.QueueCreatedAt.ConvertToFa_Date();
 
-                for (int i = 0; i < AtelierDatagridview.Rows.Count; i++)
+                AtelierDatagridview.Rows.Add("مشاهده", Img.ConvertToBmp(dateImage), Img.ConvertToBmp(statusImage),
+                    date, startAt, duration, phoneNumber, fullName, id);
+
+                for (var i = 0; i < AtelierDatagridview.Rows.Count; i++)
                 {
-                    int targetIndex = int.Parse(AtelierDatagridview.Rows[i].Cells["AtelierIdColumn"].Value.ToString());
+                    var targetIndex = int.Parse(AtelierDatagridview.Rows[i].Cells["AtelierIdColumn"].Value.ToString());
 
                     if (targetIndex == selectedIndex)
                     {
@@ -598,7 +603,7 @@ namespace Queuing_System_Alipour.Window
                     Data = txtbox_SearchBy.Text
                 };
 
-                var ateliers = _atelierSrv.GetQueues(queueFilter);
+                var ateliers = _atelierSrv.GetByFilter(queueFilter);
                 RefreshAtelierQueues(ateliers);
             }
 
@@ -647,7 +652,7 @@ namespace Queuing_System_Alipour.Window
 
         private void AddAtelierQueue()
         {
-            var frmAddAtelier = new FrmAddAtelierQueue();
+            var frmAddAtelier = new FrmAddAtelierQueue(this, _atelierSrv);
             frmAddAtelier.ShowDialog();
         }
 
@@ -698,7 +703,7 @@ namespace Queuing_System_Alipour.Window
                         EmployeeId = AppState.EmployeeId
                     };
 
-                    var result = _atelierSrv.RemoveQueue(deleteQueueDto);
+                    var result = _atelierSrv.DeleteQueue(deleteQueueDto);
 
                     if (result.IsSuccess)
                     {
@@ -795,7 +800,5 @@ namespace Queuing_System_Alipour.Window
                 }
             }
         }
-
-        //ToString("yyyy/MM/dd", CultureInfo.InvariantCulture)
     }
 }
