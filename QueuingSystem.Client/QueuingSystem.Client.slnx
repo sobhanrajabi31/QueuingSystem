@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="../QueuingSystem.Business/QueuingSystem.Business.csproj" Id="4a84216c-bfbb-421e-93d1-33b5ed628549" />
+  <Project Path="../QueuingSystem.Data/QueuingSystem.Data.csproj" Id="ebc933d6-d3f8-433f-ac21-ca617d6b3bb9" />
+  <Project Path="../QueuingSystem.Shared/QueuingSystem.Shared.csproj" Id="71983ff1-5acd-4bbc-ba9c-a8a0134d6a8c" />
+  <Project Path="../QueuingSystem.SignalR/QueuingSystem.SignalR.csproj" Id="b3e1e1aa-ef69-4d72-9c0b-c31e3681a400" />
+  <Project Path="QueuingSystem.Client.csproj" />
+</Solution>
