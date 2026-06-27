@@ -72,7 +72,8 @@ namespace Queuing_System_Alipour.Services.Base
 
         public void Dispose()
         {
-            
+            _repo.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }
