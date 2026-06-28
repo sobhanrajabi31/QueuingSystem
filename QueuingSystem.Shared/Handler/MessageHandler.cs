@@ -12,6 +12,7 @@
         QueueStatusToDone = 7,
         QueueStatusToCancel = 8,
         PasswordChanged = 9,
+        ReconnectedConnection = 10
     }
 
     public class MessageHandler
@@ -23,17 +24,16 @@
             Message = new Dictionary<MessageCode, string>
             {
                 { MessageCode.AccountCreated, "حساب کاربری شما با موفقیت ایجاد شد" },
-                
                 { MessageCode.LogoutQuestion, "آیا می خواهید از حساب کاربری خود خارج شوید؟" },
                 { MessageCode.QueueDeleteQuestion, "آیا از حذف این نوبت اطمینان کامل دارید؟" },
                 { MessageCode.QueueStatusToDoneQuestion, "آیا از تغییر وضعیت این نوبت به *انجام شده* اطمینان دارید؟" },
                 { MessageCode.QueueStatusToDone, "وضعیت این نوبت به *انجام شده* تغییر پیدا کرد" },
                 { MessageCode.QueueStatusToCancelQuestion, "آیا از تغییر وضعیت این نوبت به *کنسل شده* اطمینان دارید؟" },
                 { MessageCode.QueueStatusToCancel, "وضعیت این نوبت به *کنسل شده* تغییر پیدا کرد" },
-
                 { MessageCode.PasswordChanged, "پسورد جدید با موفقیت ثبت شد، لطفا مجددا لاگین کنید" },
                 { MessageCode.QueueAdded, "نوبت مورد نظر اضافه شد" },
                 { MessageCode.QueueRemoved, "نوبت مورد نظر حذف شد" },
+                { MessageCode.ReconnectedConnection, "ارتباط مجددا با سرور برقرار شد" }
             };
         }
 
