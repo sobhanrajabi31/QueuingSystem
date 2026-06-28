@@ -36,10 +36,10 @@ namespace QueuingSystem.Data.Repositories
             _context.Personnels.Remove(personnel);
         }
 
-        public void DeleteQueue(int id)
+        public bool DeleteQueue(int id)
         {
-            _context.Personnels.Where(x => x.Id == id)
-                .ExecuteDelete();
+            return _context.Personnels.Where(x => x.Id == id)
+                .ExecuteDelete() > 0;
         }
     }
 }

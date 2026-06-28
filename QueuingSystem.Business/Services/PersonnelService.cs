@@ -91,9 +91,9 @@ namespace QueuingSystem.Business.Services
 
             if (exists)
             {
-                _repo.DeleteQueue(id);
+                bool result = _repo.DeleteQueue(id);
 
-                if (_repo.SaveChanges())
+                if (result)
                     return Success(MessageCode.QueueRemoved);
 
                 else
