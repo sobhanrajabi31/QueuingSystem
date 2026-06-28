@@ -1,6 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using QueuingSystem.SignalR.Hubs;
+using QueuingSystem.SignalR.Services;
 
-app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSignalR();
+builder.Services.AddSingleton<OnlineUserManager>();
+
+var app = builder.Build();
+app.MapHub<QueueHub>("/queueHub");
 
 app.Run();

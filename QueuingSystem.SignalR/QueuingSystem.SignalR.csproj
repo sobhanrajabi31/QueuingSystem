@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\QueuingSystem.Shared\QueuingSystem.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
