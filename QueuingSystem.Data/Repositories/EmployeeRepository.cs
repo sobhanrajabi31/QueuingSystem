@@ -1,5 +1,6 @@
 ﻿using QueuingSystem.Shared.Entities;
 using QueuingSystem.Data.Repositories.Base;
+using QueuingSystem.Shared.DTOs.Employee;
 
 namespace QueuingSystem.Data.Repositories
 {
@@ -25,6 +26,19 @@ namespace QueuingSystem.Data.Repositories
         public void Create(Employee employee)
         {
             _context.Employees.Add(employee);
+        }
+
+        public List<StatisticsDto> GetStatistics()
+        {
+            return _context.Employees
+                .Select(x => new StatisticsDto
+                {
+                    Id = x.Id,
+                    Username = x.Username,
+                    AtelierCount = x.Ateliers.Count(),
+                    PersonnelCount = x.Personnels.Count()
+                })
+                .ToList();
         }
     }
 }

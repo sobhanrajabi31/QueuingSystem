@@ -117,5 +117,10 @@ namespace QueuingSystem.Business.Services
             else
                 return Fail(validation.Errors.ToText());
         }
+
+        public List<StatisticsDto> GetStatistics()
+        {
+            return _repo.GetStatistics();
+        }
     }
 }

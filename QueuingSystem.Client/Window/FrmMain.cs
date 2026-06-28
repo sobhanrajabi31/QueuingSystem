@@ -1,4 +1,6 @@
 ﻿using QueuingSystem.Business.Services;
+using QueuingSystem.Client.SignalR;
+using QueuingSystem.Client.SignalR.Events;
 using QueuingSystem.Client.Tool;
 using QueuingSystem.Shared.DTOs.Atelier;
 using QueuingSystem.Shared.DTOs.Employee;
@@ -31,8 +33,14 @@ namespace QueuingSystem.Client.Window
         private readonly PersonnelService _personnelSrv;
         private readonly EmployeeService _employeeSrv;
 
-        private Dictionary<int, string> _noteManager;
+        private readonly Dictionary<int, string> _noteManager;
         private SoundPlayer _player;
+        private List<int> _onlineUsers;
+
+        public readonly HubHandler hubHandler;
+
+        private bool showNotif = false;
+        private bool firstTimeEmployeeLoad = true;
 
         public FrmMain()
         {
@@ -43,6 +51,9 @@ namespace QueuingSystem.Client.Window
             _employeeSrv = new EmployeeService();
 
             _noteManager = [];
+            _onlineUsers = [];
+
+            hubHandler = new HubHandler();
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -54,6 +65,15 @@ namespace QueuingSystem.Client.Window
                 frmLogin.ShowDialog();
                 Close();
             }
+
+            hubHandler.ExceptionHandler += Hub_Exception;
+
+            hubHandler.OnlineUsersChanged += Hub_OnlineUsersChanged;
+            hubHandler.AteliersChanged += Hub_AteliersChanged;
+            hubHandler.PersonnelsChanged += Hub_PersonnelsChanged;
+            hubHandler.EmployeesChanged += Hub_EmployeesChanged;
+
+            hubHandler.StartAsync(AppState.EmployeeId);
 
             LoadAlertSound();
             LoadDisplayImages();
@@ -72,27 +92,6 @@ namespace QueuingSystem.Client.Window
             ShowTodayQueuesCount();
 
             AtelierButtonDesign();
-
-            //TODO: SignalR
-            //if (!AppState.Role) 
-            //{
-            //    try
-            //    {
-            //        ToastMessage.ShowToast("نوبت بعدی: " + lbl_next.Text);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Mbox.Error(ex.Message, Caption.Error);
-            //    }
-            //    try
-            //    {
-            //        player.Play();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Mbox.Error(ex.Message, Caption.Error);
-            //    }
-            //}
         }
 
         private void LoadDisplayImages()
@@ -307,6 +306,64 @@ namespace QueuingSystem.Client.Window
             AddFilterToAtelier();
         }
 
+        private void Hub_Exception(object? sender, ConnectionExceptionHandlerEventArgs e)
+        {
+            if (e.Result.IsSuccess)
+                Mbox.Information(e.Result.Message, Caption.Information);
+
+            else
+                Mbox.Error(e.Result.Message, Caption.Error);
+        }
+
+        private async void Hub_OnlineUsersChanged(object? sender, OnlineUsersChangedEventArgs e)
+        {
+            Invoke(() =>
+            {
+                _onlineUsers = e.OnlineUsers;
+                UpdateOnlineUsers(e.OnlineUsers);
+
+                if (firstTimeEmployeeLoad)
+                {
+                    RefreshDataGrid(RefreshType.Employee);
+                    firstTimeEmployeeLoad = false;
+                }
+            });
+        }
+
+        private async void Hub_AteliersChanged(object? sender, EventArgs e)
+        {
+            await InvokeAsync(async () =>
+            {
+                RefreshDataGrid(RefreshType.Atelier);
+            });
+        }
+
+        private async void Hub_PersonnelsChanged(object? sender, EventArgs e)
+        {
+            await InvokeAsync(async () =>
+            {
+                RefreshDataGrid(RefreshType.Personnel);
+            });
+        }
+
+        private async void Hub_EmployeesChanged(object? sender, EventArgs e)
+        {
+            await InvokeAsync(async () =>
+            {
+                RefreshDataGrid(RefreshType.Employee);
+            });
+        }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            hubHandler.silentMode = true;
+            hubHandler.DisposeAsync();
+
+            _atelierSrv.Dispose();
+            _personnelSrv.Dispose();
+            _employeeSrv.Dispose();
+        }
+
         // ============ [ Methods ] ============
 
         private void SwitchButton(Button target)
@@ -343,6 +400,11 @@ namespace QueuingSystem.Client.Window
                 case RefreshType.Personnel:
                     var personnels = _personnelSrv.GetByDate(DateTime.Today);
                     RefreshPersonnelQueue(personnels);
+                    break;
+
+                case RefreshType.Employee:
+                    var employees = _employeeSrv.GetStatistics();
+                    RefreshEmployees(employees);
                     break;
             }
         }
@@ -446,6 +508,55 @@ namespace QueuingSystem.Client.Window
                 lbl_CurrentQueue.Text = "?";
                 lbl_next.Text = "?";
             }
+
+            if (!AppState.Role && showNotif)
+            {
+                try
+                {
+                    ToastMessage.ShowToast("نوبت بعدی: " + lbl_next.Text);
+                    _player.Play();
+                }
+                catch (Exception ex)
+                {
+                    Mbox.Error(ex.Message, Caption.Error);
+                }
+            }
+
+            else
+                showNotif = true;
+        }
+
+        private void RefreshEmployees(List<StatisticsDto> employees)
+        {
+            StatsDatagrid.Rows.Clear();
+
+            employees.ForEach(x =>
+            {
+                Image status;
+
+                if (_onlineUsers.Contains(x.Id))
+                    status = Resource.Green;
+
+                else
+                    status = Resource.Red;
+
+                StatsDatagrid.Rows.Add(Img.ConvertToBmp(status), x.PersonnelCount, x.AtelierCount, x.Username, x.Id);
+            });
+        }
+
+        private void UpdateOnlineUsers(List<int> users)
+        {
+            StatsDatagrid.ReadOnly = false;
+
+            for (int i = 0; i < StatsDatagrid.Rows.Count; i++)
+            {
+                int id = int.Parse(StatsDatagrid.Rows[i].Cells["StatIdColumn"].Value.ToString());
+
+                if (users.Contains(id))
+                    StatsDatagrid.Rows[i].Cells["StatConnectionColumn"].Value = Img.ConvertToBmp(Resource.Green);
+            }
+
+            StatsDatagrid.ReadOnly = true;
         }
 
         private void ButtonHandler(Button btn, ButtonType type, bool status)
@@ -658,9 +769,6 @@ namespace QueuingSystem.Client.Window
 
         private void UpdateAtelierQueue(QueueStatus queueStatus)
         {
-            var btn = queueStatus == QueueStatus.Done ? btn_DoneAtelierQueue : btn_CancelAtelierQueue;
-            btn.Enabled = false;
-
             if (AtelierDatagridview.SelectedRows.Count > 0)
             {
                 if (Mbox.Question(MessageHandler.GetMessage(MessageCode.QueueStatusToDoneQuestion), Caption.Question) == DialogResult.Yes)
@@ -677,20 +785,20 @@ namespace QueuingSystem.Client.Window
                     var updateResult = _atelierSrv.UpdateQueue(updateDto);
 
                     if (updateResult.IsSuccess)
+                    {
+                        hubHandler.UpdateAtelierChanges(AppState.EmployeeId);
+                        AtelierButtonDesign();
                         Mbox.Information(updateResult.Message, Caption.Information);
+                    }
 
                     else
                         Mbox.Error(updateResult.Message, Caption.Error);
                 }
             }
-
-            btn.Enabled = true;
         }
 
         private void DeleteAtelierQueue()
         {
-            btn_deleteAtelierQueue.Enabled = false;
-
             if (AtelierDatagridview.SelectedRows.Count > 0)
             {
                 if (Mbox.Question(MessageHandler.GetMessage(MessageCode.QueueDeleteQuestion), Caption.Question) == DialogResult.Yes)
@@ -707,7 +815,7 @@ namespace QueuingSystem.Client.Window
 
                     if (result.IsSuccess)
                     {
-                        RefreshDataGrid(RefreshType.Atelier);
+                        hubHandler.UpdateAtelierChanges(AppState.EmployeeId);
                         Mbox.Information(result.Message, Caption.Information);
                     }
 
@@ -715,8 +823,6 @@ namespace QueuingSystem.Client.Window
                         Mbox.Error(result.Message, Caption.Error);
                 }
             }
-
-            btn_deleteAtelierQueue.Enabled = true;
         }
 
         private void AddPersonnelQueue()
@@ -735,7 +841,7 @@ namespace QueuingSystem.Client.Window
             if (createResult.IsSuccess)
             {
                 txtbox_fullname.Clear();
-                RefreshDataGrid(RefreshType.Personnel);
+                hubHandler.UpdatePersonnelChanges();
 
                 Mbox.Information(createResult.Message, Caption.Information);
             }
@@ -766,7 +872,7 @@ namespace QueuingSystem.Client.Window
 
                     if (updateResult.IsSuccess)
                     {
-                        RefreshDataGrid(RefreshType.Personnel);
+                        hubHandler.UpdatePersonnelChanges();
                         Mbox.Information(updateResult.Message, Caption.Information);
                     }
 
@@ -792,7 +898,7 @@ namespace QueuingSystem.Client.Window
 
                     if (deleteResult.IsSuccess)
                     {
-                        RefreshDataGrid(RefreshType.Personnel);
+                        hubHandler.UpdatePersonnelChanges();
                         Mbox.Information(deleteResult.Message, Caption.Information);
                     }
 

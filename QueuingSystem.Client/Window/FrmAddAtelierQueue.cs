@@ -59,7 +59,7 @@ namespace QueuingSystem.Client.Window
 
             if (createResult.IsSuccess)
             {
-                _frmMain.RefreshDataGrid(RefreshType.Atelier);
+                _frmMain.hubHandler.UpdateAtelierChanges(AppState.EmployeeId);
                 Mbox.Information(createResult.Message, Caption.Information);
                 Close();
             }
