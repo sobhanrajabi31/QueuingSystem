@@ -1,7 +1,9 @@
-﻿using QueuingSystem.Business.Services;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using QueuingSystem.Business.Services;
 using QueuingSystem.Client.SignalR;
 using QueuingSystem.Client.SignalR.Events;
 using QueuingSystem.Client.Tool;
+using QueuingSystem.Data;
 using QueuingSystem.Shared.DTOs.Atelier;
 using QueuingSystem.Shared.DTOs.Employee;
 using QueuingSystem.Shared.DTOs.Personnel;
@@ -39,7 +41,6 @@ namespace QueuingSystem.Client.Window
 
         public readonly HubHandler hubHandler;
 
-        private bool showNotif = false;
         private bool firstTimeEmployeeLoad = true;
 
         public FrmMain()
@@ -86,6 +87,7 @@ namespace QueuingSystem.Client.Window
             lblRole.Text = AppState.Role ? "عکاس" : "منشی";
 
             RefreshDataGrid(RefreshType.Atelier);
+            //RefreshDataGrid(RefreshType.Employee); علت ذکر شود
             RefreshDataGrid(RefreshType.Personnel);
 
             LoadDefaultFilters();
@@ -315,7 +317,7 @@ namespace QueuingSystem.Client.Window
                 Mbox.Error(e.Result.Message, Caption.Error);
         }
 
-        private async void Hub_OnlineUsersChanged(object? sender, OnlineUsersChangedEventArgs e)
+        private void Hub_OnlineUsersChanged(object? sender, OnlineUsersChangedEventArgs e)
         {
             Invoke(() =>
             {
@@ -330,25 +332,26 @@ namespace QueuingSystem.Client.Window
             });
         }
 
-        private async void Hub_AteliersChanged(object? sender, EventArgs e)
+        private void Hub_AteliersChanged(object? sender, EventArgs e)
         {
-            await InvokeAsync(async () =>
+           Invoke(() =>
             {
                 RefreshDataGrid(RefreshType.Atelier);
             });
         }
 
-        private async void Hub_PersonnelsChanged(object? sender, EventArgs e)
+        private async void Hub_PersonnelsChanged(object? sender, PersonnelsChangedEventArgs e)
         {
-            await InvokeAsync(async () =>
+            Invoke(() =>
             {
-                RefreshDataGrid(RefreshType.Personnel);
+                var personnels = _personnelSrv.GetByDate(DateTime.Today);
+                RefreshPersonnelQueue(personnels, e.ExecutedBy);
             });
         }
 
         private async void Hub_EmployeesChanged(object? sender, EventArgs e)
         {
-            await InvokeAsync(async () =>
+            Invoke(() =>
             {
                 RefreshDataGrid(RefreshType.Employee);
             });
@@ -399,7 +402,7 @@ namespace QueuingSystem.Client.Window
 
                 case RefreshType.Personnel:
                     var personnels = _personnelSrv.GetByDate(DateTime.Today);
-                    RefreshPersonnelQueue(personnels);
+                    RefreshPersonnelQueue(personnels, AppState.Role);
                     break;
 
                 case RefreshType.Employee:
@@ -471,7 +474,7 @@ namespace QueuingSystem.Client.Window
             });
         }
 
-        private void RefreshPersonnelQueue(List<Personnel> personnels)
+        private void RefreshPersonnelQueue(List<Personnel> personnels, bool executedBy)
         {
             PersonnelDatagridview.Rows.Clear();
             PersonnelDoneDatagridview.Rows.Clear();
@@ -509,7 +512,7 @@ namespace QueuingSystem.Client.Window
                 lbl_next.Text = "?";
             }
 
-            if (!AppState.Role && showNotif)
+            if (!AppState.Role && executedBy)
             {
                 try
                 {
@@ -521,9 +524,6 @@ namespace QueuingSystem.Client.Window
                     Mbox.Error(ex.Message, Caption.Error);
                 }
             }
-
-            else
-                showNotif = true;
         }
 
         private void RefreshEmployees(List<StatisticsDto> employees)
@@ -841,7 +841,7 @@ namespace QueuingSystem.Client.Window
             if (createResult.IsSuccess)
             {
                 txtbox_fullname.Clear();
-                hubHandler.UpdatePersonnelChanges();
+                hubHandler.UpdatePersonnelChanges(AppState.Role);
 
                 Mbox.Information(createResult.Message, Caption.Information);
             }
@@ -872,7 +872,7 @@ namespace QueuingSystem.Client.Window
 
                     if (updateResult.IsSuccess)
                     {
-                        hubHandler.UpdatePersonnelChanges();
+                        hubHandler.UpdatePersonnelChanges(AppState.Role);
                         Mbox.Information(updateResult.Message, Caption.Information);
                     }
 
@@ -898,7 +898,7 @@ namespace QueuingSystem.Client.Window
 
                     if (deleteResult.IsSuccess)
                     {
-                        hubHandler.UpdatePersonnelChanges();
+                        hubHandler.UpdatePersonnelChanges(AppState.Role);
                         Mbox.Information(deleteResult.Message, Caption.Information);
                     }
 

@@ -16,7 +16,7 @@ namespace QueuingSystem.Client.SignalR
 
         public event EventHandler<OnlineUsersChangedEventArgs>? OnlineUsersChanged;
         public event EventHandler? AteliersChanged;
-        public event EventHandler? PersonnelsChanged;
+        public event EventHandler<PersonnelsChangedEventArgs>? PersonnelsChanged;
         public event EventHandler? EmployeesChanged;
 
         public bool silentMode = false;
@@ -35,7 +35,7 @@ namespace QueuingSystem.Client.SignalR
         {
             _connection.On<List<int>>(HubMethods.OnlineUsersChanged, RaiseOnlineUsersChanged);
             _connection.On(HubMethods.AteliersChanged, RaiseAteliersChanged);
-            _connection.On(HubMethods.PersonnelsChanged, RaisePersonnelsChanged);
+            _connection.On<bool>(HubMethods.PersonnelsChanged, RaisePersonnelsChanged);
             _connection.On(HubMethods.EmployeesChanged, RaiseEmployeesChanged);
 
             _connection.Reconnecting += ex =>
@@ -134,11 +134,11 @@ namespace QueuingSystem.Client.SignalR
             EmployeesChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public async Task UpdatePersonnelChanges()
+        public async Task UpdatePersonnelChanges(bool executedBy)
         {
             try
             {
-                await _connection.InvokeAsync(HubMethods.PersonnelsChanged);
+                await _connection.InvokeAsync(HubMethods.PersonnelsChanged, executedBy);
             }
 
             catch
@@ -147,9 +147,12 @@ namespace QueuingSystem.Client.SignalR
             }
         }
 
-        private void RaisePersonnelsChanged()
+        private void RaisePersonnelsChanged(bool executedBy)
         {
-            PersonnelsChanged?.Invoke(this, EventArgs.Empty);
+            PersonnelsChanged?.Invoke(this, new PersonnelsChangedEventArgs
+            {
+                ExecutedBy = executedBy
+            });
         }
 
         public async ValueTask DisposeAsync()
