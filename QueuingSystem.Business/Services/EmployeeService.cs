@@ -34,8 +34,6 @@ namespace QueuingSystem.Business.Services
                     return Success(null, new LoginInfoDto
                     {
                         Id = employee.Id,
-                        Username = employee.Username,
-                        Password = data.Password,
                         Role = employee.Role
                     });
 

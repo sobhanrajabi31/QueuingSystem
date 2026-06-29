@@ -65,12 +65,12 @@ namespace QueuingSystem.Client.Window
 
         // ============ [ Methods ] ============
 
-        private void OpenFrmAndSaveData(LoginInfoDto info)
+        private void OpenFrmAndSaveData(int id, string username, bool role)
         {
             AppState.IsAuthenticated = true;
-            AppState.EmployeeId = info.Id;
-            AppState.Username = info.Username;
-            AppState.Role = info.Role;
+            AppState.EmployeeId = id;
+            AppState.Username = username;
+            AppState.Role = role;
 
             var frm = new FrmMain();
 
@@ -90,7 +90,7 @@ namespace QueuingSystem.Client.Window
                     var result = _employeeSrv.Login(loginDto);
 
                     if (result.IsSuccess)
-                        OpenFrmAndSaveData(result.Data);
+                        OpenFrmAndSaveData(result.Data.Id, loginDto.Username, result.Data.Role);
 
                     else
                     {
@@ -119,9 +119,9 @@ namespace QueuingSystem.Client.Window
             if (result.IsSuccess)
             {
                 if (chckbox_remember.Checked)
-                    DataProtector.Encrypt(result.Data);
+                    DataProtector.Encrypt(loginDto);
 
-                OpenFrmAndSaveData(result.Data);
+                OpenFrmAndSaveData(result.Data.Id, loginDto.Username, result.Data.Role);
             }
 
             else

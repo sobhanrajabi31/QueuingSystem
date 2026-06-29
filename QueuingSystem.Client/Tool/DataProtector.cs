@@ -7,7 +7,7 @@ namespace QueuingSystem.Client.Tool
 {
     public static class DataProtector
     {
-        public static void Encrypt(LoginInfoDto employee)
+        public static void Encrypt(LoginDto employee)
         {
             string json = JsonConvert.SerializeObject(employee);
 
