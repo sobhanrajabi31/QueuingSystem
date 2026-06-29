@@ -5,6 +5,10 @@ namespace QueuingSystem.Business.Validator.Atelier
 {
     public sealed class DeleteAtelierQueueValidator : AtelierValidatorBase<DeleteAtelierQueueDto>
     {
-        //TODO: ChECk hErE
+        public DeleteAtelierQueueValidator()
+        {
+            IdRules(x => x.QueueId);
+            IdRules(x => x.EmployeeId);
+        }
     }
 }
