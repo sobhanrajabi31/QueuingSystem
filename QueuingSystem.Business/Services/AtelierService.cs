@@ -190,33 +190,6 @@ namespace QueuingSystem.Business.Services
                 return Fail(validation.Errors.ToText());
         }
 
-        public ResultModel DeleteQueue(DeleteAtelierQueueDto data)
-        {
-            var validation = _deleteQueueValidator.Validate(data);
-
-            if (validation.IsValid)
-            {
-                var exists = _repo.Exists(data.QueueId, data.EmployeeId);
-
-                if (exists)
-                {
-                    var deleted = _repo.Delete(data.QueueId);
-
-                    if (deleted)
-                        return Success(MessageCode.QueueRemoved);
-
-                    else
-                        return Fail(ErrorCode.FailedToDeleteQueue);
-                }
-
-                else
-                    return Fail(ErrorCode.QueueNotFound);
-            }
-
-            else
-                return Fail(validation.Errors.ToText());
-        }
-
         public ResultModel UpdateQueue(UpdateAtelierQueueDto data)
         {
             var validation = _updateAtelierQueueStatusValidator.Validate(data);
@@ -246,6 +219,33 @@ namespace QueuingSystem.Business.Services
 
                     else
                         return Fail(ErrorCode.CannotSetQueueStatusAnymore);
+                }
+
+                else
+                    return Fail(ErrorCode.QueueNotFound);
+            }
+
+            else
+                return Fail(validation.Errors.ToText());
+        }
+
+        public ResultModel DeleteQueue(DeleteAtelierQueueDto data)
+        {
+            var validation = _deleteQueueValidator.Validate(data);
+
+            if (validation.IsValid)
+            {
+                var exists = _repo.Exists(data.QueueId, data.EmployeeId);
+
+                if (exists)
+                {
+                    var deleted = _repo.Delete(data.QueueId);
+
+                    if (deleted)
+                        return Success(MessageCode.QueueRemoved);
+
+                    else
+                        return Fail(ErrorCode.FailedToDeleteQueue);
                 }
 
                 else
