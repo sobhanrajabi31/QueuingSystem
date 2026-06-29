@@ -36,6 +36,11 @@ namespace QueuingSystem.SignalR.Hubs
                 _onlineUsers.OnlineUsers);
         }
 
+        public Task<List<int>> GetOnlineUsers()
+        {
+            return Task.FromResult(_onlineUsers.OnlineUsers.ToList());
+        }
+
         public async Task AteliersChanged(int employeeId)
         {
             await Clients.Group(employeeId.ToString())

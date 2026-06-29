@@ -7,5 +7,6 @@
         public const string EmployeesChanged = "EmployeesChanged";
         public const string AteliersChanged = "AteliersChanged";
         public const string PersonnelsChanged = "PersonnelsChanged";
+        public const string GetOnlineUsers = "GetOnlineUsers";
     }
 }

@@ -25,6 +25,7 @@
         ConnectionFailedDuringAtelierActivity = 20,
         ConnectionFailedDuringPersonnelActivity = 21,
         ConnectionFailedDuringEmployeeActivity = 22,
+        SessionIsFull = 24
     }
 
     public static class ErrorHandler
@@ -59,6 +60,7 @@
                 { ErrorCode.ConnectionFailedDuringAtelierActivity, "خطایی هنگام فعالیت در قسمت نوبت آتلیه در ارتباط با سرور رخ داد" },
                 { ErrorCode.ConnectionFailedDuringPersonnelActivity, "خطایی هنگام فعالیت در قسمت نوبت پرسنلی در ارتباط با سرور رخ داد" },
                 { ErrorCode.ConnectionFailedDuringEmployeeActivity, "خطایی هنگام فعالیت در قسمت کارمند در ارتباط با سرور رخ داد" },
+                { ErrorCode.SessionIsFull, "تعداد سشن های مجاز شما پر شده، لطفا از دستگاه های دیگر خارج شوید" }
             };
         }
 
