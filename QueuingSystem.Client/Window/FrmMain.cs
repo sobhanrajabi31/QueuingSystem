@@ -64,7 +64,8 @@ namespace QueuingSystem.Client.Window
             hubHandler.PersonnelsChanged += Hub_PersonnelsChanged;
             hubHandler.EmployeesChanged += Hub_EmployeesChanged;
 
-            hubHandler.StartAsync(AppState.EmployeeId);
+            hubHandler.StartAsync();
+            hubHandler.ConnectAsync(AppState.EmployeeId);
 
             LoadAlertSound();
             LoadDisplayImages();
@@ -547,17 +548,20 @@ namespace QueuingSystem.Client.Window
 
         private void UpdateOnlineUsers(List<int> users)
         {
-            StatsDatagrid.ReadOnly = false;
-
             for (int i = 0; i < StatsDatagrid.Rows.Count; i++)
             {
                 int id = int.Parse(StatsDatagrid.Rows[i].Cells["StatIdColumn"].Value.ToString());
 
-                if (users.Contains(id))
-                    StatsDatagrid.Rows[i].Cells["StatConnectionColumn"].Value = Img.ConvertToBmp(Resource.Green);
-            }
+                Image status;
 
-            StatsDatagrid.ReadOnly = true;
+                if (users.Contains(id))
+                    status = Resource.Green;
+
+                else
+                    status = Resource.Red;
+
+                StatsDatagrid.Rows[i].Cells["StatConnectionColumn"].Value = Img.ConvertToBmp(status);
+            }
         }
 
         private void ButtonHandler(Button btn, ButtonType type, bool status)
