@@ -46,6 +46,10 @@ namespace QueuingSystem.Client.SignalR
 
             _connection.Reconnected += id =>
             {
+                RaiseAteliersChanged();
+                RaiseEmployeesChanged();
+                RaisePersonnelsChanged(true);
+
                 ExceptionInvoker(true, null, MessageCode.ReconnectedConnection);
                 return Task.CompletedTask;
             };
@@ -88,8 +92,8 @@ namespace QueuingSystem.Client.SignalR
         {
             try
             {
-            await _connection.InvokeAsync(HubMethods.Connect, employeeId);
-        }
+                await _connection.InvokeAsync(HubMethods.Connect, employeeId);
+            }
 
             catch
             {
