@@ -146,6 +146,7 @@ namespace QueuingSystem.Client.Window
             comboBoxRole.Items.AddRange(new object[] { "منشی (ساده)", "عکاس" });
             comboBoxRole.Location = new Point(88, 302);
             comboBoxRole.Name = "comboBoxRole";
+            comboBoxRole.RightToLeft = RightToLeft.Yes;
             comboBoxRole.Size = new Size(208, 35);
             comboBoxRole.TabIndex = 5;
             // 

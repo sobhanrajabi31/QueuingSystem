@@ -82,7 +82,7 @@ namespace QueuingSystem.Client.Window
             RefreshDataGrid(RefreshType.Personnel);
 
             LoadDefaultFilters();
-            ShowTodayQueuesCount();
+            //ShowTodayQueuesCount(); علت ذکر شود
 
             AtelierButtonDesign();
         }
@@ -416,6 +416,8 @@ namespace QueuingSystem.Client.Window
 
         private void RefreshAtelierQueues(List<Atelier> ateliers)
         {
+            ShowTodayQueuesCount();
+
             int selectedIndex = -1;
             int rowIndex = 0;
 
@@ -510,15 +512,18 @@ namespace QueuingSystem.Client.Window
                 btn_nextQueue.Enabled = false;
                 btn_deletePersonnelQueue.Enabled = false;
 
-                lbl_CurrentQueue.Text = "?";
-                lbl_next.Text = "?";
+                lbl_CurrentQueue.Text = "اتمام نوبت ها";
+                lbl_next.Text = "اتمام نوبت ها";
             }
 
             if (!AppState.Role && executedBy)
             {
                 try
                 {
-                    ToastMessage.ShowToast("نوبت بعدی: " + lbl_next.Text);
+                    string toastText = lbl_next.Text == "اتمام نوبت ها" 
+                        ? lbl_next.Text : ("نوبت بعدی: " + lbl_next.Text);
+
+                    ToastMessage.ShowToast(toastText);
                     _player.Play();
                 }
                 catch (Exception ex)

@@ -35,6 +35,10 @@ namespace QueuingSystem.Client.Window
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
@@ -44,10 +48,6 @@ namespace QueuingSystem.Client.Window
             DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             sidebarPanel = new Panel();
             btnSetting = new Button();
             btnPersonnel = new Button();
@@ -76,6 +76,11 @@ namespace QueuingSystem.Client.Window
             lbl_dashboard = new SafeLabel();
             StatisticsPanel = new Panel();
             StatsDatagrid = new DataGridView();
+            StatConnectionColumn = new DataGridViewImageColumn();
+            StatPersonnelCount = new DataGridViewTextBoxColumn();
+            StatAtelierCount = new DataGridViewTextBoxColumn();
+            StatUsernameColumn = new DataGridViewTextBoxColumn();
+            StatIdColumn = new DataGridViewTextBoxColumn();
             lbl_statistics = new SafeLabel();
             PersonnelPanel = new Panel();
             PersonnelDoneDatagridview = new DataGridView();
@@ -153,11 +158,6 @@ namespace QueuingSystem.Client.Window
             txtbox_oldPass = new TextBox();
             lbl_setting = new SafeLabel();
             timerClock = new System.Windows.Forms.Timer(components);
-            StatConnectionColumn = new DataGridViewImageColumn();
-            StatPersonnelCount = new DataGridViewTextBoxColumn();
-            StatAtelierCount = new DataGridViewTextBoxColumn();
-            StatUsernameColumn = new DataGridViewTextBoxColumn();
-            StatIdColumn = new DataGridViewTextBoxColumn();
             sidebarPanel.SuspendLayout();
             welcomePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDigitalClock).BeginInit();
@@ -577,6 +577,59 @@ namespace QueuingSystem.Client.Window
             StatsDatagrid.TabIndex = 3;
             StatsDatagrid.TabStop = false;
             // 
+            // StatConnectionColumn
+            // 
+            StatConnectionColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            StatConnectionColumn.HeaderText = "وضعیت اتصال";
+            StatConnectionColumn.Name = "StatConnectionColumn";
+            StatConnectionColumn.ReadOnly = true;
+            StatConnectionColumn.Resizable = DataGridViewTriState.False;
+            StatConnectionColumn.Width = 156;
+            // 
+            // StatPersonnelCount
+            // 
+            StatPersonnelCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            StatPersonnelCount.DefaultCellStyle = dataGridViewCellStyle2;
+            StatPersonnelCount.HeaderText = "تعداد نوبت های پرسنلی";
+            StatPersonnelCount.Name = "StatPersonnelCount";
+            StatPersonnelCount.ReadOnly = true;
+            StatPersonnelCount.Resizable = DataGridViewTriState.False;
+            StatPersonnelCount.SortMode = DataGridViewColumnSortMode.NotSortable;
+            StatPersonnelCount.Width = 156;
+            // 
+            // StatAtelierCount
+            // 
+            StatAtelierCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            StatAtelierCount.DefaultCellStyle = dataGridViewCellStyle3;
+            StatAtelierCount.HeaderText = "تعداد نوبت های آتلیه";
+            StatAtelierCount.Name = "StatAtelierCount";
+            StatAtelierCount.ReadOnly = true;
+            StatAtelierCount.Resizable = DataGridViewTriState.False;
+            StatAtelierCount.SortMode = DataGridViewColumnSortMode.NotSortable;
+            StatAtelierCount.Width = 156;
+            // 
+            // StatUsernameColumn
+            // 
+            StatUsernameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            StatUsernameColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            StatUsernameColumn.HeaderText = "نام کاربری";
+            StatUsernameColumn.Name = "StatUsernameColumn";
+            StatUsernameColumn.ReadOnly = true;
+            StatUsernameColumn.Resizable = DataGridViewTriState.False;
+            StatUsernameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
+            StatUsernameColumn.Width = 156;
+            // 
+            // StatIdColumn
+            // 
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            StatIdColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            StatIdColumn.HeaderText = "آیدی";
+            StatIdColumn.Name = "StatIdColumn";
+            StatIdColumn.ReadOnly = true;
+            // 
             // lbl_statistics
             // 
             lbl_statistics.AutoSize = true;
@@ -744,7 +797,7 @@ namespace QueuingSystem.Client.Window
             lbl_next.Name = "lbl_next";
             lbl_next.Size = new Size(188, 59);
             lbl_next.TabIndex = 1;
-            lbl_next.Text = "?";
+            lbl_next.Text = "اتمام نوبت ها";
             lbl_next.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lbl_nextText
@@ -872,7 +925,7 @@ namespace QueuingSystem.Client.Window
             lbl_CurrentQueue.Name = "lbl_CurrentQueue";
             lbl_CurrentQueue.Size = new Size(566, 61);
             lbl_CurrentQueue.TabIndex = 0;
-            lbl_CurrentQueue.Text = "?";
+            lbl_CurrentQueue.Text = "اتمام نوبت ها";
             lbl_CurrentQueue.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lbl_currentQueueText
@@ -1569,59 +1622,6 @@ namespace QueuingSystem.Client.Window
             timerClock.Enabled = true;
             timerClock.Interval = 60000;
             timerClock.Tick += TimerClock_Tick;
-            // 
-            // StatConnectionColumn
-            // 
-            StatConnectionColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            StatConnectionColumn.HeaderText = "وضعیت اتصال";
-            StatConnectionColumn.Name = "StatConnectionColumn";
-            StatConnectionColumn.ReadOnly = true;
-            StatConnectionColumn.Resizable = DataGridViewTriState.False;
-            StatConnectionColumn.Width = 156;
-            // 
-            // StatPersonnelCount
-            // 
-            StatPersonnelCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            StatPersonnelCount.DefaultCellStyle = dataGridViewCellStyle2;
-            StatPersonnelCount.HeaderText = "تعداد نوبت های پرسنلی";
-            StatPersonnelCount.Name = "StatPersonnelCount";
-            StatPersonnelCount.ReadOnly = true;
-            StatPersonnelCount.Resizable = DataGridViewTriState.False;
-            StatPersonnelCount.SortMode = DataGridViewColumnSortMode.NotSortable;
-            StatPersonnelCount.Width = 156;
-            // 
-            // StatAtelierCount
-            // 
-            StatAtelierCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            StatAtelierCount.DefaultCellStyle = dataGridViewCellStyle3;
-            StatAtelierCount.HeaderText = "تعداد نوبت های آتلیه";
-            StatAtelierCount.Name = "StatAtelierCount";
-            StatAtelierCount.ReadOnly = true;
-            StatAtelierCount.Resizable = DataGridViewTriState.False;
-            StatAtelierCount.SortMode = DataGridViewColumnSortMode.NotSortable;
-            StatAtelierCount.Width = 156;
-            // 
-            // StatUsernameColumn
-            // 
-            StatUsernameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            StatUsernameColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            StatUsernameColumn.HeaderText = "نام کاربری";
-            StatUsernameColumn.Name = "StatUsernameColumn";
-            StatUsernameColumn.ReadOnly = true;
-            StatUsernameColumn.Resizable = DataGridViewTriState.False;
-            StatUsernameColumn.SortMode = DataGridViewColumnSortMode.NotSortable;
-            StatUsernameColumn.Width = 156;
-            // 
-            // StatIdColumn
-            // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            StatIdColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            StatIdColumn.HeaderText = "آیدی";
-            StatIdColumn.Name = "StatIdColumn";
-            StatIdColumn.ReadOnly = true;
             // 
             // FrmMain
             // 
