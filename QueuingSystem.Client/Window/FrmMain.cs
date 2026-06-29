@@ -718,7 +718,7 @@ namespace QueuingSystem.Client.Window
 
             if (timeFrameVal || queueStatusVal || searchByVal)
             {
-                var queueFilter = new QueueFilterDto
+                var queueFilter = new AtelierQueueFilterDto
                 {
                     EmployeeId = AppState.EmployeeId,
                     TimeFrame = (FilterByTimeFrame)(timeFrameVal ? combobox_TimeFrame.SelectedIndex : 0),

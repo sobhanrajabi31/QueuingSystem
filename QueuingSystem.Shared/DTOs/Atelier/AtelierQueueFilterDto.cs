@@ -15,7 +15,7 @@
         None = 0, FullName, PhoneNumber
     }
 
-    public sealed class QueueFilterDto
+    public sealed class AtelierQueueFilterDto
     {
         public int EmployeeId { get; set; }
         public FilterByTimeFrame TimeFrame { get; set; }

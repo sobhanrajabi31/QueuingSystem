@@ -63,7 +63,7 @@ namespace QueuingSystem.Business.Services
             return result;
         }
 
-        public List<Atelier> GetByFilter(QueueFilterDto filter)
+        public List<Atelier> GetByFilter(AtelierQueueFilterDto filter)
         {
             IQueryable<Atelier> query = _repo.GetByQuery(filter.EmployeeId);
 
