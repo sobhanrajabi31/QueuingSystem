@@ -27,7 +27,7 @@ namespace QueuingSystem.Client.Window
 
         private void Txtbox_username_TextChanged(object sender, EventArgs e)
         {
-            if (txtbox_username.Text.Length > 0)
+            if (txtbox_username.Text.Trim().Length > 0)
                 txtbox_password.Enabled = true;
             else
             {
@@ -35,7 +35,8 @@ namespace QueuingSystem.Client.Window
                 txtbox_rpassword.Enabled = false;
             }
 
-            if (txtbox_username.Text.Length > 0 && txtbox_password.Text.Length > 0 && txtbox_rpassword.Text.Length > 0 && txtbox_password.Text == txtbox_rpassword.Text)
+            if (txtbox_username.Text.Trim().Length > 0 && txtbox_password.Text.Trim().Length > 0 && txtbox_rpassword.Text.Trim().Length > 0 &&
+                txtbox_password.Text.Trim() == txtbox_rpassword.Text.Trim())
                 btn_register.Enabled = true;
             else
                 btn_register.Enabled = false;
@@ -43,12 +44,12 @@ namespace QueuingSystem.Client.Window
 
         private void Txtbox_password_TextChanged(object sender, EventArgs e)
         {
-            if (txtbox_username.Text.Length > 0 && txtbox_password.Text.Length > 0)
+            if (txtbox_username.Text.Trim().Length > 0 && txtbox_password.Text.Trim().Length > 0)
                 txtbox_rpassword.Enabled = true;
             else
                 txtbox_rpassword.Enabled = false;
 
-            if (txtbox_username.Text.Length > 0 && txtbox_password.Text.Length > 0 && txtbox_rpassword.Text.Length > 0 && txtbox_password.Text == txtbox_rpassword.Text)
+            if (txtbox_username.Text.Trim().Length > 0 && txtbox_password.Text.Trim().Length > 0 && txtbox_rpassword.Text.Trim().Length > 0 && txtbox_password.Text.Trim() == txtbox_rpassword.Text.Trim())
                 btn_register.Enabled = true;
             else
                 btn_register.Enabled = false;
@@ -56,7 +57,8 @@ namespace QueuingSystem.Client.Window
 
         private void Txtbox_rpassword_TextChanged(object sender, EventArgs e)
         {
-            if (txtbox_username.Text.Length > 0 && txtbox_password.Text.Length > 0 && txtbox_rpassword.Text.Length > 0 && txtbox_password.Text == txtbox_rpassword.Text)
+            if (txtbox_username.Text.Trim().Length > 0 && txtbox_password.Text.Trim().Length > 0 && txtbox_rpassword.Text.Trim().Length > 0 &&
+                txtbox_password.Text.Trim() == txtbox_rpassword.Text.Trim())
                 btn_register.Enabled = true;
             else
                 btn_register.Enabled = false;
@@ -75,9 +77,9 @@ namespace QueuingSystem.Client.Window
 
             var registerData = new RegisterDto
             {
-                Username = txtbox_username.Text,
-                Password = txtbox_password.Text,
-                RepeatPassword = txtbox_rpassword.Text,
+                Username = txtbox_username.Text.Trim(),
+                Password = txtbox_password.Text.Trim(),
+                RepeatPassword = txtbox_rpassword.Text.Trim(),
                 Role = comboBoxRole.SelectedIndex == 0 ? false : true
             };
 

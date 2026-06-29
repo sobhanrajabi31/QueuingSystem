@@ -28,12 +28,12 @@ namespace QueuingSystem.Client.Window
 
         private void txtbox_username_TextChanged(object sender, EventArgs e)
         {
-            if (txtbox_username.Text.Length > 0)
+            if (txtbox_username.Text.Trim().Length > 0)
                 txtbox_password.Enabled = true;
             else
                 txtbox_password.Enabled = false;
 
-            if (txtbox_username.Text.Length > 0 && txtbox_password.Text.Length > 0)
+            if (txtbox_username.Text.Trim().Length > 0 && txtbox_password.Text.Trim().Length > 0)
                 btn_login.Enabled = true;
             else
                 btn_login.Enabled = false;
@@ -41,7 +41,7 @@ namespace QueuingSystem.Client.Window
 
         private void txtbox_password_TextChanged(object sender, EventArgs e)
         {
-            if (txtbox_username.Text.Length > 0 && txtbox_password.Text.Length > 0)
+            if (txtbox_username.Text.Trim().Length > 0 && txtbox_password.Text.Trim().Length > 0)
                 btn_login.Enabled = true;
             else
                 btn_login.Enabled = false;

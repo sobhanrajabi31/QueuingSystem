@@ -520,8 +520,8 @@ namespace QueuingSystem.Client.Window
             {
                 try
                 {
-                    string toastText = lbl_next.Text == "اتمام نوبت ها" 
-                        ? lbl_next.Text : ("نوبت بعدی: " + lbl_next.Text);
+                    string toastText = lbl_next.Text.Trim() == "اتمام نوبت ها" 
+                        ? lbl_next.Text.Trim() : ("نوبت بعدی: " + lbl_next.Text.Trim());
 
                     ToastMessage.ShowToast(toastText);
                     _player.Play();
@@ -675,7 +675,7 @@ namespace QueuingSystem.Client.Window
         {
             var date = DateTime.Today.ConvertToFa_Date();
 
-            if (date != lblDate.Text)
+            if (date != lblDate.Text.Trim())
                 lblDate.Text = date;
 
             int h, m;
@@ -724,7 +724,7 @@ namespace QueuingSystem.Client.Window
                     TimeFrame = (FilterByTimeFrame)(timeFrameVal ? combobox_TimeFrame.SelectedIndex : 0),
                     QueueStatus = (FilterByQueueStatus)(queueStatusVal ? combobox_QueueStatus.SelectedIndex : 0),
                     Search = (FilterBySearch)(searchByVal ? combobox_SearchBy.SelectedIndex : 0),
-                    Data = txtbox_SearchBy.Text
+                    Data = txtbox_SearchBy.Text.Trim()
                 };
 
                 using var _atelierSrv = new AtelierService();
@@ -755,8 +755,8 @@ namespace QueuingSystem.Client.Window
             var resetPass = new ResetPasswordDto
             {
                 Id = AppState.EmployeeId,
-                CurrentPassword = txtbox_oldPass.Text,
-                NewPassword = txtbox_newPass.Text
+                CurrentPassword = txtbox_oldPass.Text.Trim(),
+                NewPassword = txtbox_newPass.Text.Trim()
             };
 
             using var _employeeSrv = new EmployeeService();

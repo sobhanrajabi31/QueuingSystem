@@ -94,10 +94,10 @@ namespace QueuingSystem.Client.Window
 
             var newQueue = new CreateAtelierQueueDto
             {
-                FullName = txtbox_fullname.Text,
-                PhoneNumber = txtbox_phonenumber.Text,
-                QueueCreatedAt = txtbox_date.Value.HasValue ? txtbox_date.Value.Value.AddHours(int.Parse(txtbox_startHour.Text.Substring(0, 2))) : null,
-                QueueDuration = string.IsNullOrWhiteSpace(combobox_duration.Text) ? null : int.Parse(combobox_duration.Text),
+                FullName = txtbox_fullname.Text.Trim(),
+                PhoneNumber = txtbox_phonenumber.Text.Trim(),
+                QueueCreatedAt = txtbox_date.Value.HasValue ? txtbox_date.Value.Value.AddHours(int.Parse(txtbox_startHour.Text.Trim().Substring(0, 2))) : null,
+                QueueDuration = string.IsNullOrWhiteSpace(combobox_duration.Text.Trim()) ? null : int.Parse(combobox_duration.Text.Trim()),
                 EmployeeId = AppState.EmployeeId,
                 Note = note
             };
@@ -124,7 +124,7 @@ namespace QueuingSystem.Client.Window
             {
                 using var _atelierSrv = new AtelierService();
                 var times = _atelierSrv.GetByDate(AppState.EmployeeId, txtbox_date.Value.Value,
-                    TimeSpan.FromHours(int.Parse(combobox_duration.Text)));
+                    TimeSpan.FromHours(int.Parse(combobox_duration.Text.Trim())));
 
                 UpdateFreeTimeDatagrid(times);
             }
