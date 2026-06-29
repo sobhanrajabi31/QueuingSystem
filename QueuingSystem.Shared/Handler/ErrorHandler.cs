@@ -24,7 +24,7 @@
         ConnectionFailedDuringFirstConnection = 19,
         ConnectionFailedDuringAtelierActivity = 20,
         ConnectionFailedDuringPersonnelActivity = 21,
-        ConnectionFailedDuringEmployeeActivity = 22
+        ConnectionFailedDuringEmployeeActivity = 22,
     }
 
     public static class ErrorHandler
@@ -58,7 +58,7 @@
                 { ErrorCode.ConnectionFailedDuringFirstConnection, "خطایی هنگام برقراری اولین ارتباط با سرور رخ داد" },
                 { ErrorCode.ConnectionFailedDuringAtelierActivity, "خطایی هنگام فعالیت در قسمت نوبت آتلیه در ارتباط با سرور رخ داد" },
                 { ErrorCode.ConnectionFailedDuringPersonnelActivity, "خطایی هنگام فعالیت در قسمت نوبت پرسنلی در ارتباط با سرور رخ داد" },
-                { ErrorCode.ConnectionFailedDuringEmployeeActivity, "خطایی هنگام فعالیت در قسمت کارمند در ارتباط با سرور رخ داد" }
+                { ErrorCode.ConnectionFailedDuringEmployeeActivity, "خطایی هنگام فعالیت در قسمت کارمند در ارتباط با سرور رخ داد" },
             };
         }
 

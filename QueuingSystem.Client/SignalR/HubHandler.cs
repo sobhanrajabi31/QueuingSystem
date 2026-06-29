@@ -61,7 +61,7 @@ namespace QueuingSystem.Client.SignalR
 
         private void ExceptionInvoker(bool IsSuccess, ErrorCode? errorCode = null, MessageCode? messageCode = null)
         {
-            ExceptionHandler.Invoke(this, new ConnectionExceptionHandlerEventArgs
+            ExceptionHandler?.Invoke(this, new ConnectionExceptionHandlerEventArgs
             {
                 Result = new ResultModel
                 {
@@ -71,12 +71,11 @@ namespace QueuingSystem.Client.SignalR
             });
         }
 
-        public async Task StartAsync(int employeeId)
+        public async Task StartAsync()
         {
             try
             {
                 await _connection.StartAsync();
-                await Connect(employeeId);
             }
 
             catch
@@ -85,9 +84,22 @@ namespace QueuingSystem.Client.SignalR
             }
         }
 
-        private async Task Connect(int employeeId)
+        public async Task ConnectAsync(int employeeId)
         {
+            try
+            {
             await _connection.InvokeAsync(HubMethods.Connect, employeeId);
+        }
+
+            catch
+            {
+                ExceptionInvoker(false, ErrorCode.ConnectionFailedDuringFirstConnection);
+            }
+        }
+
+        public async Task<List<int>> GetOnlineUsersAsync()
+        {
+            return await _connection.InvokeAsync<List<int>>(HubMethods.GetOnlineUsers);
         }
 
         private void RaiseOnlineUsersChanged(List<int> onlineUsers)

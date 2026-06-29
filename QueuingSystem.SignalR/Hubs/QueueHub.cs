@@ -42,6 +42,11 @@ namespace QueuingSystem.SignalR.Hubs
                 .SendAsync(HubMethods.AteliersChanged);
         }
 
+        public async Task EmployeesChanged()
+        {
+            await Clients.All.SendAsync(HubMethods.EmployeesChanged);
+        }
+
         public async Task PersonnelsChanged(bool executedBy)
         {
             await Clients.All.SendAsync(HubMethods.PersonnelsChanged, executedBy);

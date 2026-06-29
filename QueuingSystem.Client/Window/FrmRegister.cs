@@ -1,4 +1,5 @@
 ﻿using QueuingSystem.Business.Services;
+using QueuingSystem.Client.SignalR;
 using QueuingSystem.Client.Tool;
 using QueuingSystem.Shared.DTOs.Employee;
 
@@ -85,6 +86,11 @@ namespace QueuingSystem.Client.Window
 
             if (registerResult.IsSuccess)
             {
+                var _hubHandler = new HubHandler();
+
+                _hubHandler.StartAsync();
+                _hubHandler.UpdateEmployeesChanges();
+
                 Mbox.Information(registerResult.Message, Caption.Information);
 
                 var frmLogin = new FrmLogin();
