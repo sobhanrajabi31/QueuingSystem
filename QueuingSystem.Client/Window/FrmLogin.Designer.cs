@@ -144,7 +144,6 @@ namespace QueuingSystem.Client.Window
             Name = "FrmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "پنل ورود";
-            FormClosing += FrmLogin_FormClosing;
             Load += FrmLogin_Load;
             ResumeLayout(false);
             PerformLayout();

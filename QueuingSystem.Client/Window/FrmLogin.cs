@@ -6,12 +6,9 @@ namespace QueuingSystem.Client.Window
 {
     public partial class FrmLogin : Form
     {
-        private readonly EmployeeService _employeeSrv;
-
         public FrmLogin()
         {
             InitializeComponent();
-            _employeeSrv = new EmployeeService();
         }
 
         // ============ [ Events ] ============
@@ -58,11 +55,6 @@ namespace QueuingSystem.Client.Window
             Login();
         }
 
-        private void FrmLogin_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _employeeSrv.Dispose();
-        }
-
         // ============ [ Methods ] ============
 
         private void OpenFrmAndSaveData(int id, string username, bool role)
@@ -87,6 +79,7 @@ namespace QueuingSystem.Client.Window
 
                 if (loginDto != null)
                 {
+                    using var _employeeSrv = new EmployeeService();
                     var result = _employeeSrv.Login(loginDto);
 
                     if (result.IsSuccess)
@@ -114,6 +107,7 @@ namespace QueuingSystem.Client.Window
 
             btn_login.Enabled = false;
 
+            using var _employeeSrv = new EmployeeService();
             var result = _employeeSrv.Login(loginDto);
 
             if (result.IsSuccess)

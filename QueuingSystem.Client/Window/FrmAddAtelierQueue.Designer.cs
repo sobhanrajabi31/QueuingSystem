@@ -206,7 +206,6 @@ namespace QueuingSystem.Client.Window
             FreeTimeDatagridView.Size = new Size(186, 472);
             FreeTimeDatagridView.TabIndex = 11;
             FreeTimeDatagridView.TabStop = false;
-            FreeTimeDatagridView.CellContentClick += FreeTimeDatagridView_CellContentClick;
             FreeTimeDatagridView.SelectionChanged += FreeTimeDatagridView_SelectionChanged;
             // 
             // AtelierHourColumn

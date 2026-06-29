@@ -8,14 +8,12 @@ namespace QueuingSystem.Client.Window
     public partial class FrmAddAtelierQueue : Form
     {
         private readonly FrmMain _frmMain;
-        private readonly AtelierService _atelierSrv;
 
-        public FrmAddAtelierQueue(FrmMain frmMain, AtelierService service)
+        public FrmAddAtelierQueue(FrmMain frmMain)
         {
             InitializeComponent();
 
             _frmMain = frmMain;
-            _atelierSrv = service;
         }
 
         string note = string.Empty;
@@ -43,31 +41,7 @@ namespace QueuingSystem.Client.Window
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            btn_add.Enabled = false;
-
-            var newQueue = new CreateAtelierQueueDto
-            {
-                FullName = txtbox_fullname.Text,
-                PhoneNumber = txtbox_phonenumber.Text,
-                QueueCreatedAt = txtbox_date.Value.HasValue ? txtbox_date.Value.Value.AddHours(int.Parse(txtbox_startHour.Text.Substring(0, 2))) : null,
-                QueueDuration = string.IsNullOrWhiteSpace(combobox_duration.Text) ? null : int.Parse(combobox_duration.Text),
-                EmployeeId = AppState.EmployeeId,
-                Note = note
-            };
-
-            var createResult = _atelierSrv.CreateQueue(newQueue);
-
-            if (createResult.IsSuccess)
-            {
-                _frmMain.hubHandler.UpdateAtelierChanges(AppState.EmployeeId);
-                Mbox.Information(createResult.Message, Caption.Information);
-                Close();
-            }
-
-            else
-                Mbox.Error(createResult.Message, Caption.Error);
-
-            btn_add.Enabled = true;
+            AddAtelierQueue();
         }
 
         private void txtbox_date_ValueChanged(object sender, EventArgs e)
@@ -107,6 +81,55 @@ namespace QueuingSystem.Client.Window
                 e.Handled = true;
         }
 
+        private void combobox_duration_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetLastestFreeTimes();
+        }
+
+        // ============ [ Methods ] ============
+
+        private void AddAtelierQueue()
+        {
+            btn_add.Enabled = false;
+
+            var newQueue = new CreateAtelierQueueDto
+            {
+                FullName = txtbox_fullname.Text,
+                PhoneNumber = txtbox_phonenumber.Text,
+                QueueCreatedAt = txtbox_date.Value.HasValue ? txtbox_date.Value.Value.AddHours(int.Parse(txtbox_startHour.Text.Substring(0, 2))) : null,
+                QueueDuration = string.IsNullOrWhiteSpace(combobox_duration.Text) ? null : int.Parse(combobox_duration.Text),
+                EmployeeId = AppState.EmployeeId,
+                Note = note
+            };
+
+            using var _atelierSrv = new AtelierService();
+            var createResult = _atelierSrv.CreateQueue(newQueue);
+
+            if (createResult.IsSuccess)
+            {
+                _frmMain.hubHandler.UpdateAtelierChanges(AppState.EmployeeId);
+                Mbox.Information(createResult.Message, Caption.Information);
+                Close();
+            }
+
+            else
+                Mbox.Error(createResult.Message, Caption.Error);
+
+            btn_add.Enabled = true;
+        }
+
+        private void GetLastestFreeTimes()
+        {
+            if (combobox_duration.SelectedIndex != -1 && txtbox_date.Value.HasValue)
+            {
+                using var _atelierSrv = new AtelierService();
+                var times = _atelierSrv.GetByDate(AppState.EmployeeId, txtbox_date.Value.Value,
+                    TimeSpan.FromHours(int.Parse(combobox_duration.Text)));
+
+                UpdateFreeTimeDatagrid(times);
+            }
+        }
+
         private void UpdateFreeTimeDatagrid(List<TimeSpan> times)
         {
             FreeTimeDatagridView.Rows.Clear();
@@ -116,23 +139,5 @@ namespace QueuingSystem.Client.Window
                 FreeTimeDatagridView.Rows.Add(x.ToString().Substring(0, x.ToString().Length - 3));
             });
         }
-
-        private void combobox_duration_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (combobox_duration.SelectedIndex != -1 && txtbox_date.Value.HasValue)
-            {
-                var times = _atelierSrv.GetByDate(AppState.EmployeeId, txtbox_date.Value.Value,
-                    TimeSpan.FromHours(int.Parse(combobox_duration.Text)));
-
-                UpdateFreeTimeDatagrid(times);
-            }
-        }
-
-        private void FreeTimeDatagridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        // ============ [ Methods ] ============s
     }
 }

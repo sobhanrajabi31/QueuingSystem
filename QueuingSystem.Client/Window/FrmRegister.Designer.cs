@@ -184,7 +184,6 @@ namespace QueuingSystem.Client.Window
             Name = "FrmRegister";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "پنل ثبت نام";
-            FormClosing += FrmRegister_FormClosing;
             Load += FrmRegister_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
-using QueuingSystem.Business.Services;
+﻿using QueuingSystem.Business.Services;
 using QueuingSystem.Client.SignalR;
 using QueuingSystem.Client.SignalR.Events;
 using QueuingSystem.Client.Tool;
-using QueuingSystem.Data;
 using QueuingSystem.Shared.DTOs.Atelier;
 using QueuingSystem.Shared.DTOs.Employee;
 using QueuingSystem.Shared.DTOs.Personnel;
@@ -31,10 +29,6 @@ namespace QueuingSystem.Client.Window
 
     public partial class FrmMain : Form
     {
-        private readonly AtelierService _atelierSrv;
-        private readonly PersonnelService _personnelSrv;
-        private readonly EmployeeService _employeeSrv;
-
         private readonly Dictionary<int, string> _noteManager;
         private SoundPlayer _player;
         private List<int> _onlineUsers;
@@ -46,10 +40,6 @@ namespace QueuingSystem.Client.Window
         public FrmMain()
         {
             InitializeComponent();
-
-            _atelierSrv = new AtelierService();
-            _personnelSrv = new PersonnelService();
-            _employeeSrv = new EmployeeService();
 
             _noteManager = [];
             _onlineUsers = [];
@@ -334,18 +324,21 @@ namespace QueuingSystem.Client.Window
 
         private void Hub_AteliersChanged(object? sender, EventArgs e)
         {
-           Invoke(() =>
-            {
-                RefreshDataGrid(RefreshType.Atelier);
-            });
+            Invoke(() =>
+             {
+                 RefreshDataGrid(RefreshType.Atelier);
+             });
         }
 
         private async void Hub_PersonnelsChanged(object? sender, PersonnelsChangedEventArgs e)
         {
             Invoke(() =>
             {
-                var personnels = _personnelSrv.GetByDate(DateTime.Today);
-                RefreshPersonnelQueue(personnels, e.ExecutedBy);
+                using (var _personnelSrv = new PersonnelService())
+                {
+                    var personnels = _personnelSrv.GetByDate(DateTime.Today);
+                    RefreshPersonnelQueue(personnels, e.ExecutedBy);
+                }
             });
         }
 
@@ -361,10 +354,6 @@ namespace QueuingSystem.Client.Window
         {
             hubHandler.silentMode = true;
             hubHandler.DisposeAsync();
-
-            _atelierSrv.Dispose();
-            _personnelSrv.Dispose();
-            _employeeSrv.Dispose();
         }
 
         // ============ [ Methods ] ============
@@ -396,18 +385,30 @@ namespace QueuingSystem.Client.Window
             switch (type)
             {
                 case RefreshType.Atelier:
-                    var ateliers = _atelierSrv.GetByEmployeeId(AppState.EmployeeId);
-                    RefreshAtelierQueues(ateliers);
+                    using (var _atelierSrv = new AtelierService())
+                    {
+                        var ateliers = _atelierSrv.GetByEmployeeId(AppState.EmployeeId);
+                        RefreshAtelierQueues(ateliers);
+                    }
+
                     break;
 
                 case RefreshType.Personnel:
-                    var personnels = _personnelSrv.GetByDate(DateTime.Today);
-                    RefreshPersonnelQueue(personnels, AppState.Role);
+                    using (var _personnelSrv = new PersonnelService())
+                    {
+                        var personnels = _personnelSrv.GetByDate(DateTime.Today);
+                        RefreshPersonnelQueue(personnels, AppState.Role);
+                    }
+
                     break;
 
                 case RefreshType.Employee:
-                    var employees = _employeeSrv.GetStatistics();
-                    RefreshEmployees(employees);
+                    using (var _employeeSrv = new EmployeeService())
+                    {
+                        var employees = _employeeSrv.GetStatistics();
+                        RefreshEmployees(employees);
+                    }
+
                     break;
             }
         }
@@ -589,6 +590,8 @@ namespace QueuingSystem.Client.Window
                     int rowIndex = 0;
 
                     int id = int.Parse(AtelierDatagridview.SelectedRows[rowIndex].Cells["AtelierIdColumn"].Value.ToString());
+
+                    using var _atelierSrv = new AtelierService();
                     var queue = _atelierSrv.GetById(id);
 
                     if (queue != null)
@@ -630,6 +633,7 @@ namespace QueuingSystem.Client.Window
 
         private void ShowTodayQueuesCount()
         {
+            using var _atelierSrv = new AtelierService();
             var countResult = _atelierSrv.GetTodayQueuesCount(AppState.EmployeeId);
 
             if (countResult.IsSuccess)
@@ -714,6 +718,7 @@ namespace QueuingSystem.Client.Window
                     Data = txtbox_SearchBy.Text
                 };
 
+                using var _atelierSrv = new AtelierService();
                 var ateliers = _atelierSrv.GetByFilter(queueFilter);
                 RefreshAtelierQueues(ateliers);
             }
@@ -745,6 +750,7 @@ namespace QueuingSystem.Client.Window
                 NewPassword = txtbox_newPass.Text
             };
 
+            using var _employeeSrv = new EmployeeService();
             var rpResult = _employeeSrv.ResetPassword(resetPass);
 
             if (rpResult.IsSuccess)
@@ -763,7 +769,7 @@ namespace QueuingSystem.Client.Window
 
         private void AddAtelierQueue()
         {
-            var frmAddAtelier = new FrmAddAtelierQueue(this, _atelierSrv);
+            var frmAddAtelier = new FrmAddAtelierQueue(this);
             frmAddAtelier.ShowDialog();
         }
 
@@ -782,6 +788,7 @@ namespace QueuingSystem.Client.Window
                         QueueStatus = queueStatus
                     };
 
+                    using var _atelierSrv = new AtelierService();
                     var updateResult = _atelierSrv.UpdateQueue(updateDto);
 
                     if (updateResult.IsSuccess)
@@ -811,6 +818,7 @@ namespace QueuingSystem.Client.Window
                         EmployeeId = AppState.EmployeeId
                     };
 
+                    using var _atelierSrv = new AtelierService();
                     var result = _atelierSrv.DeleteQueue(deleteQueueDto);
 
                     if (result.IsSuccess)
@@ -836,6 +844,7 @@ namespace QueuingSystem.Client.Window
                 EmployeeId = AppState.EmployeeId
             };
 
+            using var _personnelSrv = new PersonnelService();
             var createResult = _personnelSrv.CreateQueue(createPersonnel);
 
             if (createResult.IsSuccess)
@@ -868,6 +877,7 @@ namespace QueuingSystem.Client.Window
                         QueueEndedAt = DateTime.Now,
                     };
 
+                    using var _personnelSrv = new PersonnelService();
                     var updateResult = _personnelSrv.UpdateQueue(updatePersonnelQueue);
 
                     if (updateResult.IsSuccess)
@@ -894,6 +904,7 @@ namespace QueuingSystem.Client.Window
                 {
                     int id = int.Parse(PersonnelDatagridview.Rows[selectedRowIndex].Cells["PersonnelIdColumn"].Value.ToString());
 
+                    using var _personnelSrv = new PersonnelService();
                     var deleteResult = _personnelSrv.DeleteQueue(id);
 
                     if (deleteResult.IsSuccess)

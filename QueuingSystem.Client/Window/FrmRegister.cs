@@ -6,12 +6,9 @@ namespace QueuingSystem.Client.Window
 {
     public partial class FrmRegister : Form
     {
-        private readonly EmployeeService _employeeSrv;
-
         public FrmRegister()
         {
             InitializeComponent();
-            _employeeSrv = new EmployeeService();
         }
 
         // ============ [ Events ] ============
@@ -69,11 +66,6 @@ namespace QueuingSystem.Client.Window
             Register();
         }
 
-        private void FrmRegister_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _employeeSrv.Dispose();
-        }
-
         // ============ [ Methods ] ============
 
         private void Register()
@@ -88,6 +80,7 @@ namespace QueuingSystem.Client.Window
                 Role = comboBoxRole.SelectedIndex == 0 ? false : true
             };
 
+            using var _employeeSrv = new EmployeeService();
             var registerResult = _employeeSrv.Register(registerData);
 
             if (registerResult.IsSuccess)
