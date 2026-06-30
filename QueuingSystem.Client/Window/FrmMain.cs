@@ -353,8 +353,7 @@ namespace QueuingSystem.Client.Window
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            hubHandler.silentMode = true;
-            hubHandler.DisposeAsync();
+            ReadyForClosing();
         }
 
         // ============ [ Methods ] ============
@@ -743,6 +742,8 @@ namespace QueuingSystem.Client.Window
                 if (File.Exists(AppState.TokenFileName))
                     File.Delete(AppState.TokenFileName);
 
+                ReadyForClosing();
+
                 var frmLogin = new FrmLogin();
                 Hide();
                 frmLogin.ShowDialog();
@@ -926,6 +927,17 @@ namespace QueuingSystem.Client.Window
                         Mbox.Error(deleteResult.Message, Caption.Error);
                 }
             }
+        }
+
+        private void ReadyForClosing()
+        {
+            hubHandler.AteliersChanged -= Hub_AteliersChanged;
+            hubHandler.PersonnelsChanged -= Hub_PersonnelsChanged;
+            hubHandler.EmployeesChanged -= Hub_EmployeesChanged;
+            hubHandler.OnlineUsersChanged -= Hub_OnlineUsersChanged;
+            hubHandler.ExceptionHandler -= Hub_Exception;
+
+            hubHandler.DisposeAsync();
         }
     }
 }

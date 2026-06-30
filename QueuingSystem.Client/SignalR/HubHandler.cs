@@ -19,8 +19,6 @@ namespace QueuingSystem.Client.SignalR
         public event EventHandler<PersonnelsChangedEventArgs>? PersonnelsChanged;
         public event EventHandler? EmployeesChanged;
 
-        public bool silentMode = false;
-
         public HubHandler()
         {
             _connection = new HubConnectionBuilder()
@@ -56,9 +54,7 @@ namespace QueuingSystem.Client.SignalR
 
             _connection.Closed += ex =>
             {
-                if (!silentMode)
-                    ExceptionInvoker(false, ErrorCode.ConnectionClosed);
-
+                ExceptionInvoker(false, ErrorCode.ConnectionClosed);
                 return Task.CompletedTask;
             };
         }
