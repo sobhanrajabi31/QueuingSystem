@@ -170,11 +170,6 @@ namespace QueuingSystem.Client.Window
             ResetPassword();
         }
 
-        private void UsersDatagrid_SelectionChanged(object sender, EventArgs e)
-        {
-            StatsDatagrid.ClearSelection();
-        }
-
         private void TimerClock_Tick(object sender, EventArgs e)
         {
             DigitalClock();
