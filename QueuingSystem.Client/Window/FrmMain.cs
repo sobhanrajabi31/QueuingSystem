@@ -767,6 +767,8 @@ namespace QueuingSystem.Client.Window
             {
                 Mbox.Information(rpResult.Message, Caption.Information);
 
+                ReadyForClosing();
+
                 var frmLogin = new FrmLogin();
                 Hide();
                 frmLogin.ShowDialog();
