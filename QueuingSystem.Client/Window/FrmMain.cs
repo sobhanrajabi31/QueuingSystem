@@ -190,26 +190,6 @@ namespace QueuingSystem.Client.Window
             ClearFilters();
         }
 
-        private void ClearFilters()
-        {
-            LoadDefaultFilters();
-            RefreshDataGrid(RefreshType.Atelier);
-        }
-
-        private void LoadDefaultFilters()
-        {
-            if (combobox_SearchBy.Items.Count > 0 &&
-                combobox_TimeFrame.Items.Count > 0 &&
-                combobox_QueueStatus.Items.Count > 0)
-            {
-                combobox_SearchBy.SelectedIndex = 0;
-                combobox_TimeFrame.SelectedIndex = 0;
-                combobox_QueueStatus.SelectedIndex = 0;
-            }
-
-            txtbox_SearchBy.Clear();
-        }
-
         private void AtelierDatagridview_SelectionChanged(object sender, EventArgs e)
         {
             AtelierButtonDesign();
@@ -543,6 +523,26 @@ namespace QueuingSystem.Client.Window
 
                 StatsDatagrid.Rows.Add(Img.ConvertToBmp(status), x.PersonnelCount, x.AtelierCount, x.Username, x.Id);
             });
+        }
+
+        private void ClearFilters()
+        {
+            LoadDefaultFilters();
+            RefreshDataGrid(RefreshType.Atelier);
+        }
+
+        private void LoadDefaultFilters()
+        {
+            if (combobox_SearchBy.Items.Count > 0 &&
+                combobox_TimeFrame.Items.Count > 0 &&
+                combobox_QueueStatus.Items.Count > 0)
+            {
+                combobox_SearchBy.SelectedIndex = 0;
+                combobox_TimeFrame.SelectedIndex = 0;
+                combobox_QueueStatus.SelectedIndex = 0;
+            }
+
+            txtbox_SearchBy.Clear();
         }
 
         private void UpdateOnlineUsers(List<int> users)
