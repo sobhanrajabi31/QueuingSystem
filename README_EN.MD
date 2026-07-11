@@ -41,6 +41,8 @@ The system supports multiple employees working simultaneously, with **real-time 
 - ✅ **FluentValidation** — clean, centralized validation rules for all DTOs
 - 🌐 **RTL / Persian UI** — fully right-to-left interface with Persian labels and messages
 
+<img width="998" height="568" alt="image" src="https://github.com/user-attachments/assets/08df51da-0adb-4d69-bc46-f390289e7b4f" />
+
 ---
 
 ## 🏗️ Architecture
