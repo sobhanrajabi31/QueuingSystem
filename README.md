@@ -41,6 +41,8 @@
 - ✅ **اعتبارسنجی تمیز و متمرکز** — با استفاده از کتابخانه FluentValidation
 - 🌐 **رابط کاربری فارسی** — رابط کاربری کاملاً راست‌به‌چپ، همراه با برچسب‌ها و پیام‌های فارسی
 
+<img width="998" height="568" alt="image" src="https://github.com/user-attachments/assets/08df51da-0adb-4d69-bc46-f390289e7b4f" />
+
 ---
 
 ## 🏗️ معماری
